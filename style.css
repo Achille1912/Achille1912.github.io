@@ -17,6 +17,10 @@ html, body {
    -webkit-text-stroke: 1px black;
 }
 
+a{
+  text-decoration:none;
+}
+
 .underline{
   background-image: linear-gradient(green, lightgreen);
   width: 30%;
