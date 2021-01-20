@@ -52,7 +52,7 @@ a{
   z-index:1;
   position: fixed;
   width: 100%;
-  background: rgba(0, 0, 0, 0.95);
+  background: rgba(0, 0, 0, 0.90);
 }
 
 .header_logo {
