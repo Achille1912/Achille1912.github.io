@@ -49,8 +49,10 @@ a{
 
 /*HEADER*/
 .header {
-  background-color: black;
   z-index:1;
+  position: fixed;
+  width: 100%;
+  background: rgba(0, 0, 0, 0.95);
 }
 
 .header_logo {
