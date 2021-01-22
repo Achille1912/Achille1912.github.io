@@ -84,22 +84,29 @@ a{
   padding: 0;
 }
 
-.header_lista_item {
+..header_lista_item {
   display: inline-block;
+  position:relative;
+  overflow:hidden;
+  z-index:0;
 }
 
-.header_lista_item a {
-  color: white;
-  display: block;
-  padding: 10px;
-  text-decoration: none;
-  font-size: 1.5em;
+.header_lista_item:hover::before{
+  top:0px;
+  border-radius: 0;
 }
 
-.header_lista_item a:hover {
-  background-color: #00FF33;
-  color: black;
-  transition: 0.5s;
+.header_lista_item::before{
+  content: '';
+  position:absolute;
+  top:60px;
+  left:0px;
+  width: 100%;
+  height:100%;
+  background:#892cdc;
+  border-radius: 50% 50% 0% 0;
+  z-index:-1;
+  transition:all 0.75s;
 }
 
 /*COVER*/
