@@ -109,6 +109,14 @@ a{
   transition:all 0.75s;
 }
 
+.header_lista_item a {
+  color: white;
+  display: block;
+  padding: 10px;
+  text-decoration: none;
+  font-size: 1.5em;
+}
+
 /*COVER*/
 .cover {
   height: 70%;
