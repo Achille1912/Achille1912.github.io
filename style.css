@@ -84,7 +84,7 @@ a{
   padding: 0;
 }
 
-..header_lista_item {
+.header_lista_item {
   display: inline-block;
   position:relative;
   overflow:hidden;
