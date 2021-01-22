@@ -85,6 +85,7 @@ html, body {
   position:relative;
   overflow:hidden;
   z-index:0;
+  font-weight:bolder;
 }
 
 .header_lista_item:hover::before{
