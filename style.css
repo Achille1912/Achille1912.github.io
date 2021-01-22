@@ -46,6 +46,9 @@ html, body {
 .header {
   background-color: black;
   z-index:1;
+  position:fixed;
+  width:100%;
+  opacity:0.95;
 }
 
 .header_logo {
