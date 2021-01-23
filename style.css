@@ -142,7 +142,7 @@ html, body {
   width: 100%;
   display: table;
   position: relative;
-  z-index: 1;
+  z-index: 0;
 }
 
 .cover_caption_copy {
