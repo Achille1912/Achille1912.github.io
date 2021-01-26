@@ -527,6 +527,81 @@ a{
   background: black;
 }
 
+/*FOOTER*/
+footer{
+  height:20%;
+  background-color:cyan;
+  
+
+}
+.wrapper{
+  margin-left:10px;
+}
+
+footer .button{
+  display:inline-block;
+  height:60px;
+  width:60px;
+  float: left;
+  margin: 0 5px;
+  background: white;
+  border-radius: 50px;
+  cursor: pointer;
+  box-shadow: 0 10px 10px rgba(0,0,0,0.1);
+  transition: all 0.3s ease-out;
+  
+}
+
+footer #facebook:hover{
+  color:white;
+  background:linear-gradient(120deg, #2a5ac2, #93b1be);
+  box-shadow: 5px 5px rgb(0,0,0,0.4);
+}
+
+footer #twitter:hover{
+  color:white;
+  background:linear-gradient(45deg, #66757f, #00ACEE, #36D8FF, #7a9bb1, #ffffff);
+  box-shadow: 5px 5px rgb(0,0,0,0.4);
+}
+
+footer #instagram:hover{
+  color:white;
+  background: -moz-linear-gradient(45deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%); 
+background: -webkit-linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+background: linear-gradient(45deg, #f09433 0%,#e6683c 25%,#dc2743 50%,#cc2366 75%,#bc1888 100%); 
+  box-shadow: 5px 5px rgb(0,0,0,0.4);
+}
+
+footer #github:hover{
+  color:white;
+  background-color:black;
+  box-shadow: 5px 5px rgb(0,0,0,0.4);
+}
+
+footer .button .icon{
+  display:inline-block;
+  height:60px;
+  width:60px;
+  border-radius:50px;
+  box-sizing: border-box;
+  line-height:60px;
+  text-align:center;
+}
+
+footer .button .icon i{
+  font-size:25px;
+  line-height:60px;
+}
+
+footer .button span{
+  font-size: 20px;
+  font-weight:500;
+  line-height: 60px;
+  margin-left:10px;
+}
+
+
+
 /*CLEARFIX CSS-TRICKS*/
 .clearfix:after {
   visibility: hidden;
