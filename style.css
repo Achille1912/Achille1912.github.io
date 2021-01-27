@@ -41,6 +41,9 @@ html, body {
 
 }
 
+a{
+  color: inherit;
+}
 
 /*HEADER*/
 .header {
