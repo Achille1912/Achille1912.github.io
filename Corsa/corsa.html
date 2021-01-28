@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script>
+        function calcola(){
+            var anni= document.getElementById("anni").value;
+            var altezza=document.getElementById("altezza").value;
+            var peso= document.getElementById("peso").value;
+            var result=0;
+            var pesoIdeale=0;
+            pesoIdeale=(altezza-100)-((altezza-150)/2));
+        }
+    </script>
+    <style>
+        input{
+            text-decoration: none;
+            border:none;
+            font-size: 1.5em;
+            margin:2%;
+            max-width:30%;
+            border-radius:20%;
+        }
+        html,body{
+            margin:0;
+            padding:0;
+            font-family: Titillium Web,sans-serif;
+        }
+
+        #arcelli{
+            color:#ee7752;
+        }
+
+        h1{
+            font-size: 3.6em;
+            margin:10px;
+        }
+        
+        .result{
+            background-color: red;
+            max-width:50%;
+            height:100%;
+            float:left;
+            margin:5%;
+            
+        }
+        .wrapper{
+            margin:5%;
+        }
+
+        .data{
+            background-color: green;
+            max-width:50%;
+            max-height:100%;
+            float:right;
+            margin:5%;
+        }
+
+        .form{
+            place-items: center;
+           
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <center>
+        <h1>Formula di <span id="arcelli">Arcelli</span></h1>
+    </center>
+
+    <section class="result">
+        d
+    </section>
+
+    <section class="data">
+        <div class="wrapper">
+            <div class="form">
+                <h2 style="font-size:1em">Inserisci le informazioni</h2>
+                <input id="anni "type="number" placeholder="Età"><br>
+                <input id="altezza" type="number" placeholder="Altezza"><br>
+                <input id="peso" type="number" placeholder="Peso"><br>
+                <button id="pulsante">Calcola</button>
+
+
+            </div>
+        </div>
+    </section>
+</body>
+</html>
