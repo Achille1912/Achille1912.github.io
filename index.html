@@ -5,6 +5,18 @@
   <link rel="stylesheet" href="style.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script> 
 	<script>
+    var c=0;
+    function prova(){
+      var x = document.getElementsByTagName("BODY")[0]; 
+      if(c%2==0){
+        x.style.backgroundColor="black";
+        x.style.color="white";
+      }else{
+        x.style.backgroundColor="white";
+        x.style.color="black";
+      }
+      c++;
+    }
 		$(document).ready(function() {
   $(".header_icon").click(function(e) {
 
@@ -26,20 +38,25 @@
 <body>
   <div id="scrollIndicator"></div>
   <header class="header clearfix">
+    
     <a class="header_logo" href="#">
       <img class="profile" src="image/profile.jpg" alt="Foto Profilo">
     </a>
+    
     <a class="header_icon" href="#">
       <span></span>
       <span></span>
       <span></span>
     </a>
+    
     <ul class="header_lista animate">
       <li class="header_lista_item"><a href="">Link 1</a></li>
       <li class="header_lista_item"><a href="Corsa/corsa.html">Link 2</a></li>
       <li class="header_lista_item"><a href="">Link 3</a></li>
       <li class="header_lista_item"><a href="">Link 4</a></li>
+      
     </ul>
+
   </header>
 
   <section class="cover">
@@ -52,7 +69,16 @@
   </section>
   <br>
 
+
+
+
+
   <center>
+    <div class="switch">
+      <input type="checkbox" class="input" onclick="prova()">
+      <div class="circle"></div>
+      </div>
+    </div>
   <h1>Progetti</h1>
   <div class="underline"></div>
   </center>
@@ -118,7 +144,7 @@
       <a href="https://www.facebook.com/me/">
         <div class="button" id="facebook">
           <div class="icon">
-            <i class="fab fa-twitter"></i>
+            <i class="fab fa-facebook-f"></i>
           </div>
         </div>
       </a>
