@@ -215,7 +215,7 @@ input:checked ~.circle{
 .cards{
   max-width: 1200px;
   margin:40px auto;
-
+  height:100%;
 }
 
 .card{
@@ -756,5 +756,9 @@ footer .button span{
     
     margin-right: auto;
 
+  }
+
+  .cards{
+    height:100%;
   }
 }
