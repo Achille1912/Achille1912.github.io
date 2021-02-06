@@ -129,6 +129,10 @@ a{
   -moz-background-size: cover;
   background-position: center center;
   position: relative;
+  background-attachment: fixed;
+  -webkit-background-attachment: fixed;
+  -o-background-attachment: fixed;
+  -moz-background-attachment: fixed;
 }
 
 .cover_filter {
