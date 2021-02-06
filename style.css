@@ -120,7 +120,7 @@ a{
 
 /*COVER*/
 .cover {
-  height: 70%;
+  height: 100%;
   background-image: url("https://cdn.stocksnap.io/img-thumbs/960w/coding-macbook_LV2IUQNTZ5.jpg");
   background-size: cover;
   -webkit-background-size: cover;
