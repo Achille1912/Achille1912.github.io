@@ -4,6 +4,7 @@ html, body {
   padding: 0;
   height: 100%;
   width: 100%;
+  scroll-behavior: smooth;
 }
 .text{
   font-size: 3.5em;
@@ -43,7 +44,6 @@ html, body {
 
 a{
   color: inherit;
-  transition: 1s;
 }
 
 /*HEADER*/
