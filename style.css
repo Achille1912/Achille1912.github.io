@@ -50,7 +50,7 @@ a{
 /*HEADER*/
 .header {
   position: relative important!;
-  background-color: black;
+  background-color:#1A3263;
   z-index:1;
   width:100%;
 }
@@ -111,7 +111,7 @@ a{
   left:0px;
   width: 100%;
   height:100%;
-  background:#892cdc;
+  background:#7971EA;
   border-radius: 50% 50% 0% 0;
   z-index:-1;
   transition:all 0.75s;
@@ -161,20 +161,29 @@ a{
 }
 
 .cover_caption_copy {
-  display: table;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: xx-large;
   vertical-align: middle;
   text-align: center;
   color: white;
+  -webkit-text-stroke-width: 1px;
+  -webkit-text-stroke-color: black;
 }
 
 /*SWITCH*/
 .switch{
-  position: relative;
+  position: absolute;
+  right:2%;
   width:100px;
   height:48px;
   border-radius:25px;
   cursor: pointer;
-  background-color: red;
+  background-color: lightgray;
 }
 
 .input{
@@ -202,9 +211,6 @@ a{
   transition:all 0.25s ease;
 }
 
-.switch:hover{
-  background-color: green;
-}
 
 .switch:active .circle{
   width:50px;
@@ -435,6 +441,10 @@ footer .button span{
 
   .cover {
     height: 100%;
+  }
+
+  cover_caption_copy{
+    padding:50%;
   }
 
   .curriculum{

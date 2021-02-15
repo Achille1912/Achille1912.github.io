@@ -10,8 +10,10 @@
     function prova(){
       var x = document.getElementsByTagName("BODY")[0]; 
       if(c%2==0){
-        x.style.backgroundColor="black";
+        x.style.backgroundColor="#121212";
+        document.getElementsByClassName("curriculum")[0].style.backgroundColor="gray";
         x.style.color="white";
+        document.getElementsByTagName("FOOTER")[0].style.backgroundColor="black";
       }else{
         x.style.backgroundColor="white";
         x.style.color="black";
@@ -31,6 +33,7 @@
   <script src="script.js"></script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
 
@@ -65,9 +68,9 @@
     </div>
     <div class="cover_caption">
       <div class="cover_caption_copy">
-        <center>
-           ciao
-          </center>
+        
+           Cannavale<br>Achille
+        
       </div>
     </div>
   </section>
