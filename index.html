@@ -10,13 +10,16 @@
     function prova(){
       var x = document.getElementsByTagName("BODY")[0]; 
       if(c%2==0){
-        x.style.backgroundColor="#121212";
+        /*x.style.backgroundColor="#121212";
         document.getElementsByClassName("curriculum")[0].style.backgroundColor="gray";
         x.style.color="white";
-        document.getElementsByTagName("FOOTER")[0].style.backgroundColor="black";
+        document.getElementsByTagName("FOOTER")[0].style.backgroundColor="black";*/
+        document.documentElement.setAttribute('data-theme', 'dark');
       }else{
-        x.style.backgroundColor="white";
-        x.style.color="black";
+        /*x.style.backgroundColor="white";
+        x.style.color="black";*/
+        document.documentElement.setAttribute('data-theme', 'light');
+       
       }
       c++;
     }
@@ -87,12 +90,13 @@
       </div>
     </div>
   
-   	<h1>Progetti</h1>
+   	
+
+  <section class="cards clearfix">
+    <h1>Progetti</h1>
   
   <div class="underline"></div>
   </center>
-
-  <section class="cards clearfix">
     <div class="siema">
       <center>
       <div class="card">
@@ -151,16 +155,37 @@
     <div class="curriculumright">
       <img id="pic" src="https://source.unsplash.com/random/300x400" alt="">
     </div>
+  <br><br>
+    
+</section>
+
+<br>
+  <br>
+  <section class="cover" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');">
+    <div class="cover_filter">
+    </div>
+    <div class="cover_caption">
+      <div class="cover_caption_copy">
+        <center>
+           ciao
+          </center>
+      </div>
+    </div>
   </section>
-
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
-  Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
-
+  <br>
+  <br>
+  <br>
+  <section class="cards">
+    <p>
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
+      Lorem ipsum dolor sit amet, consectetur adipisicing elit. Similique fuga odio accusamus blanditiis eum sequi facilis et, nobis officia incidunt delectus quia adipisci eius dolorem odit aspernatur vitae, animi voluptate.
+    </p>
+  </section>
   <footer>
     <br>
     <div class="wrapper">
