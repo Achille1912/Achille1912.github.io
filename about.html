@@ -1,14 +1,21 @@
 <!DOCTYPE html>
 <html lang="en">
 <head> 
-
+    <style>
+        .photo{
+            float:left;
+        }
+        .text{
+            float:right;
+        }
+    </style>
   <link rel="stylesheet" href="style.css">
 
   <script src="https://kit.fontawesome.com/a076d05399.js"></script> 
 	<script>
     var c=0;
     function prova(){
-      var x = document.getElementsByTagName("BODY")[0]; 
+      
       if(c%2==0){
         document.documentElement.setAttribute('data-theme', 'dark');
       }else{
@@ -53,72 +60,35 @@
     
     <ul class="header_lista animate">
       <li class="header_lista_item"><a href="#Progetti">Progetti</a></li>
-      <li class="header_lista_item"><a href="about.html">About</a></li>
+      <li class="header_lista_item"><a href="Corsa/corsa.html">About</a></li>
       <li class="header_lista_item"><a href="">Contatti</a></li>
       
     </ul>
 
   </header>
 
-  <section class="cover">
-    <div class="cover_filter">
-    </div>
-    <div class="cover_caption">
-      <div class="cover_caption_copy">
-        
-           Cannavale<br>Achille
-        
-      </div>
-    </div>
-  </section>
-  <br>
+    <section class="cards">
+        <div class="switch">
+            <input type="checkbox" class="input" onclick="prova()">
+            <div class="circle"></div>
+            </div>
+          </div>
+          <img class="photo" src="https://source.unsplash.com/user/erondu/400x260" alt="">
+       <span >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+    </span>
+    </section>
 
 
 
 
-	<a name="Progetti"></a>
-  <center>
-    <div class="switch">
-      <input type="checkbox" class="input" onclick="prova()">
-      <div class="circle"></div>
-      </div>
-    </div>
-  
-   	
 
-  <section class="cards clearfix">
-    <h1>Progetti</h1>
-  
-  <div class="underline"></div>
-  </center>
-    <div class="siema">
-      <center>
-      <div class="card">
-        <img class="cards_card_image" src="https://source.unsplash.com/user/erondu/400x260" alt="">
-      </div>
-      </center>
-      <center>
-      <div class="card">
-        <a  href="PaperRockscissor/PaperRockScissor.html"><img class="cards_card_image" src="https://source.unsplash.com/user/erondu/400x260" alt=""></a>
-      </div>
-      </center>
-      <center>
-      <div class="card">
-        <img class="cards_card_image" src="https://source.unsplash.com/user/erondu/400x260" alt="">
-      </div>
-      </center>
-    </div>
 
-    <script src="siema.min.js"></script>
-    <script>
-      const mySiema = new Siema();
-      /*document.querySelector('.prev').addEventListener('click', () => mySiema.prev());
-      document.querySelector('.next').addEventListener('click', () => mySiema.next());*/
-    </script>
-  </section>
-
-  <br>
-  <br>
   <section class="cover" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');">
     <div class="cover_filter">
     </div>
@@ -130,44 +100,7 @@
       </div>
     </div>
   </section>
-  <br>
-  <br>
-  <br>
 
-  <section class="curriculum clearfix">
-    <div class="curriculumleft">
-      <div class="curriculumleft_text">
-        <h1 >Cannavale Achille</h1>
-        <h2 >Sottotitolo</h2>
-		    <a href="./cv.pdf">
-        <div class="button-wrapper">
-          <button class="curriculum_button">Curriculum</button>
-        </div>
-        </a>      
-      </div>
-    </div>
-    <div class="curriculumright">
-      <img id="pic" src="https://source.unsplash.com/random/300x400" alt="">
-    </div>
-    <br><br>
-  
-  </section>
-
-  <br>
-  <br>
-  <section class="cover" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');">
-    <div class="cover_filter">
-    </div>
-    <div class="cover_caption">
-      <div class="cover_caption_copy">
-        <center>
-           ciao
-        </center>
-      </div>
-    </div>
-  </section>
-  
-  
   <footer>
     
     <div class="wrapper">
