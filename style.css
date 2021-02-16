@@ -435,7 +435,7 @@ footer .button .icon i {
 .copy {
   width: 100%;
   background-color: #000000;
-  height: 5%;
+  max-height: 10%;
   position: absolute;
   text-align: center;
 }
@@ -485,6 +485,7 @@ footer .button .icon i {
 
   .header_lista_item {
     display: block;
+    text-align: center;
   }
 
   .header_lista {
@@ -511,7 +512,7 @@ footer .button .icon i {
   }
 
   .curriculum {
-    width: 100%;
+    width: 90%;
   }
 
   .curriculumright {
