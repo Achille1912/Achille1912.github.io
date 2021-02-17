@@ -4,9 +4,36 @@
     <style>
         .photo{
             float:left;
+            margin:5%;
+            
         }
-        .text{
-            float:right;
+
+
+
+        #testo{
+          text-align: left;
+          display:flex;
+          
+        }
+
+        .contenitore{
+          max-width:80%;
+          display: inline-block;
+          margin:auto;
+          margin:5%;
+        }
+
+        @media (max-width: 767px) {
+          .photo{
+            float:none;
+            margin:auto;
+            width:80%;
+          }
+          .contenitore{
+            margin-top:15%;
+          }
+
+
         }
     </style>
   <link rel="stylesheet" href="style.css">
@@ -60,33 +87,36 @@
     
     <ul class="header_lista animate">
       <li class="header_lista_item"><a href="#Progetti">Progetti</a></li>
-      <li class="header_lista_item"><a href="Corsa/corsa.html">About</a></li>
+      <li class="header_lista_item"><a href="#">About</a></li>
       <li class="header_lista_item"><a href="">Contatti</a></li>
       
     </ul>
 
   </header>
 
-    <section class="cards">
+    <section class="space">
+      <br>
+      
+      <center>
+      <div class="contenitore">
         <div class="switch">
-            <input type="checkbox" class="input" onclick="prova()">
-            <div class="circle"></div>
-            </div>
-          </div>
-          <img class="photo" src="https://source.unsplash.com/user/erondu/400x260" alt="">
-       <span >Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
-        Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
-    </span>
+          <input type="checkbox" class="input" onclick="prova()">
+          <div class="circle"></div>
+        </div>
+        <h1>About</h1>
+        <img class="photo" src="https://source.unsplash.com/random/300x400" alt="">
+        <span id="testo">
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+          Lorem, ipsum dolor sit amet consectetur adipisicing elit. Natus deserunt doloribus tempora ea recusandae ratione ut rem sed velit fugiat, modi delectus totam consequatur, animi beatae atque facilis debitis amet.
+        </span>
+      </div>
+    </center>
     </section>
-
-
-
-
 
 
   <section class="cover" style="background-image: url('https://images.unsplash.com/photo-1498050108023-c5249f4df085?ixid=MXwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHw%3D&ixlib=rb-1.2.1&auto=format&fit=crop&w=1352&q=80');">
@@ -102,7 +132,6 @@
   </section>
 
   <footer>
-    
     <div class="wrapper">
       <a href="https://www.facebook.com/me/">
         <div class="button" id="facebook">
@@ -136,9 +165,8 @@
         </div>
       </a>
     </div>
-
-    
   </footer>
+
   <div class="copy">
     Privacy - Cookie - Copyright 2021 - Achille Cannavale
   </div>
