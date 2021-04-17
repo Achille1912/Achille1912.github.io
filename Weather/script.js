@@ -5,7 +5,7 @@
     $.ajax({
         url: endpoint,
         
-        type:"POST",
+        type:"GET",
         cache: false,
         dataType: "json",
         success: function(result){
