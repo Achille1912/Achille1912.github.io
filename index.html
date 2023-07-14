@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>Il Mio Portfolio</title>
+	<link rel="stylesheet" href="style.css">
+</head>
+<body>
+	<header>
+        <h1>Il Mio Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">Chi Sono</a></li>
+                <li><a href="#education">Studi</a></li>
+                <li><a href="#projects">Progetti</a></li>
+            </ul>
+            <select onchange="location = this.value;">
+                <option value="" selected>Menu</option>
+                <option value="#about">Chi Sono</option>
+                <option value="#education">Studi</option>
+                <option value="#projects">Progetti</option>
+            </select>
+        </nav>
+    </header>
+	<main>
+		<section id="about">
+			<h2>Chi Sono</h2>
+			<p>Benvenuti nel mio sito portfolio! Sono un appassionato di programmazione e sviluppo web e mi piace creare progetti che siano utili e divertenti.</p>
+		</section>
+		<section id="education">
+			<h2>Studi</h2>
+			<ul>
+				<li>Corso di Programmazione Java presso l'Università di Bologna</li>
+				<li>Corso di Sviluppo Web con HTML, CSS e JavaScript presso Udemy</li>
+				<li>Corso di Intelligenza Artificiale con Python presso Coursera</li>
+			</ul>
+		</section>
+		<section id="projects">
+			<h2>Progetti</h2>
+			<div class="project-card">
+				<img src="project1.jpg" alt="Progetto 1">
+				<div class="project-info">
+					<h3>Progetto 1</h3>
+					<p>Descrizione breve del progetto 1</p>
+					<a href="#">Vedi il progetto</a>
+				</div>
+			</div>
+			<div class="project-card">
+				<img src="project2.jpg" alt="Progetto 2">
+				<div class="project-info">
+					<h3>Progetto 2</h3>
+					<p>Descrizione breve del progetto 2</p>
+					<a href="#">Vedi il progetto</a>
+				</div>
+			</div>
+			<div class="project-card">
+				<img src="project3.jpg" alt="Progetto 3">
+				<div class="project-info">
+					<h3>Progetto 3</h3>
+					<p>Descrizione breve del progetto 3</p>
+					<a href="#">Vedi il progetto</a>
+				</div>
+			</div>
+		</section>
+	</main>
+    <footer>
+        <p>&copy; 2023 Il Mio Portfolio</p>
+    </footer>
+</body>
+</html>
