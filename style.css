@@ -1,135 +1,222 @@
-/* Generale */
-body {
-	font-family: Arial, sans-serif;
+/* Variabili di colore */
+:root {
+	--primary-color: #2c3e50;
+	--secondary-color: #3498db;
+	--light-gray: #f2f2f2;
+	--dark-gray: #333;
+	--font-family: 'Roboto', sans-serif;
+}
+
+/* Reset CSS */
+* {
 	margin: 0;
 	padding: 0;
+	box-sizing: border-box;
+}
+
+/* Generalità */
+body {
+	font-family: var(--font-family);
+	font-size: 16px;
+	line-height: 1.5;
+	color: var(--dark-gray);
+}
+
+.container {
+	max-width: 1200px;
+	margin: 0 auto;
+	padding: 0 15px;
 }
 
 /* Header */
 header {
-	background-color: #333;
+  width: 100%;
+  position: fixed;
+	background-color: var(--light-gray);
+	padding: 15px 0;
+}
+
+.logo {
+	font-size: 24px;
+	font-weight: 700;
+	color: var(--primary-color);
+}
+
+.navigation {
+	float: right;
+}
+
+
+/* Introduction */
+.introduction {
+	background-color: var(--primary-color);
 	color: #fff;
-	padding: 20px;
+	padding: 100px 0;
 	text-align: center;
+  
 }
 
-nav ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
+.title {
+	font-size: 36px;
+	font-weight: 700;
+	margin-bottom: 30px;
 }
 
-nav ul li {
+.text {
+	font-size: 18px;
+  max-width: 70%;
+	margin-bottom: 30px;
+}
+
+.cta-button {
 	display: inline-block;
-	margin: 0 10px;
-}
-
-nav ul li a {
-	color: #fff;
+	padding: 10px 20px;
+	background-color: #fff;
+	color: var(--primary-color);
 	text-decoration: none;
+	border-radius: 5px;
 }
 
-nav select {
-	display: none;
+.cta-button:hover {
+	background-color: var(--secondary-color);
+	color: #fff;
 }
 
-@media (max-width: 767px) {
-	nav ul {
-		display: none;
-	}
-	nav select {
-		display: block;
-		margin: 10px;
-	}
-}
-
-/* Main */
-main {
-	max-width: 1200px;
-	margin: 0 auto;
-	padding: 20px;
-}
-
-section {
-	margin: 40px 0;
-}
-
-section h2 {
-	font-size: 32px;
-	margin-bottom: 20px;
-}
-
-section ul {
-	list-style: none;
-	margin: 0;
-	padding: 0;
-}
-
-section ul li {
-	margin-bottom: 10px;
+/* Projects */
+.projects {
+  max-width: 30%;
+	padding: 100px 0;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 
 .project-card {
-	background-color: #fff;
-	box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-	border-radius: 5px;
-	display: flex;
+  background-color: var(--primary-color);
+  color: #fff;
+	flex-basis: calc(33.33% - 30px);
 	margin-bottom: 30px;
-	padding: 20px;
+  border-radius: 5%;
+	display: flex;
+	flex-direction: column;
+  padding: 5%;
+}
+
+.project-card:last-child {
+	margin-bottom: 0;
 }
 
 .project-card img {
-	flex: 1;
-	max-width: 300px;
-	margin-right: 20px;
-}
-
-.project-info {
-	flex: 2;
-}
-
-.project-info h3 {
-	font-size: 24px;
-	margin-bottom: 10px;
-}
-
-.project-info p {
+	max-width: 20%;
+	height: auto;
 	margin-bottom: 20px;
 }
 
-.project-info a {
-	display: inline-block;
-	background-color: #333;
-	color: #fff;
-	padding: 10px 20px;
-	text-decoration: none;
-	border-radius: 5px;
+.project-details {
+	display: flex;
+	flex-direction: column;
+	flex: 1;
 }
 
-.project-info a:hover {
-	background-color: #000;
+.project-title {
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.project-description {
+	font-size: 18px;
+	margin-bottom: 10px;
+	flex: 1;
+}
+
+.project-link {
+	display: inline-block;
+	padding: 10px 15px;
+	background-color: var(--secondary-color);
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	align-self: flex-end;
+}
+
+.project-link:hover {
+	background-color: var(--primary-color);
+}
+
+@media screen and (max-width: 1200px) {
+	.projects {
+    max-width: 100%;
+		padding: 50px 0;
+		flex-direction: column;
+		align-items: center;
+	}
+
+	.project-card {
+    background-color: var(--primary-color);
+    color: #fff;
+		flex-basis: 100%;
+		margin-bottom: 20px;
+	}
+}
+
+/* Education */
+.education {
+	padding: 100px 0;
+	background-color: var(--light-gray);
+}
+
+.education-card {
+	margin-bottom: 30px;
+}
+
+.education-title {
+	font-size: 24px;
+	font-weight: 700;
+	margin-bottom: 10px;
+}
+
+.education-description {
+	font-size: 18px;
+	margin-bottom: 10px;
+}
+
+.education-date {
+	color: var(--dark-gray);
 }
 
 /* Footer */
 footer {
-	background-color: #ccc;
-	color: #333;
-	padding: 20px;
+	background-color: var(--primary-color);
+	color: #fff;
+	padding: 15px 0;
 	text-align: center;
 }
 
-@media (max-width: 767px) {
-	section h2 {
-		font-size: 24px;
-	}
-	.project-card {
-		flex-direction: column;
-	}
-	.project-info h3 {
-		font-size: 20px;
-		margin-top: 20px;
-	}
-	.project-info a {
-		margin-top: 20px;
-	}
+.copy {
+	font-size: 16px;
+	font-weight: 400;
+}
+
+
+.social_container i{
+  margin-top: 20px;
+  color: #fff;
+}
+
+.social_logo{
+  margin: 1%;
+}
+
+
+.fa-github:hover{
+  color:black;
+}
+
+.fa-stack-overflow:hover{
+  color:orange;
+}
+
+.fa-linkedin:hover{
+  color:darkcyan;
 }
