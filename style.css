@@ -69,6 +69,16 @@ header {
 	margin-bottom: 30px;
 }
 
+.thesis-link{
+	display: inline-block;
+	padding: 10px 15px;
+	background-color: var(--secondary-color);
+	color: #fff;
+	text-decoration: none;
+	border-radius: 5px;
+	align-self: flex-end;
+}
+
 .cta-button {
 	display: inline-block;
 	padding: 10px 20px;
