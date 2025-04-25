@@ -51,7 +51,7 @@
 		}
 
 		section {
-			padding: 3rem 0;
+			padding: 2rem 0;
 			animation: slideUp 0.8s ease-in-out;
 		}
 
@@ -179,8 +179,8 @@
 
 		.animated-section {
 			background: #fff;
-			margin-top: 2rem;
-			padding: 2rem;
+			margin-top: 1.5rem;
+			padding: 1.5rem;
 			border: 1px solid #ddd;
 			border-radius: 8px;
 			animation: fadeIn 1.2s ease-in-out;
@@ -219,6 +219,58 @@
 				opacity: 1;
 			}
 		}
+
+		/* Media queries per dispositivi mobili */
+		@media only screen and (max-width: 768px) {
+			header {
+				padding: 1.5rem 0 0.5rem;
+			}
+
+			nav ul {
+				display: none;
+				/* Nasconde la navigazione su mobile */
+			}
+
+			section {
+				padding: 1.5rem 0;
+			}
+
+			.animated-section {
+				padding: 1.2rem;
+				margin-top: 1rem;
+			}
+
+			.projects-grid {
+				grid-template-columns: 1fr;
+			}
+
+			.container {
+				width: 95%;
+			}
+
+			h2 {
+				font-size: 1.3rem;
+			}
+		}
+
+		@media only screen and (max-width: 480px) {
+			header {
+				padding: 1rem 0 0.5rem;
+			}
+
+			.animated-section {
+				padding: 1rem;
+			}
+
+			.project-item {
+				flex-direction: column;
+				align-items: flex-start;
+			}
+
+			.project-item img {
+				margin-bottom: 10px;
+			}
+		}
 	</style>
 </head>
 
@@ -226,7 +278,7 @@
 	<header>
 		<div class="container">
 			<h1>Achille Cannavale</h1>
-			<p>Studente di Ingegneria Informatica</p>
+			<p>Studente Magistrale di Ingegneria Informatica</p>
 			<nav>
 				<ul>
 					<li><a href="#about">Chi Sono</a></li>
