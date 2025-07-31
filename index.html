@@ -49,8 +49,16 @@
 			text-align: center;
 			border-bottom-left-radius: 18px;
 			border-bottom-right-radius: 18px;
-			box-shadow: 0 2px 16px var(--accent-color), 0 2px 16px rgba(177, 59, 255, 0.04);
+
 			animation: fadeInDown 0.8s;
+		}
+
+		.title {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			gap: 12px;
 		}
 
 		@keyframes fadeInDown {
@@ -69,26 +77,38 @@
 			list-style: none;
 			padding: 0;
 			margin: 1rem 0 0;
+
 		}
 
 		nav ul li {
 			display: inline;
 			margin: 0 12px;
+			box-shadow: 0 4px 24px rgba(10, 22, 35, 0.12);
+
 		}
 
 		nav ul li a {
 			color: var(--highlight-color);
 			text-decoration: none;
 			font-size: 1rem;
-			padding: 2px 0;
+			padding: 20px;
 			border-bottom: 2px solid transparent;
 			transition: border-color 0.2s, color 0.2s;
 			border-radius: 4px;
+			font-weight: 550;
+
+
+		}
+
+		nav ul li:hover {
+			transform: translateY(-4px) scale(1.02);
+			box-shadow: 0 8px 22px #000000;
 		}
 
 		nav ul li a:hover {
 			border-bottom: 2px solid var(--accent-color);
 			color: var(--accent-color);
+
 		}
 
 		section {
@@ -114,8 +134,9 @@
 			color: var(--highlight-color);
 			border-bottom: 1px solid var(--primary-color);
 			padding-bottom: 0.5rem;
-			font-size: 1.3rem;
+			font-size: 1.4rem;
 			font-weight: 500;
+			font-weight: 600;
 		}
 
 		.education-timeline {
@@ -252,9 +273,7 @@
 		}
 
 		.tech-tags {
-			margin-top: 0.4rem;
-			display: flex;
-			flex-wrap: wrap;
+			margin-top: auto;
 			gap: 8px;
 		}
 
@@ -283,10 +302,11 @@
 			color: var(--highlight-color);
 			font-size: 1.3rem;
 			transition: color 0.2s;
+			font-size: 1.8rem;
 		}
 
 		.social-links li a:hover {
-			color: var(--accent-color);
+			color: rgba(24, 119, 108, 0.08) !important;
 		}
 
 		details summary {
@@ -296,7 +316,6 @@
 		footer {
 			background: linear-gradient(90deg, var(--background-color) 0%, var(--primary-color) 100%);
 			color: var(--highlight-color);
-			box-shadow: 0 -2px 16px var(--primary-color), 0 -2px 16px rgba(71, 19, 150, 0.08);
 		}
 
 		.animated-section {
@@ -304,7 +323,6 @@
 			margin-top: 1.2rem;
 			padding: 1.2rem 0;
 			border-radius: 16px;
-			box-shadow: 0 2px 16px var(--accent-color), 0 2px 16px rgba(177, 59, 255, 0.04);
 			animation: fadeIn 1s;
 		}
 
@@ -325,6 +343,11 @@
 			.animated-section {
 				padding: 1rem 0;
 				margin-top: 0.8rem;
+			}
+
+			.title {
+				flex-direction: column;
+				align-items: center;
 			}
 
 			projects-grid {
@@ -364,15 +387,25 @@
 <body>
 	<header>
 		<div class="container">
-			<h1>Achille Cannavale</h1>
-			<p>Studente Magistrale di Ingegneria Informatica</p>
+			<div class="title">
+				<h1>Achille Cannavale</h1>
+				<ul class="social-links">
+					<li><a href="https://github.com/Achille1912" target="_blank"><i class="fab fa-github"></i></a></li>
+					<li><a href="https://linkedin.com/in/achille-cannavale" target="_blank"><i
+								class="fab fa-linkedin"></i></a></li>
+					<li><a href="https://stackoverflow.com/users/14033055/achille" target="_blank"><i
+								class="fab fa-stack-overflow"></i></a></li>
+				</ul>
+			</div>
+
+			Studente Magistrale di Ingegneria Informatica
 			<nav>
 				<ul>
 					<li><a href="#about">Chi Sono</a></li>
 					<li><a href="#education">Formazione</a></li>
 					<li><a href="#projects">Progetti</a></li>
-					<li><a href="#resources">Riassunti</a></li>
-					<li><a href="#contact">Contatti</a></li>
+					<!-- <li><a href="#resources">Riassunti</a></li>
+					<li><a href="#contact">Contatti</a></li> -->
 					<!-- <li><a href="blog.html">Blog</a></li> -->
 				</ul>
 			</nav>
@@ -529,7 +562,7 @@
 			</div>
 		</div>
 	</section>
-	<section class="animated-section" id="resources">
+	<!-- <section class="animated-section" id="resources">
 		<div class="container">
 			<h2><i class="fas fa-folder-open"></i> Riassunti Universitari</h2>
 			<details>
@@ -566,19 +599,20 @@
 				</ul>
 			</details>
 		</div>
-	</section>
-	<section class="animated-section" id="contact">
-		<div class="container">
-			<h2><i class="fas fa-envelope"></i> Contatti</h2>
-			<ul class="social-links">
-				<li><a href="https://github.com/Achille1912" target="_blank"><i class="fab fa-github"></i></a></li>
-				<li><a href="https://linkedin.com/in/achille-cannavale" target="_blank"><i
-							class="fab fa-linkedin"></i></a></li>
-				<li><a href="https://stackoverflow.com/users/14033055/achille" target="_blank"><i
-							class="fab fa-stack-overflow"></i></a></li>
-			</ul>
-		</div>
-	</section>
+	</section> -->
+	<!-- <center>
+		<section class="animated-section" id="contact">
+			<div class="container">
+				<ul class="social-links">
+					<li><a href="https://github.com/Achille1912" target="_blank"><i class="fab fa-github"></i></a></li>
+					<li><a href="https://linkedin.com/in/achille-cannavale" target="_blank"><i
+								class="fab fa-linkedin"></i></a></li>
+					<li><a href="https://stackoverflow.com/users/14033055/achille" target="_blank"><i
+								class="fab fa-stack-overflow"></i></a></li>
+				</ul>
+			</div>
+		</section>
+	</center> -->
 	<footer>
 		<center>
 			<div class="container">
