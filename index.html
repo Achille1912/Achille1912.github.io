@@ -2,636 +2,191 @@
 <html lang="it">
 
 <head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Achille Cannavale - Portfolio</title>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-	<style>
-		:root {
-			--background-color: #F4F4F4;
-			/* Bianco puro: massima leggibilità */
-			--primary-color: #F4F4F4;
-			/* Nero intenso per elementi principali */
-			--accent-color: #1B1B1B;
-			/* Rosso acceso flat per accenti, pulsanti */
-			--highlight-color: #1B1B1B;
-			/* Giallo caldo per hover/focus ad alto contrasto */
-			--surface-color: #f1f1f1;
-			/* Grigio chiarissimo per superfici secondarie */
-			--text-color: #000000;
-			/* Nero puro per il testo */
-			--muted-color: #555555;
-			/* Grigio scuro per testo secondario */
-			--card-bg: #ffffff;
-			/* Bianco per card: massima leggibilità */
-		}
-
-
-
-		body {
-			font-family: NTR, sans-serif;
-			margin: 0;
-			padding: 0;
-			background: var(--background-color);
-			color: var(--text-color);
-		}
-
-		.container {
-			width: 90%;
-			max-width: 900px;
-			margin: 0 auto;
-		}
-
-		header {
-			background: linear-gradient(90deg, var(--background-color) 0%, var(--primary-color) 100%);
-			color: var(--text-color);
-			padding: 2rem 0 1rem;
-			text-align: center;
-			border-bottom-left-radius: 18px;
-			border-bottom-right-radius: 18px;
-
-			animation: fadeInDown 0.8s;
-		}
-
-		.title {
-			display: flex;
-			flex-direction: row;
-			justify-content: center;
-			align-items: center;
-			gap: 12px;
-		}
-
-		@keyframes fadeInDown {
-			from {
-				opacity: 0;
-				transform: translateY(-20px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		nav ul {
-			list-style: none;
-			padding: 0;
-			margin: 1rem 0 0;
-
-		}
-
-		nav ul li {
-			display: inline;
-			margin: 0 12px;
-			box-shadow: 0 4px 24px rgba(10, 22, 35, 0.12);
-
-		}
-
-		nav ul li a {
-			color: var(--highlight-color);
-			text-decoration: none;
-			font-size: 1rem;
-			padding: 20px;
-			border-bottom: 2px solid transparent;
-			transition: border-color 0.2s, color 0.2s;
-			border-radius: 4px;
-			font-weight: 550;
-
-
-		}
-
-		nav ul li:hover {
-			transform: translateY(-4px) scale(1.02);
-			box-shadow: 0 8px 22px #000000;
-		}
-
-		nav ul li a:hover {
-			border-bottom: 2px solid var(--accent-color);
-			color: var(--accent-color);
-
-		}
-
-		section {
-			padding: 2rem 0;
-			animation: fadeIn 1s;
-			margin: 5px;
-		}
-
-		@keyframes fadeIn {
-			from {
-				opacity: 0;
-			}
-
-			to {
-				opacity: 1;
-			}
-		}
-
-		h2 {
-			display: flex;
-			align-items: center;
-			gap: 8px;
-			color: var(--highlight-color);
-			border-bottom: 1px solid var(--primary-color);
-			padding-bottom: 0.5rem;
-			font-size: 1.4rem;
-			font-weight: 500;
-			font-weight: 600;
-		}
-
-		.education-timeline {
-			border-left: 2px solid var(--accent-color);
-			padding-left: 24px;
-		}
-
-		.education-item {
-			position: relative;
-			margin-bottom: 1.5rem;
-			padding-left: 16px;
-			opacity: 1;
-			animation: slideUp 0.7s;
-		}
-
-		@keyframes slideUp {
-			from {
-				opacity: 0;
-				transform: translateY(20px);
-			}
-
-			to {
-				opacity: 1;
-				transform: translateY(0);
-			}
-		}
-
-		.education-item::before {
-			content: "\f19d";
-			font-family: 'Font Awesome 6 Free';
-			font-weight: 900;
-			position: absolute;
-			left: -20px;
-			top: 0;
-			font-size: 14px;
-			color: var(--accent-color);
-		}
-
-		.education-item.current::before {
-			color: var(--highlight-color);
-		}
-
-		.projects-grid {
-			display: grid;
-			grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-			gap: 20px;
-		}
-
-		.project-item {
-			background: var(--card-bg);
-			color: var(--highlight-color);
-			padding: 1.5rem 1.2rem;
-			border-radius: 16px;
-			box-shadow: 0 4px 24px rgba(10, 22, 35, 0.12);
-			display: flex;
-			flex-direction: column;
-			gap: 0.6rem;
-			transition: box-shadow 0.2s, transform 0.2s;
-			border: none;
-		}
-
-		.project-item:hover {
-			transform: translateY(-4px) scale(1.02);
-			box-shadow: 0 8px 22px #000000;
-		}
-
-		.project-header {
-			display: flex;
-			justify-content: space-between;
-			align-items: center;
-			margin-bottom: 0.2rem;
-		}
-
-		.project-header img {
-			max-width: 36px;
-			border-radius: 8px;
-			background: var(--surface-color);
-			padding: 6px;
-			box-shadow: none;
-		}
-
-
-		.project-icons a {
-			color: var(--accent-color);
-			font-size: 1.5rem !important;
-			margin-left: 12px;
-			transition: color 0.2s;
-		}
-
-		.project-icons a:hover {
-			color: rgba(24, 119, 108, 0.08) !important;
-		}
-
-		.project-item img {
-			max-width: 36px;
-			margin-bottom: 0.8rem;
-			border-radius: 8px;
-			background: var(--surface-color);
-			padding: 6px;
-			box-shadow: none;
-		}
-
-		.project-text {
-			flex-grow: 1;
-		}
-
-		.project-item h3 {
-			margin: 0 0 0.4rem;
-			font-size: 1.1rem;
-			font-weight: 600;
-			color: var(--highlight-color);
-			letter-spacing: 0.2px;
-		}
-
-		.project-item p {
-			margin: 0.2rem 0;
-			color: var(--muted-color);
-			font-size: 0.97rem;
-			font-weight: 400;
-		}
-
-		.project-item a {
-			color: var(--accent-color);
-			font-weight: 500;
-			text-decoration: none;
-			font-size: 1rem;
-			transition: color 0.2s;
-			margin-left: 0.5rem;
-		}
-
-		.project-item a:hover {
-			color: var(--highlight-color);
-			text-decoration: underline;
-		}
-
-		.tech-tags {
-			margin-top: auto;
-			gap: 8px;
-		}
-
-		.project-tags {
-			background: rgba(24, 224, 201, 0.08);
-			color: var(--accent-color);
-			padding: 2px 10px;
-			border-radius: 10px;
-			font-size: 0.8rem;
-			font-weight: 500;
-			letter-spacing: 0.2px;
-			box-shadow: none;
-		}
-
-		.social-links {
-			list-style: none;
-			padding: 0;
-		}
-
-		.social-links li {
-			display: inline;
-
-			margin: 0 8px;
-			box-shadow: 0 4px 24px rgba(10, 22, 35, 0.12);
-			transition: transform 0.2s, box-shadow 0.2s;
-			border-radius: 15%;
-			background: var(--card-bg);
-			padding: 10px;
-			border: none;
-			box-sizing: border-box;
-		}
-
-		.social-links li a {
-			color: var(--highlight-color);
-			font-size: 1.5rem;
-			transition: color 0.2s;
-
-		}
-
-		.social-links li a:hover {
-			color: rgba(24, 119, 108, 0.08) !important;
-		}
-
-		details summary {
-			color: var(--accent-color);
-		}
-
-		footer {
-			background: linear-gradient(90deg, var(--background-color) 0%, var(--primary-color) 100%);
-			color: var(--highlight-color);
-		}
-
-		.animated-section {
-			background: linear-gradient(90deg, var(--background-color) 0%, var(--primary-color) 100%);
-			margin-top: 1.2rem;
-			padding: 1.2rem 0;
-			border-radius: 16px;
-			animation: fadeIn 1s;
-		}
-
-		@media only screen and (max-width: 768px) {
-			header {
-				padding: 1.2rem 0 0.5rem;
-			}
-
-			nav ul {
-				display: none;
-				/* Nasconde la navigazione su mobile */
-			}
-
-			section {
-				padding: 1rem 0;
-			}
-
-			.animated-section {
-				padding: 1rem 0;
-				margin-top: 0.8rem;
-			}
-
-			.title {
-				flex-direction: column;
-				align-items: center;
-			}
-
-			projects-grid {
-				grid-template-columns: 1fr;
-			}
-
-			.container {
-				width: 98%;
-			}
-
-			h2 {
-				font-size: 1.1rem;
-			}
-
-			.project-header {
-				width: 100%;
-			}
-		}
-
-		@media only screen and (max-width: 480px) {
-			header {
-				padding: 0.8rem 0 0.4rem;
-			}
-
-			.animated-section {
-				padding: 0.8rem 0;
-			}
-
-			.project-item {
-				flex-direction: column;
-				align-items: flex-start;
-			}
-
-			.project-item img {
-				margin-bottom: 8px;
-			}
-		}
-	</style>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Achille Cannavale – Portfolio</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
-	<header>
-		<div class="container">
-			<div class="title">
-				<h1>Achille Cannavale</h1>
-				<ul class="social-links">
-					<li><a href="https://github.com/Achille1912" target="_blank"><i class="fab fa-github"></i></a></li>
-					<li><a href="https://linkedin.com/in/achille-cannavale" target="_blank"><i
-								class="fab fa-linkedin"></i></a></li>
-					<li><a href="https://stackoverflow.com/users/14033055/achille" target="_blank"><i
-								class="fab fa-stack-overflow"></i></a></li>
-				</ul>
-			</div>
+    <!-- Navbar fissa -->
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="#" class="logo">AC</a>
+            <div class="nav-links">
+                <a href="#about">Chi Sono</a>
+                <a href="#education">Formazione</a>
+                <a href="#skills">Competenze</a>
+                <a href="#projects">Progetti</a>
+                <a href="#contact">Contatti</a>
+            </div>
+        </div>
+    </nav>
 
-			Studente Magistrale di Ingegneria Informatica
-			<nav>
-				<ul>
-					<li><a href="#about">Chi Sono</a></li>
-					<li><a href="#education">Formazione</a></li>
-					<li><a href="#projects">Progetti</a></li>
-					<!-- <li><a href="#resources">Riassunti</a></li>
-					<li><a href="#contact">Contatti</a></li> -->
-					<!-- <li><a href="blog.html">Blog</a></li> -->
-				</ul>
-			</nav>
-		</div>
-	</header>
-	<section class="animated-section" id="about">
-		<div class="container">
-			<h2><i class="fas fa-user"></i> Chi Sono</h2>
-			<p>Sono uno studente magistrale di Ingegneria Informatica presso l'Università di Cassino, appassionato di
-				tecnologia e
-				informatica. Durante il mio percorso accademico, ho acquisito conoscenze in vari ambiti, tra cui
-				programmazione, gestione di progetti e analisi dei dati. Ho avuto l'opportunità di lavorare su diversi
-				progetti di gruppo, dimostrando esperienza nel lavoro di squadra e una forte capacità di problem
-				solving.</p>
-		</div>
-	</section>
-	<section class="animated-section" id="education">
-		<div class="container">
-			<h2><i class="fas fa-graduation-cap"></i> Formazione</h2>
-			<div class="education-timeline">
-				<div class="education-item current">
-					<h3>Laurea Magistrale in Ingegneria Informatica</h3>
-					<p>Università di Cassino e del Lazio Meridionale, 2023 - 2025</p>
-				</div>
-				<div class="education-item">
-					<h3>Laurea Triennale in Ingegneria Informatica</h3>
-					<p>Università di Cassino e del Lazio Meridionale, 2020 - 2023</p>
-				</div>
-			</div>
-		</div>
-	</section>
-	<section class="animated-section" id="projects">
-		<div class="container">
-			<h2><i class="fas fa-code"></i> Progetti</h2>
-			<div class="projects-grid">
-				<div class="project-item">
-					<div class="project-header">
-						<img src="images/3400003.png" alt="Blood Cells Detection and Classification">
-						<div class="project-icons">
-							<a href="https://github.com/Achille1912/blood_cells_recognition_and_classification"
-								target="_blank" title="GitHub">
-								<i class="fab fa-github"></i>
-							</a>
-							<!-- Puoi aggiungere altre icone qui -->
-						</div>
-					</div>
-					<div class="project-text">
-						<h3>Blood Cells Detection and Classification</h3>
-						<p>Progetto universitario volto a creare una pipeline per il riconoscimento di cellule del
-							sangue in diversi stadi di malattia.</p>
-						<div class="tech-tags">
-							<span class="project-tags">Deep Learning</span>
-							<span class="project-tags">Machine Learning</span>
-						</div>
-					</div>
-				</div>
+    <!-- Hero section -->
+    <header class="hero">
+        <div class="container hero-container">
+            <h1 class="fade-in">Achille Cannavale</h1>
+            <p class="subtitle fade-in">Dottore Magistrale in Ingegneria Informatica</p>
+        </div>
+    </header>
 
-				<div class="project-item">
-					<div class="project-header">
-						<img src="images/robot.png" alt="Robotics">
-						<div class="project-icons">
-							<a href="https://github.com/Achille1912/Applied-Robotics-Project" target="_blank"
-								title="GitHub">
-								<i class="fab fa-github"></i>
-							</a>
-							<!-- Puoi aggiungere altre icone qui -->
-						</div>
-					</div>
-					<div class="project-text">
-						<h3>Turtlebot Control</h3>
-						<p>Progetto universitario volto a creare un programma in C++, con ROS1, capace di controllare un
-							turtlebot.</p>
-						<div class="tech-tags">
-							<span class=" project-tags">ROS1</span>
-							<span class="project-tags">C++</span>
-							<span class="project-tags">Git</span>
-						</div>
-					</div>
-				</div>
+    <main>
+        <!-- Chi Sono -->
+        <section id="about" class="section about">
+            <div class="container">
+                <h2>Chi Sono</h2>
+                <p>
+                    Sono un dottore magistrale di Ingegneria Informatica presso l’Università di Cassino, appassionato
+                    di tecnologia e informatica.
+                    Durante il mio percorso accademico, ho acquisito conoscenze in vari ambiti, tra cui programmazione,
+                    gestione di progetti e analisi dei dati.
+                    Ho avuto l’opportunità di lavorare su diversi progetti di gruppo, dimostrando esperienza nel lavoro
+                    di squadra e una forte capacità di problem solving.
+                </p>
+            </div>
+        </section>
+        <!-- ... resto invariato ... -->
 
 
-				<div class="project-item">
-					<div class="project-header">
-						<img src="images/5350974.png" alt="Traffic Sign">
-						<div class="project-icons">
-							<a href="https://github.com/Achille1912/TrafficSignDetection" target="_blank"
-								title="GitHub">
-								<i class="fab fa-github"></i>
-							</a>
-							<!-- Puoi aggiungere altre icone qui -->
-						</div>
-					</div>
-					<div class="project-text">
-						<h3>Traffic Sign Detection</h3>
-						<p>Progetto universitario volto a creare un programma in C++, con OpenCV, capace di rilevare
-							segnali stradali.</p>
-						<div class="tech-tags">
-							<span class=" project-tags">OpenCV</span>
-							<span class="project-tags">C++</span>
-							<span class="project-tags">Git</span>
-						</div>
-					</div>
-				</div>
-				<div class="project-item">
-					<div class="project-header">
-						<img src="images/dynamics_logo.png" alt="2Dynamics">
-						<div class="project-icons">
-							<a href="https://github.com/Achille1912/thesis" target="_blank" title="GitHub">
-								<i class="fab fa-github"></i>
-							</a>
-							<!-- Puoi aggiungere altre icone qui -->
-						</div>
-					</div>
-					<div class="project-text">
-						<h3>2Dynamics</h3>
-						<p>Motore fisico leggero per giochi 2D, che fornisce un'interfaccia facile da usare per simulare
-							la fisica del mondo reale in un ambiente di gioco 2D.</p>
-						<div class="tech-tags">
-							<span class=" project-tags">C++</span>
-							<span class="project-tags">SDL2</span>
-						</div>
-					</div>
-				</div>
-				<div class="project-item">
-					<div class="project-header">
-						<img src="images/box_logo.png" alt="PeggleBox 2D">
-						<div class="project-icons">
-							<a href="https://github.com/Achille1912/PeggleBox2D_" target="_blank" title="GitHub">
-								<i class="fab fa-github"></i>
-							</a>
-							<!-- Puoi aggiungere altre icone qui -->
-						</div>
-					</div>
-					<div class="project-text">
-						<h3>PeggleBox 2D</h3>
-						<p>Clone del gioco Peggle, prototipo costruito utilizzando il motore fisico Box2D e il framework
-							Qt.</p>
-						<div class="tech-tags">
-							<span class=" project-tags">C++</span>
-							<span class="project-tags">Box2D</span>
-							<span class="project-tags">Qt</span>
-						</div>
-					</div>
-				</div>
-				<!-- <div class="project-item">
-					<img src="images/trainer_logo.png" alt="Trainerbook">
-					<div class="project-text">
-						<h3>Trainerbook</h3>
-						<p>Applicazione mobile per Android, creata con Flutter, usando il paradigma di programmazione
-							orientata agli oggetti.</p>
-						<a href="https://trainerbook.it" target="_blank">Scopri di più</a>
-					</div>
-				</div> -->
-			</div>
-		</div>
-	</section>
-	<!-- <section class="animated-section" id="resources">
-		<div class="container">
-			<h2><i class="fas fa-folder-open"></i> Riassunti Universitari</h2>
-			<details>
-				<summary>Visualizza Riassunti</summary>
-				<h4>Triennale</h4>
-				<ul>
-					<li><a href="riassunti/triennale/Fisica.pdf" target="_blank">Fisica</a></li>
-					<li><a href="riassunti/triennale/Elettrotecnica.pdf" target="_blank">Elettrotecnica</a></li>
-					<li><a href="riassunti/triennale/Architetture_Calcolatori.pdf" target="_blank">Architetture dei
-							Calcolatori</a></li>
-					<li><a href="riassunti/triennale/Onde_elettromagnetiche.pdf" target="_blank">Onde
-							Elettromagnetiche</a></li>
-					<li><a href="riassunti/triennale/Reti_wireless.pdf" target="_blank">Reti Wireless</a></li>
-					<li><a href="riassunti/triennale/Propagazione_guidata.pdf" target="_blank">Propagazione Guidata</a>
-					</li>
-					<li><a href="riassunti/triennale/Elettronica1.pdf" target="_blank">Elettronica</a></li>
-				</ul>
-				<h4>Magistrale</h4>
-				<ul>
-					<li><a href="riassunti/magistrale/Controlli_automatici.pdf" target="_blank">Controlli Automatici</a>
-					</li>
-					<li><a href="riassunti/magistrale/Elettronica_digitale.pdf" target="_blank">Elettronica Digitale</a>
-					</li>
-					<li><a href="riassunti/magistrale/Image_Processing.pdf" target="_blank">Image Processing</a>
-					</li>
-					<li><a href="riassunti/magistrale/Information_Theory.pdf" target="_blank">Information Theory</a>
-					</li>
-					<li><a href="riassunti/magistrale/Misure_riassunto.pdf" target="_blank">Misure Distribuite</a>
-					</li>
-					<li><a href="riassunti/magistrale/Ricerca_operativa.pdf" target="_blank">Ricerca Operativa</a>
-					</li>
-					<li><a href="riassunti/magistrale/Robotica.pdf" target="_blank">Robotica</a>
-					</li>
-				</ul>
-			</details>
-		</div>
-	</section> -->
-	<!-- <center>
-		<section class="animated-section" id="contact">
-			<div class="container">
-				<ul class="social-links">
-					<li><a href="https://github.com/Achille1912" target="_blank"><i class="fab fa-github"></i></a></li>
-					<li><a href="https://linkedin.com/in/achille-cannavale" target="_blank"><i
-								class="fab fa-linkedin"></i></a></li>
-					<li><a href="https://stackoverflow.com/users/14033055/achille" target="_blank"><i
-								class="fab fa-stack-overflow"></i></a></li>
-				</ul>
-			</div>
-		</section>
-	</center> -->
-	<footer>
-		<center>
-			<div class="container">
-				<p>&copy; 2025 Achille Cannavale</p>
-			</div>
-		</center>
-	</footer>
+        <!-- Formazione -->
+        <section id="education" class="section education">
+            <div class="container">
+                <h2>Formazione</h2>
+                <div class="edu-item">
+                    <h3>Laurea Magistrale in Ingegneria Informatica</h3>
+                    <p>Università di Cassino e del Lazio Meridionale, 2023 - 2025</p>
+                </div>
+                <div class="edu-item">
+                    <h3>Laurea Triennale in Ingegneria Informatica</h3>
+                    <p>Università di Cassino e del Lazio Meridionale, 2020 - 2023</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Competenze -->
+        <section id="skills" class="section skills">
+            <div class="container">
+                <h2>Competenze</h2>
+                <ul class="skills-list">
+                    <li>Python</li>
+                    <li>C++</li>
+                    <li>OpenCV</li>
+                    <li>ROS1</li>
+                    <li>Machine Learning</li>
+                    <li>Deep Learning</li>
+                    <li>Qt</li>
+                    <li>SDL2</li>
+                    <li>Box2D</li>
+                    <li>Git / GitHub</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Progetti -->
+        <section id="projects" class="section projects">
+            <div class="container">
+                <h2>Progetti</h2>
+                <div class="project-list">
+                    <!-- Blood Cells -->
+                    <div class="project-item fade-in">
+                        <img src="https://github.com/Achille1912/blood_cells_recognition_and_classification/raw/main/paper/image.png"
+                            alt="Blood Cells Detection" />
+                        <h3>Blood Cells Detection and Classification</h3>
+                        <p>Pipeline per il riconoscimento di cellule del sangue in diversi stadi di malattia.</p>
+                        <p><strong>Tecnologie:</strong> Deep Learning, Machine Learning</p>
+                        <a class="btn" href="https://github.com/achille1912/blood_cells_recognition_and_classification"
+                            target="_blank">GitHub</a>
+                    </div>
+                    <!-- Turtlebot -->
+                    <div class="project-item fade-in">
+                        <img src="https://github.com/Achille1912/Applied-Robotics-Project/raw/main/material/out.gif"
+                            alt="Turtlebot Control" />
+                        <h3>Turtlebot Control</h3>
+                        <p>Programma in C++ con ROS1 per controllare un turtlebot.</p>
+                        <p><strong>Tecnologie:</strong> ROS1, C++, Git</p>
+                        <a class="btn" href="https://github.com/achille1912/Applied-Robotics-Project"
+                            target="_blank">GitHub</a>
+                    </div>
+                    <!-- Traffic -->
+                    <div class="project-item fade-in">
+                        <img src="https://private-user-images.githubusercontent.com/69079045/353438791-6247afdf-179b-43af-a218-8200c717f271.png?jwt=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJpc3MiOiJnaXRodWIuY29tIiwiYXVkIjoicmF3LmdpdGh1YnVzZXJjb250ZW50LmNvbSIsImtleSI6ImtleTUiLCJleHAiOjE3NTg4ODg3NjUsIm5iZiI6MTc1ODg4ODQ2NSwicGF0aCI6Ii82OTA3OTA0NS8zNTM0Mzg3OTEtNjI0N2FmZGYtMTc5Yi00M2FmLWEyMTgtODIwMGM3MTdmMjcxLnBuZz9YLUFtei1BbGdvcml0aG09QVdTNC1ITUFDLVNIQTI1NiZYLUFtei1DcmVkZW50aWFsPUFLSUFWQ09EWUxTQTUzUFFLNFpBJTJGMjAyNTA5MjYlMkZ1cy1lYXN0LTElMkZzMyUyRmF3czRfcmVxdWVzdCZYLUFtei1EYXRlPTIwMjUwOTI2VDEyMDc0NVomWC1BbXotRXhwaXJlcz0zMDAmWC1BbXotU2lnbmF0dXJlPTIwOTk5NThlY2U0ZjJmMWMyYjEzNjU4YmU3ZmQ4N2E0NDUwMmZkMjU0M2YyN2VkMGI1ZTliYTk1ZjEyYzA5NzQmWC1BbXotU2lnbmVkSGVhZGVycz1ob3N0In0.QKC5BZJ_QxRZGqE-FhVzZz3GX51FszUCn0RCArx6d2Q"
+                            alt="Traffic Sign Detection" />
+                        <h3>Traffic Sign Detection</h3>
+                        <p>Programma in C++ con OpenCV per rilevare segnali stradali.</p>
+                        <p><strong>Tecnologie:</strong> OpenCV, C++</p>
+                        <a class="btn" href="https://github.com/achille1912/TrafficSignDetection"
+                            target="_blank">GitHub</a>
+                    </div>
+                    <!-- 2Dynamics -->
+                    <div class="project-item fade-in">
+                        <img src="https://github.com/Achille1912/Thesis/raw/main/gfx/Tesi.gif" alt="2Dynamics" />
+                        <h3>2Dynamics</h3>
+                        <p>Motore fisico leggero per giochi 2D, con interfaccia facile da usare.</p>
+                        <p><strong>Tecnologie:</strong> C++, SDL2</p>
+                        <a class="btn" href="https://github.com/achille1912/Thesis" target="_blank">GitHub</a>
+                    </div>
+                    <!-- Peggle
+                    <div class="project-item fade-in">
+                        <img src="https://achille1912.github.io/assets/peggle.png" alt="PeggleBox2D" />
+                        <h3>PeggleBox 2D</h3>
+                        <p>Clone del gioco Peggle, costruito con Box2D e Qt.</p>
+                        <p><strong>Tecnologie:</strong> C++, Box2D, Qt</p>
+                        <a class="btn" href="https://github.com/achille1912/Thesis" target="_blank">GitHub</a>
+                    </div> -->
+                </div>
+            </div>
+        </section>
+
+        <!-- Contatti -->
+        <section id="contact" class="section contact">
+            <div class="container">
+                <h2>Contatti</h2>
+                <p>📧 Email: <a href="mailto:achille.cannavale@example.com">achille.cannavale@example.com</a></p>
+                <p>💻 <a href="https://github.com/achille1912" target="_blank">GitHub</a> | 🔗 <a
+                        href="https://linkedin.com/in/achille-cannavale" target="_blank">LinkedIn</a></p>
+            </div>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="container">
+            <p>© 2025 Achille Cannavale – Portfolio</p>
+        </div>
+    </footer>
+
+    <script>
+        // Scroll fluido
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', e => {
+                e.preventDefault();
+                const targetId = link.getAttribute('href').substring(1);
+                const targetElem = document.getElementById(targetId);
+                if (targetElem) {
+                    window.scrollTo({
+                        top: targetElem.offsetTop - 60,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Animazione fade-in
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.2 });
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+    </script>
 </body>
 
 </html>
