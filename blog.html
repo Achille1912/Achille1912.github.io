@@ -2,75 +2,448 @@
 <html lang="it">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Blog</title>
-    <script type="module" src="LoadMarkdown.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" />
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body);"></script>
-
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog – Achille Cannavale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            max-width: 800px;
-            margin: 40px auto;
+            font-family: 'Poppins', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
             padding: 0 20px;
-            background: #fafafa;
-            color: #333;
         }
 
-        h1 {
-            text-align: center;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-            color: #222;
+        .navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
         }
 
-        .post-preview {
-            background: #fff;
-            border-radius: 8px;
-            box-shadow: 0 2px 6px rgb(0 0 0 / 0.1);
-            padding: 20px;
-            margin-bottom: 20px;
-            transition: box-shadow 0.3s ease;
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
 
-        .post-preview:hover {
-            box-shadow: 0 4px 12px rgb(0 0 0 / 0.15);
-        }
-
-        .post-preview a {
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 500;
             text-decoration: none;
-            color: #007acc;
-            transition: color 0.3s ease;
+            color: white;
         }
 
-        .post-preview a:hover {
-            color: #005f99;
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
         }
 
-        .post-preview h2 {
-            margin-top: 0;
-            margin-bottom: 10px;
-            font-weight: 600;
+        .nav-links a:hover {
+            color: var(--secondary-color);
         }
 
-        .post-preview div {
-            color: #555;
+        .section {
+            padding: 2rem 0;
+        }
+
+        main {
+            margin-top: 5rem;
+        }
+
+        h2 {
+            font-size: 2.5rem;
+            margin-bottom: 2rem;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .blog-preview {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 2rem;
+            margin-bottom: 2rem;
+            box-shadow: var(--shadow);
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: 2px solid transparent;
+        }
+
+        .blog-preview:hover {
+            transform: translateY(-5px);
+            border-color: var(--secondary-color);
+            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .blog-preview h3 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--primary-color);
+        }
+
+        .blog-preview h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .blog-preview h3 a:hover {
+            color: var(--secondary-color);
+        }
+
+        .date {
+            color: #7f8c8d;
             font-size: 0.9rem;
-            line-height: 1.4;
+            margin-bottom: 1rem;
+        }
+
+        .excerpt {
+            color: #555;
+            line-height: 1.6;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            transition: transform 0.2s;
+        }
+
+        .read-more:hover {
+            transform: translateX(5px);
+        }
+
+        .read-more::after {
+            content: "→";
+            margin-left: 0.5rem;
+            transition: transform 0.2s;
+        }
+
+        .read-more:hover::after {
+            transform: translateX(3px);
+        }
+
+        .loading {
+            text-align: center;
+            padding: 2rem;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        .error {
+            background-color: #e74c3c;
+            color: white;
+            padding: 1rem;
+            border-radius: var(--border-radius);
+            margin-bottom: 1rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .back-link::before {
+            content: "←";
+            margin-right: 0.5rem;
+        }
+
+        .back-link:hover {
+            text-decoration: underline;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links a {
+                margin-left: 1rem;
+            }
+
+            h2 {
+                font-size: 2rem;
+            }
+
+            .blog-preview {
+                padding: 1.5rem;
+            }
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
 </head>
 
 <body>
-    <h1>Blog</h1>
-    <div id="posts"></div>
-    <script type="module">
-        import { renderPreviews } from './LoadMarkdown.js';
-        renderPreviews('post-container');
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">AC</a>
+            <div class="nav-links">
+                <a href="index.html#about">Portfolio</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section container">
+        <br />
+        <br />
+        <br />
+        <div id="blog-list">
+            <div class="loading">Caricamento post in corso...</div>
+        </div>
+    </main>
+
+    <script>
+        // Configurazione di Marked
+        marked.setOptions({
+            breaks: true,
+            gfm: true,
+            sanitize: false
+        });
+
+        // Gestione del routing
+        function getPostSlugFromURL() {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get('post');
+        }
+
+        function navigateToPost(slug) {
+            window.location.href = `post.html?slug=${slug}`;
+        }
+
+        async function loadPosts() {
+            const blogList = document.getElementById('blog-list');
+
+            try {
+                // Carica la lista dei post
+                const posts = await getPostsList();
+
+                blogList.innerHTML = '';
+
+                if (posts.length === 0) {
+                    blogList.innerHTML = '<p>Nessun post trovato nella cartella "posts".</p>';
+                    return;
+                }
+
+                // Ordina i post per data (dal più recente)
+                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
+
+                // Visualizza le anteprime
+                posts.forEach(post => {
+                    const preview = createPostPreview(post);
+                    blogList.appendChild(preview);
+                });
+
+            } catch (error) {
+                console.error('Errore nel caricamento dei post:', error);
+                blogList.innerHTML = `
+                    <div class="error">
+                        Errore nel caricamento dei post. Controlla che la cartella "posts" esista e contenga file .md.
+                    </div>
+                `;
+            }
+        }
+
+        async function getPostsList() {
+            // Prova a ottenere l'elenco dei file dalla directory
+            try {
+                const response = await fetch('posts/');
+                const html = await response.text();
+                const parser = new DOMParser();
+                const doc = parser.parseFromString(html, 'text/html');
+                const links = doc.querySelectorAll('a');
+
+                const markdownFiles = Array.from(links)
+                    .map(link => link.href)
+                    .filter(href => href.endsWith('.md'))
+                    .map(href => href.split('/').pop());
+
+                const posts = [];
+
+                for (const filename of markdownFiles) {
+                    const mdResponse = await fetch(`posts/${filename}`);
+                    const mdContent = await mdResponse.text();
+
+                    const title = extractTitle(mdContent) || filename.replace('.md', '').replace(/-/g, ' ');
+                    const date = extractDate(mdContent) || getFileCreationDate(filename);
+                    const excerpt = extractExcerpt(mdContent);
+                    const slug = filename.replace('.md', '');
+
+                    posts.push({
+                        filename,
+                        title,
+                        date,
+                        excerpt,
+                        slug,
+                        content: mdContent
+                    });
+                }
+
+                return posts;
+            } catch (error) {
+                // Fallback: carica i file manualmente
+                return await loadPostsFallback();
+            }
+        }
+
+        async function loadPostsFallback() {
+            const commonFilenames = [
+                'primo-post.md', 'benvenuto.md', 'introduzione.md'
+            ];
+
+            const posts = [];
+
+            for (const filename of commonFilenames) {
+                try {
+                    const response = await fetch(`posts/${filename}`);
+                    if (response.ok) {
+                        const mdContent = await response.text();
+                        const title = extractTitle(mdContent) || filename.replace('.md', '').replace(/-/g, ' ');
+                        const date = extractDate(mdContent) || new Date().toISOString().split('T')[0];
+                        const excerpt = extractExcerpt(mdContent);
+                        const slug = filename.replace('.md', '');
+
+                        posts.push({
+                            filename,
+                            title,
+                            date,
+                            excerpt,
+                            slug,
+                            content: mdContent
+                        });
+                    }
+                } catch (error) {
+                    // Ignora errori
+                }
+            }
+
+            return posts;
+        }
+
+        function createPostPreview(post) {
+            const preview = document.createElement('article');
+            preview.classList.add('blog-preview');
+
+            preview.innerHTML = `
+                <h3><a href="post.html?slug=${post.slug}">${post.title}</a></h3>
+                <p class="date">${formatDate(post.date)}</p>
+                <div class="excerpt">${post.excerpt}</div>
+                <a href="post.html?slug=${post.slug}" class="read-more">Leggi tutto</a>
+            `;
+
+            // Aggiungi click sull'intera preview
+            preview.addEventListener('click', (e) => {
+                if (e.target.tagName !== 'A') {
+                    navigateToPost(post.slug);
+                }
+            });
+
+            return preview;
+        }
+
+        function extractTitle(mdContent) {
+            const titleMatch = mdContent.match(/^#\s+(.+)$/m);
+            return titleMatch ? titleMatch[1].trim() : null;
+        }
+
+        function extractDate(mdContent) {
+            const dateMatch = mdContent.match(/(?:date|data|published):\s*(\d{4}-\d{2}-\d{2})/i);
+            return dateMatch ? dateMatch[1] : null;
+        }
+
+        function extractExcerpt(mdContent, maxLength = 200) {
+            // Rimuovi solo il titolo principale
+            let content = mdContent.replace(/^#\s+.+$/m, '');
+
+            // Prendi solo il primo paragrafo di testo significativo
+            const paragraphs = content.split('\n\n');
+            let firstParagraph = '';
+
+            for (const paragraph of paragraphs) {
+                const cleanPara = paragraph.trim();
+                if (cleanPara && !cleanPara.startsWith('#') && !cleanPara.startsWith('<!--')) {
+                    firstParagraph = cleanPara;
+                    break;
+                }
+            }
+
+            // Pulisci markdown base
+            firstParagraph = firstParagraph
+                .replace(/[#*`\[\]]/g, '')
+                .replace(/!\[.*?\]\(.*?\)/g, '')
+                .replace(/\[(.*?)\]\(.*?\)/g, '$1')
+                .replace(/\s+/g, ' ')
+                .trim();
+
+            // Tronca
+            if (firstParagraph.length > maxLength) {
+                firstParagraph = firstParagraph.substring(0, maxLength) + '...';
+            }
+
+            return firstParagraph || 'Leggi il post completo per scoprire di più...';
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('it-IT', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function getFileCreationDate(filename) {
+            const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})-/);
+            return dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
+        }
+
+        // Carica i post quando la pagina è pronta
+        document.addEventListener('DOMContentLoaded', loadPosts);
     </script>
 </body>
 

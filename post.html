@@ -2,102 +2,351 @@
 <html lang="it">
 
 <head>
-    <meta charset="UTF-8" />
-    <title>Post</title>
-    <script type="module" src="LoadMarkdown.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.css" />
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/katex.min.js"></script>
-    <script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.7/dist/contrib/auto-render.min.js"
-        onload="renderMathInElement(document.body);"></script>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Post – Achille Cannavale</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary-color: #2c3e50;
+            --secondary-color: #3498db;
+            --light-color: #ecf0f1;
+            --dark-color: #2c3e50;
+            --text-color: #333;
+            --border-radius: 8px;
+            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: #f9f9f9;
-            color: #1a1a1a;
-            max-width: 800px;
-            margin: 40px auto;
-            padding: 0 20px;
+            font-family: 'Poppins', sans-serif;
             line-height: 1.6;
+            color: var(--text-color);
+            background-color: #f9f9f9;
         }
 
-        a.back-link {
-            display: inline-block;
-            margin-bottom: 20px;
+        .container {
+            width: 90%;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .navbar {
+            background-color: var(--primary-color);
+            color: white;
+            padding: 1rem 0;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 500;
             text-decoration: none;
-            color: #007acc;
-            transition: color 0.2s;
+            color: white;
         }
 
-        a.back-link:hover {
-            color: #005f99;
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            margin-left: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: var(--secondary-color);
+        }
+
+        .section {
+            padding: 2rem 0;
+        }
+
+        main {
+            margin-top: 5rem;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            color: var(--secondary-color);
+            text-decoration: none;
+            margin-bottom: 2rem;
+            font-weight: 500;
+        }
+
+        .back-link::before {
+            content: "←";
+            margin-right: 0.5rem;
+        }
+
+        .back-link:hover {
             text-decoration: underline;
         }
 
-        h1,
-        h2,
-        h3 {
-            color: #222;
-            margin-top: 1.5em;
-            margin-bottom: 0.5em;
-            font-weight: 600;
+        .blog-post {
+            background: white;
+            border-radius: var(--border-radius);
+            padding: 3rem;
+            box-shadow: var(--shadow);
         }
 
-        p {
-            margin-bottom: 1em;
+        .blog-post h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+            line-height: 1.2;
         }
 
-        img {
-            display: block;
-            margin: 20px auto;
-            max-width: 100%;
-            height: auto;
+        .date {
+            color: #7f8c8d;
+            font-size: 1rem;
+            margin-bottom: 2rem;
+            font-style: italic;
+        }
+
+        .blog-post h2 {
+            font-size: 1.8rem;
+            margin: 2rem 0 1rem 0;
+            color: var(--primary-color);
+        }
+
+        .blog-post h3 {
+            font-size: 1.4rem;
+            margin: 1.5rem 0 0.8rem 0;
+            color: var(--primary-color);
+        }
+
+        .blog-post p {
+            margin-bottom: 1.5rem;
+            font-size: 1.1rem;
+            line-height: 1.7;
+        }
+
+        .blog-post ul,
+        .blog-post ol {
+            margin-bottom: 1.5rem;
+            padding-left: 2rem;
+        }
+
+        .blog-post li {
+            margin-bottom: 0.5rem;
+        }
+
+        .blog-post code {
+            background-color: #f4f4f4;
+            padding: 0.2rem 0.4rem;
             border-radius: 4px;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            font-family: 'Courier New', monospace;
+            font-size: 0.9em;
         }
 
-        code,
-        pre {
-            background-color: #eee;
-            border-radius: 4px;
-            padding: 0.2em 0.4em;
-            font-family: Consolas, "Courier New", monospace;
-            font-size: 0.95em;
-        }
-
-        pre {
-            padding: 1em;
+        .blog-post pre {
+            background-color: #2d2d2d;
+            color: #f8f8f2;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
             overflow-x: auto;
-            margin-bottom: 1.5em;
+            margin: 1.5rem 0;
+            font-size: 0.9em;
+            line-height: 1.4;
         }
 
-        blockquote {
-            border-left: 4px solid #ccc;
+        .blog-post blockquote {
+            border-left: 4px solid var(--secondary-color);
+            padding-left: 1.5rem;
+            margin: 1.5rem 0;
             color: #555;
             font-style: italic;
-            margin: 1.5em 0;
-            padding-left: 1em;
         }
 
-        ul,
-        ol {
-            margin: 1em 0;
-            padding-left: 1.3em;
+        .blog-post a {
+            color: var(--secondary-color);
+            text-decoration: none;
         }
 
-        hr {
-            border: none;
-            border-top: 1px solid #ddd;
-            margin: 2em 0;
+        .blog-post a:hover {
+            text-decoration: underline;
+        }
+
+        .blog-post img {
+            max-width: 100%;
+            height: auto;
+            border-radius: var(--border-radius);
+            margin: 1.5rem 0;
+        }
+
+        .loading {
+            text-align: center;
+            padding: 3rem;
+            font-style: italic;
+            color: #7f8c8d;
+        }
+
+        .error {
+            background-color: #e74c3c;
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--border-radius);
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .nav-links a {
+                margin-left: 1rem;
+            }
+
+            .blog-post {
+                padding: 2rem;
+            }
+
+            .blog-post h1 {
+                font-size: 2rem;
+            }
         }
     </style>
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script>
+        window.MathJax = {
+            tex: {
+                inlineMath: [['$', '$'], ['\\(', '\\)']],
+                displayMath: [['$$', '$$'], ['\\[', '\\]']]
+            },
+            svg: {
+                fontCache: 'global'
+            }
+        };
+    </script>
+    <script type="text/javascript" id="MathJax-script" async
+        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
+        </script>
 </head>
 
 <body>
-    <div id="post-container"></div>
-    <script type="module">
-        import { renderFullPost } from './LoadMarkdown.js';
-        renderFullPost('post-container');
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">AC</a>
+            <div class="nav-links">
+                <a href="index.html#about">Portfolio</a>
+                <a href="blog.html">Blog</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="section container">
+        <a href="blog.html" class="back-link">Torna al Blog</a>
+        <div id="post-content">
+            <div class="loading">Caricamento post...</div>
+        </div>
+    </main>
+
+    <script>
+        marked.setOptions({
+            breaks: true,
+            gfm: true,
+            sanitize: false
+        });
+
+        async function loadPost() {
+            const postContent = document.getElementById('post-content');
+            const urlParams = new URLSearchParams(window.location.search);
+            const slug = urlParams.get('slug');
+
+            if (!slug) {
+                postContent.innerHTML = '<div class="error">Post non specificato.</div>';
+                return;
+            }
+
+            try {
+                const response = await fetch(`posts/${slug}.md`);
+                if (!response.ok) {
+                    throw new Error('Post non trovato');
+                }
+
+                const mdContent = await response.text();
+                const title = extractTitle(mdContent) || slug.replace(/-/g, ' ');
+                const date = extractDate(mdContent) || getFileCreationDate(slug + '.md');
+
+                // Imposta il titolo della pagina
+                document.title = `${title} – Achille Cannavale`;
+
+                // Rimuovi titolo e metadati dal contenuto prima di convertire in HTML
+                const contentWithoutMetadata = removeMetadata(mdContent);
+                const htmlContent = marked.parse(contentWithoutMetadata);
+
+                postContent.innerHTML = `
+                <article class="blog-post">
+                    <h1>${title}</h1>
+                    <p class="date">${formatDate(date)}</p>
+                    ${htmlContent}
+                </article>
+            `;
+
+            } catch (error) {
+                console.error('Errore nel caricamento del post:', error);
+                postContent.innerHTML = `
+                <div class="error">
+                    Post non trovato. <a href="blog.html">Torna al blog</a>
+                </div>
+            `;
+            }
+        }
+
+        function extractTitle(mdContent) {
+            const titleMatch = mdContent.match(/^#\s+(.+)$/m);
+            return titleMatch ? titleMatch[1].trim() : null;
+        }
+
+        function extractDate(mdContent) {
+            const dateMatch = mdContent.match(/(?:date|data|published):\s*(\d{4}-\d{2}-\d{2})/i);
+            return dateMatch ? dateMatch[1] : null;
+        }
+
+        function removeMetadata(mdContent) {
+            let content = mdContent;
+
+            // Rimuovi il titolo principale (prima riga con #)
+            content = content.replace(/^#\s+.+$/m, '');
+
+            // Rimuovi righe di metadati (date:, data:, published:)
+            content = content.replace(/^\s*(date|data|published)\s*:\s*.+$/gim, '');
+
+            // Rimuovi commenti HTML che potrebbero contenere metadati
+            // build the pattern as a string to avoid embedding "<!--" directly in the HTML source
+            content = content.replace(new RegExp("<" + "!--\\s*(?:date|data|published):\\s*.+?-->", "gi"), '');
+
+            return content.trim();
+        }
+
+        function formatDate(dateString) {
+            const date = new Date(dateString);
+            return date.toLocaleDateString('it-IT', {
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric'
+            });
+        }
+
+        function getFileCreationDate(filename) {
+            const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})-/);
+            return dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
+        }
+
+        document.addEventListener('DOMContentLoaded', loadPost);
     </script>
 </body>
 

@@ -1,6 +1,7 @@
 # Come ho costruito 2Dynamics
-
-*15 Giugno 2025*
+<!--
+data: 2023-10-15
+-->
 
 In questo articolo descrivo come ho progettato il motore fisico 2D partendo da zero, utilizzando C++ e SDL2.
 
