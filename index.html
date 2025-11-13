@@ -130,34 +130,77 @@
             line-height: 1.8;
         }
 
-        /* --- ABOUT & EDUCATION LAYOUT --- */
+        /* --- ABOUT & EDUCATION CARDS --- */
         .about-education-wrapper {
             display: grid;
             grid-template-columns: 1fr 1fr;
-            gap: 3rem;
-            align-items: start;
+            gap: 2.5rem;
+            align-items: stretch;
+            /* ensure cards stretch to same height */
+            margin: 0 auto 3rem;
         }
 
-        .about,
-        .education {
-            padding: 0;
+        .about-education-wrapper .card {
+            background: white;
+            border-radius: 12px;
+            padding: 1.6rem;
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            display: flex;
+            flex-direction: column;
+            min-height: 260px;
+            /* consistent minimum */
+            height: 100%;
+            /* fill grid track so both cards match */
         }
 
-        .about h2,
-        .education h2 {
+        .about-education-wrapper .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
+        }
+
+        .about-education-wrapper .card h2 {
+            margin: 0 0 0.75rem;
             text-align: center;
-            margin-bottom: 1.5rem;
-            color: #111;
-            font-size: 2.2rem;
+            color: #0a2540;
+            font-size: 1.6rem;
         }
 
-        .about p,
-        .education p {
+        .about-education-wrapper .card .card-content {
             text-align: center;
-            max-width: 100%;
-            margin: 1.5rem auto;
-            font-size: 1.1rem;
-            line-height: 1.8;
+            color: #555;
+            line-height: 1.7;
+            font-size: 1.03rem;
+            margin-top: 0.25rem;
+        }
+
+        /* keep buttons/links aligned bottom */
+        .about-education-wrapper .card .card-actions {
+            margin-top: auto;
+            text-align: center;
+        }
+
+        /* Responsive: stack on small screens */
+        @media (max-width: 768px) {
+            .about-education-wrapper {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .about-education-wrapper .card {
+                padding: 1.2rem;
+                height: auto;
+                /* let cards size naturally on narrow screens */
+                min-height: 0;
+            }
+
+            .about-education-wrapper .card h2 {
+                font-size: 1.4rem;
+            }
+
+            .about-education-wrapper .card .card-content {
+                text-align: left;
+            }
         }
 
         /* --- PROJECTS --- */
@@ -647,32 +690,43 @@
     </header>
 
     <main>
-        <div class="about-education-wrapper">
-            <section id="about" class="section about">
-                <div class="container">
-                    <h2>Chi Sono</h2>
-                    <p>
-                        Sono un dottore magistrale di Ingegneria Informatica presso l'Università di Cassino,
-                        appassionato di
-                        tecnologia e informatica. Durante il mio percorso accademico, ho acquisito conoscenze in vari
-                        ambiti, tra cui programmazione, gestione di progetti e analisi dei dati. Ho avuto l'opportunità
-                        di
-                        lavorare su diversi progetti di gruppo, dimostrando esperienza nel lavoro di squadra e una forte
-                        capacità di problem solving.
-                    </p>
-                </div>
-            </section>
+        <!-- ABOUT & EDUCATION WRAPPER -->
+        <div class="container">
+            <div class="about-education-wrapper">
+                <section id="about" class="about">
+                    <div class="card">
+                        <h2>Chi Sono</h2>
+                        <div class="card-content">
+                            <p>
+                                Sono un dottore magistrale di Ingegneria Informatica presso l'Università di Cassino,
+                                appassionato
+                                di tecnologia e informatica. Durante il mio percorso accademico, ho acquisito conoscenze
+                                in vari
+                                ambiti, tra cui programmazione, gestione di progetti e analisi dei dati. Ho avuto
+                                l'opportunità di
+                                lavorare su diversi progetti di gruppo, dimostrando esperienza nel lavoro di squadra e
+                                una forte
+                                capacità di problem solving.
+                            </p>
+                        </div>
+                    </div>
+                </section>
 
-            <section id="education" class="section education">
-                <div class="container">
-                    <h2>Formazione</h2>
-                    <p><strong>🎓 Laurea Magistrale</strong> in Ingegneria Informatica, Intelligenza Artificiale e
-                        Robotica<br>
-                        Università di Cassino e del Lazio Meridionale, 2023 - 2025</p>
-                    <p><strong>🎓 Laurea Triennale</strong> in Ingegneria Informatica e delle Telecomunicazioni<br>
-                        Università di Cassino e del Lazio Meridionale, 2020 - 2023</p>
-                </div>
-            </section>
+                <section id="education" class="education">
+                    <div class="card">
+                        <h2>Formazione</h2>
+                        <div class="card-content">
+                            <p><strong>🎓 Laurea Magistrale</strong> in Ingegneria Informatica, Intelligenza Artificiale
+                                e
+                                Robotica<br>
+                                Università di Cassino e del Lazio Meridionale, 2023 - 2025</p>
+                            <p><strong>🎓 Laurea Triennale</strong> in Ingegneria Informatica e delle
+                                Telecomunicazioni<br>
+                                Università di Cassino e del Lazio Meridionale, 2020 - 2023</p>
+                        </div>
+                    </div>
+                </section>
+            </div>
         </div>
 
         <section id="projects" class="section projects">
