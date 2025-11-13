@@ -163,16 +163,16 @@
         /* --- PROJECTS --- */
         .project-list {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 2rem;
         }
 
         .project-item {
             background: white;
-            border-radius: 14px;
+            border-radius: 12px;
+            padding: 1.5rem;
             box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-            overflow: hidden;
-            transition: transform 0.35s ease, box-shadow 0.35s ease;
+            transition: transform 0.3s, box-shadow 0.3s;
             display: flex;
             flex-direction: column;
         }
@@ -184,12 +184,16 @@
 
         .project-item img {
             width: 100%;
-            height: 200px;
+            height: 180px;
+            /* fixed height for uniform cards */
             object-fit: cover;
+            border-radius: 8px;
+            margin-bottom: 1rem;
+            display: block;
         }
 
         .project-content {
-            padding: 1.5rem;
+            padding: 0;
             flex: 1;
             display: flex;
             flex-direction: column;
@@ -198,13 +202,15 @@
         .project-content h3 {
             margin-bottom: 0.5rem;
             color: #0a2540;
-            font-size: 1.3rem;
+            font-size: 1.2rem;
         }
 
         .project-content p {
-            color: #555;
-            font-size: 1.05rem;
-            line-height: 1.7;
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 0.8rem;
+            line-height: 1.6;
+            flex: 1;
         }
 
         .btn {
@@ -215,10 +221,15 @@
             padding: 0.7rem 1.4rem;
             border-radius: 6px;
             text-decoration: none;
+            text-align: center;
             transition: background 0.3s;
             align-self: flex-start;
-            font-size: 1rem;
+            font-size: 0.95rem;
             font-weight: 500;
+        }
+
+        .btn:hover {
+            background: #004fa1;
         }
 
         /* --- CONTACT --- */
@@ -436,7 +447,7 @@
                 gap: 1.5rem;
             }
 
-            .project-content {
+            .project-item {
                 padding: 1.2rem;
             }
 
@@ -721,6 +732,17 @@
                             <p>Motore fisico leggero per giochi 2D, con interfaccia facile da usare.</p>
                             <p><strong>Tecnologie:</strong> C++, SDL2</p>
                             <a class="btn" href="https://github.com/achille1912/Thesis" target="_blank">GitHub</a>
+                        </div>
+                    </div>
+
+                    <div class="project-item fade-in">
+                        <img src="https://images.unsplash.com/photo-1515125520141-3e3b67bc0a88?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                            alt="Appunti Universitari" />
+                        <div class="project-content">
+                            <h3>Appunti Universitari</h3>
+                            <p>Raccolta organizzata di appunti, esercizi risolti e slide dei principali corsi
+                                universitari.</p>
+                            <a class="btn" href="notes.html" target="_blank" rel="noopener noreferrer">Visualizza</a>
                         </div>
                     </div>
                 </div>
