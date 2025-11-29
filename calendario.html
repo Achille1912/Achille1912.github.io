@@ -1,0 +1,1142 @@
+<!DOCTYPE html>
+<html lang="it">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calendario dell'Avvento per Noemi- Programmazione & Cultura</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a2a6c, #b21f1f, #fdbb2d);
+            color: white;
+            min-height: 100vh;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        h1 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+        }
+
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 15px;
+            margin-bottom: 40px;
+        }
+
+        .day {
+            background: rgba(255, 255, 255, 0.1);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .day:hover {
+            transform: translateY(-5px);
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.5);
+        }
+
+        .day.locked {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .day.completed {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4CAF50;
+        }
+
+        .day-number {
+            font-size: 1.5em;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .day-type {
+            font-size: 0.8em;
+            opacity: 0.8;
+            margin-top: 5px;
+        }
+
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .modal-content {
+            background: linear-gradient(135deg, #2c3e50, #4a235a);
+            padding: 30px;
+            border-radius: 15px;
+            max-width: 600px;
+            width: 90%;
+            max-height: 80vh;
+            overflow-y: auto;
+        }
+
+        .problem-title {
+            font-size: 1.5em;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .problem-description {
+            margin-bottom: 20px;
+            line-height: 1.6;
+        }
+
+        .code-editor {
+            background: #1e1e1e;
+            border-radius: 8px;
+            padding: 15px;
+            margin-bottom: 20px;
+            font-family: 'Courier New', monospace;
+            position: relative;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            background: #1e1e1e;
+            color: #d4d4d4;
+            border: 1px solid #333;
+            border-radius: 5px;
+            padding: 10px;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+            tab-size: 4;
+            -moz-tab-size: 4;
+            white-space: pre;
+            overflow-wrap: normal;
+            overflow-x: auto;
+        }
+
+        .tab-info {
+            color: #888;
+            font-size: 0.8em;
+            margin-top: 5px;
+            text-align: right;
+        }
+
+        .quiz-options {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            margin: 20px 0;
+        }
+
+        .quiz-option {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .quiz-option:hover {
+            background: rgba(255, 255, 255, 0.2);
+            border-color: rgba(255, 255, 255, 0.3);
+        }
+
+        .quiz-option.selected {
+            background: rgba(76, 175, 80, 0.3);
+            border-color: #4CAF50;
+        }
+
+        .buttons {
+            display: flex;
+            gap: 10px;
+            justify-content: center;
+            margin-top: 20px;
+        }
+
+        button {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+
+        .run-btn {
+            background: #4CAF50;
+            color: white;
+        }
+
+        .run-btn:hover {
+            background: #45a049;
+        }
+
+        .submit-btn {
+            background: #2196F3;
+            color: white;
+        }
+
+        .submit-btn:hover {
+            background: #1976D2;
+        }
+
+        .close-btn {
+            background: #f44336;
+            color: white;
+        }
+
+        .close-btn:hover {
+            background: #da190b;
+        }
+
+        .play-btn {
+            background: #9C27B0;
+            color: white;
+        }
+
+        .play-btn:hover {
+            background: #7B1FA2;
+        }
+
+        .reward-message {
+            text-align: center;
+            padding: 20px;
+            background: rgba(76, 175, 80, 0.3);
+            border-radius: 10px;
+            margin-top: 20px;
+        }
+
+        .success {
+            color: #4CAF50;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        .error {
+            color: #f44336;
+            margin: 10px 0;
+        }
+
+        .completed-view {
+            text-align: center;
+        }
+
+        .completed-icon {
+            font-size: 4em;
+            margin-bottom: 20px;
+        }
+
+        .type-badge {
+            position: absolute;
+            top: 5px;
+            right: 5px;
+            background: rgba(255, 255, 255, 0.2);
+            padding: 2px 8px;
+            border-radius: 10px;
+            font-size: 0.7em;
+        }
+
+        .photo-reward {
+            max-width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .audio-player {
+            width: 100%;
+            margin: 15px 0;
+        }
+
+        .video-reward {
+            width: 100%;
+            border-radius: 10px;
+            margin: 15px 0;
+        }
+
+        .message-reward {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #ffd700;
+        }
+
+        @media (max-width: 768px) {
+            .calendar {
+                grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            }
+
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <header>
+            <h1>🎄 Calendario dell'Avvento per Noemi🎄</h1>
+
+        </header>
+
+        <div class="calendar" id="calendar">
+            <!-- I giorni verranno generati dinamicamente con JavaScript -->
+        </div>
+    </div>
+
+    <div class="modal" id="problemModal">
+        <div class="modal-content">
+            <div id="problemContent">
+                <!-- Contenuto dinamico per problemi completati/non completati -->
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Problemi di programmazione e quiz per tutti i 24 giorni
+        const problems = {
+            1: {
+                type: "programmazione",
+                title: "Somma di due numeri",
+                description: "Scrivi una funzione che prenda due numeri come parametri e restituisca la loro somma.",
+                testCases: [
+                    { input: [2, 3], expected: 5 },
+                    { input: [10, -5], expected: 5 },
+                    { input: [0, 0], expected: 0 }
+                ],
+                reward: {
+                    type: "photo",
+                    title: "📸",
+                    content: "assets/32626891.jpg",
+                    description: "Le prime foto."
+                },
+                solution: `function somma(a, b) {\n  return a + b;\n}`
+            },
+            2: {
+                type: "quiz",
+                title: "Harry Potter",
+                description: "Qual è il nome della scuola di magia frequentata da Harry Potter?",
+                options: [
+                    "Scuola di Magia e Stregoneria",
+                    "Hogwarts",
+                    "Il Collegio di Magia",
+                    "L'Accademia delle Arti Oscure"
+                ],
+                correctAnswer: 1,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Non fa bene soffermarsi sui sogni e dimenticare di vivere. (Albus Silente)",
+                    description: "Citazione"
+                },
+            },
+            3: {
+                type: "programmazione",
+                title: "Controllo numero pari",
+                description: "Scrivi una funzione che controlli se un numero è pari. Restituisci true se è pari, false altrimenti.",
+                testCases: [
+                    { input: [4], expected: true },
+                    { input: [7], expected: false },
+                    { input: [0], expected: true }
+                ],
+                reward: {
+                    type: "audio",
+                    title: "🎵",
+                    content: "assets/Fulminacci - Una sera.mp3",
+                    description: "Questa canzone mi ricorda sempre te."
+                },
+                solution: `function isPari(num) {\n  return num % 2 === 0;\n}`
+            },
+            4: {
+                type: "quiz",
+                title: "Il Trono di Spade",
+                description: "Chi è l'autore de 'Il Trono di Spade'?",
+                options: [
+                    "J.K. Rowling",
+                    "George R.R. Martin",
+                    "J.R.R. Tolkien",
+                    "C.S. Lewis"
+                ],
+                correctAnswer: 1,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Come arma, mio fratello ha la spada e re Robert la mazza da combattimento. Io ho la mente, e per continuare a essere un'arma valida, la mente ha bisogno dei libri quanto una spada ha bisogno della pietra per affilarla (Tyrion Lannister)",
+                    description: "Citazione"
+                },
+            },
+            5: {
+                type: "programmazione",
+                title: "Stringa inversa",
+                description: "Scrivi una funzione che prenda una stringa e restituisca la stringa invertita.",
+                testCases: [
+                    { input: ["ciao"], expected: "oaic" },
+                    { input: ["javascript"], expected: "tpircsavaj" },
+                    { input: [""], expected: "" }
+                ],
+                reward: {
+                    type: "coupon",
+                    title: "🎫 Buono regalo",
+                    content: "Un giro alla mondadori di Cassino",
+                    description: "Riscattabile quando vuoi! 💝"
+                },
+                solution: `function invertiStringa(str) {\n  return str.split('').reverse().join('');\n}`
+            },
+            6: {
+                type: "quiz",
+                title: "Joel Dicker",
+                description: "Qual è il primo libro di Joel Dicker?",
+                options: [
+                    "La verità sul caso Harry Quebert",
+                    "Il libro dei Baltimore",
+                    "Gli ultimi giorni dei nostri padri",
+                    "La scomparsa di Stephanie Mailer"
+                ],
+                correctAnswer: 2,
+                reward: {
+                    type: "photo",
+                    title: "📸",
+                    content: "assets/IMG-20251007-WA0033.jpg",
+                    description: "Il bellissimo viaggio a Roma."
+                }
+            },
+            7: {
+                type: "programmazione",
+                title: "Massimo di tre numeri",
+                description: "Scrivi una funzione che trovi il massimo tra tre numeri.",
+                testCases: [
+                    { input: [1, 2, 3], expected: 3 },
+                    { input: [10, 5, 8], expected: 10 },
+                    { input: [-1, -5, -3], expected: -1 }
+                ],
+                reward: {
+                    type: "audio",
+                    title: "🎵 ",
+                    content: "assets/ALFA - il filo rosso.mp3",
+                    description: "Altra canzone speciale"
+                },
+                solution: `function massimo(a, b, c) {\n  return Math.max(a, b, c);\n}`
+            },
+            8: {
+                type: "quiz",
+                title: "Game of Thrones",
+                description: "Qual è il motto della Casa Stark?",
+                options: [
+                    "Fuoco e Sangue",
+                    "L'inverno sta arrivando",
+                    "Noi non seminiamo",
+                    "Cresciuto forte"
+                ],
+                correctAnswer: 1,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Anche quando sei lontana, sento la tua presenza nel mio cuore. Nonostante i momenti no! 🌟",
+                    description: "Piccolo pensiero"
+                }
+            },
+            9: {
+                type: "programmazione",
+                title: "Fattoriale",
+                description: "Calcola il fattoriale di un numero. Il fattoriale di n è il prodotto di tutti i numeri da 1 a n.",
+                testCases: [
+                    { input: [5], expected: 120 },
+                    { input: [3], expected: 6 },
+                    { input: [0], expected: 1 }
+                ],
+                reward: {
+                    type: "coupon",
+                    title: "🎫 ",
+                    content: "Buono Domanda",
+                    description: "Puoi chiedermi qualsiasi cosa su di me e io devo rispondere con sincerità!"
+                },
+                solution: `function fattoriale(n) {\n  if (n === 0) return 1;\n  return n * fattoriale(n - 1);\n}`
+            },
+            10: {
+                type: "quiz",
+                title: "Il Piccolo Principe",
+                description: "Cosa chiede il Piccolo Principe di disegnare all'aviatore?",
+                options: [
+                    "Una rosa",
+                    "Una pecora",
+                    "Un baobab",
+                    "Un serpente"
+                ],
+                correctAnswer: 1,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Mi domando, – disse, – se le stelle sono illuminate perché ognuno possa un giorno trovare la sua.",
+                    description: "Citazione"
+                }
+            },
+            11: {
+                type: "programmazione",
+                title: "Palindromo",
+                description: "Controlla se una stringa è un palindromo (si legge uguale in entrambi i sensi).",
+                testCases: [
+                    { input: ["anna"], expected: true },
+                    { input: ["ciao"], expected: false },
+                    { input: ["a"], expected: true }
+                ],
+                reward: {
+                    type: "photo",
+                    title: "📸",
+                    content: "assets/38050851.jpg",
+                    description: "Lo scorso natale."
+                },
+                solution: `function isPalindromo(str) {\n  const cleanStr = str.toLowerCase().replace(/[^a-z0-9]/g, '');\n  return cleanStr === cleanStr.split('').reverse().join('');\n}`
+            },
+            12: {
+                type: "quiz",
+                title: "Breaking Bad",
+                description: "Qual è il vero nome di Walter White nel mondo della droga?",
+                options: [
+                    "El Hefe",
+                    "Heisenberg",
+                    "The Cook",
+                    "Blue Sky"
+                ],
+                correctAnswer: 1,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "A W.W. La mia stella, il mio perfetto silenzio. - Gale Boetticher",
+                    description: "Citazione"
+                }
+            },
+            13: {
+                type: "programmazione",
+                title: "Array somma",
+                description: "Calcola la somma di tutti gli elementi di un array di numeri.",
+                testCases: [
+                    { input: [[1, 2, 3, 4]], expected: 10 },
+                    { input: [[-1, 2, -3, 4]], expected: 2 },
+                    { input: [[]], expected: 0 }
+                ],
+                reward: {
+                    type: "photo",
+                    title: "📸",
+                    content: "assets/IMG-20251021-WA0012.jpg",
+                    description: "Ascensore pt.1 di n"
+                },
+                solution: `function sommaArray(arr) {\n  return arr.reduce((acc, val) => acc + val, 0);\n}`
+            },
+            14: {
+                type: "quiz",
+                title: "Big Bang Theory",
+                description: "Qual è la professione di Leonard Hofstadter?",
+                options: [
+                    "Cuoco",
+                    "Paleontologo",
+                    "Chimico",
+                    "Fisico sperimentale"
+                ],
+                correctAnswer: 3,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Il Natale è un mucchio di idiozie create dall'industria degli addobbi. - Sheldon Cooper",
+                    description: "Citazione"
+                }
+            },
+
+            15: {
+                type: "quiz",
+                title: "Stranger Things",
+                description: "In che città è ambientata la serie Stranger Things?",
+                options: [
+                    "Hawkins",
+                    "Springfield",
+                    "Mystic Falls",
+                    "Storybrooke"
+                ],
+                correctAnswer: 0,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Un amico è qualcuno per cui faresti tutto gli presti le cose fighe che hai, tipo fumetti e figurine. E mantiene sempre le promesse. - Lucas Sinclair",
+                    description: "Citazione"
+                }
+            },
+            16: {
+                type: "programmazione",
+                title: "Media array",
+                description: "Calcola la media dei numeri in un array.",
+                testCases: [
+                    { input: [[1, 2, 3, 4, 5]], expected: 3 },
+                    { input: [[10, 20]], expected: 15 },
+                    { input: [[0]], expected: 0 }
+                ],
+                reward: {
+                    type: "photo",
+                    title: "📸",
+                    content: "assets/file_00000000e45061fda23968330234845b.png",
+                    description: "La nostra laurea."
+                },
+                solution: `function mediaArray(arr) {\n  if (arr.length === 0) return 0;\n  return arr.reduce((a, b) => a + b, 0) / arr.length;\n}`
+            },
+            17: {
+                type: "quiz",
+                title: "Il Signore degli Anelli",
+                description: "Chi ha scritto 'Il Signore degli Anelli'?",
+                options: [
+                    "C.S. Lewis",
+                    "J.R.R. Tolkien",
+                    "George R.R. Martin",
+                    "J.K. Rowling"
+                ],
+                correctAnswer: 1,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Non tutti coloro che vagano sono perduti. - J.R.R. Tolkien",
+                    description: "Citazione"
+                }
+            },
+            18: {
+                type: "qiuz",
+                title: "Inception",
+                description: "Chi è il regista del film 'Inception'?",
+                options: [
+                    "Steven Spielberg",
+                    "Christopher Nolan",
+                    "James Cameron",
+                    "Quentin Tarantino"
+                ],
+                correctAnswer: 1,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Non puoi spiegare qualcosa a qualcuno che non è pronto a capirla. - Dom Cobb",
+                    description: "Citazione"
+                }
+            },
+            19: {
+                type: "programmazione",
+                title: "Somma numeri pari",
+                description: "Scrivi una funzione che prenda un array di numeri e restituisca la somma di tutti i numeri pari nell'array.",
+                testCases: [
+                    { input: [[1, 2, 3, 4, 5]], expected: 6 },
+                    { input: [[10, 15, 20]], expected: 30 },
+                    { input: [[1, 3, 5]], expected: 0 }
+                ],
+                reward: {
+                    type: "audio",
+                    title: "🎵 ",
+                    content: "assets/Fulminacci - SanGiovanni.mp3",
+                    description: "Un'altra canzone speciale"
+                },
+            },
+
+            20: {
+                type: "quiz",
+                title: "Pirati dei Caraibi",
+                description: "Chi interpreta il Capitano Jack Sparrow?",
+                options: [
+                    "Orlando Bloom",
+                    "Johnny Depp",
+                    "Geoffrey Rush",
+                    "Ian McShane"
+                ],
+                correctAnswer: 1,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Non tutti i tesori sono d'oro e d'argento, ragazza. - Jack Sparrow",
+                    description: "Citazione"
+                }
+            },
+            21: {
+                type: "quiz",
+                title: "Nosferatu",
+                description: "Chi è il regista del film 'Nosferatu' del 1922?",
+                options: [
+                    "F.W. Murnau",
+                    "Robert Wiene",
+                    "G.W. Pabst",
+                    "Carl Theodor Dreyer"
+                ],
+                correctAnswer: 0,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "Il vero orrore non è ciò che vediamo, ma ciò che immaginiamo. - F.W. Murnau",
+                    description: "Citazione"
+                }
+            },
+            22: {
+                type: "quiz",
+                title: "Psycho",
+                description: "Chi è il regista del film 'Psycho' del 1960?",
+                options: [
+                    "Alfred Hitchcock",
+                    "Stanley Kubrick",
+                    "Orson Welles",
+                    "Billy Wilder"
+                ],
+                correctAnswer: 0,
+                reward: {
+                    type: "photo",
+                    title: "📸",
+                    content: "assets/IMG-20250916-WA0030.jpg",
+                    description: "Ascensore pt 2 di n."
+                },
+            },
+            23: {
+                type: "quiz",
+                title: "La casa di Jack",
+                description: "Chi è il regista del film 'La casa di Jack' del 2018?",
+                options: [
+                    "David Fincher",
+                    "Martin Scorsese",
+                    "Lars von Trier",
+                    "Quentin Tarantino"
+                ],
+                correctAnswer: 2,
+                reward: {
+                    type: "message",
+                    title: "💌",
+                    content: "La perfezione è un'illusione, ma la ricerca della perfezione è ciò che ci rende umani. - Lars von Trier",
+                    description: "Citazione"
+                },
+            },
+            24: {
+                type: "quiz",
+                title: "Moonrise Kingdom",
+                description: "Chi è il regista del film 'Moonrise Kingdom' del 2012?",
+                options: [
+                    "Wes Anderson",
+                    "Paul Thomas Anderson",
+                    "Spike Jonze",
+                    "David Fincher"
+                ],
+                correctAnswer: 0,
+                reward: {
+                    type: "message",
+                    title: "💌 BUON NATALEEEEEE",
+                    content: "Ogni grande amore inizia con un piccolo passo. - Wes Anderson",
+                    description: "Citazione"
+                },
+            },
+
+        };
+
+        let currentDay = null;
+        let selectedOption = null;
+
+        // Inizializza il calendario
+        function initCalendar() {
+            const calendar = document.getElementById('calendar');
+            const today = new Date();
+            const currentDate = today.getDate();
+            const currentMonth = today.getMonth() + 1; // Gennaio è 0
+
+            // Pulisce il calendario esistente
+            calendar.innerHTML = '';
+
+            // Solo dicembre
+            if (currentMonth < 11) {
+                calendar.innerHTML = '<p style="text-align: center; grid-column: 1 / -1;">Torna a dicembre per aprire il calendario!</p>';
+                return;
+            }
+
+            for (let day = 1; day <= 24; day++) {
+                const dayElement = document.createElement('div');
+                const problem = problems[day];
+                const typeIcon = problem?.type === 'programmazione' ? '💻' : '📚';
+                const typeText = problem?.type === 'programmazione' ? 'Codice' : 'Quiz';
+
+                dayElement.className = 'day';
+                dayElement.innerHTML = `
+                    <div class="day-number">${day}</div>
+                    <div class="day-status">🔒</div>
+                    <div class="day-type">${typeIcon} ${typeText}</div>
+                    ${problem ? `<div class="type-badge">${typeIcon}</div>` : ''}
+                `;
+
+                if (day <= currentDate) {
+                    dayElement.classList.remove('locked');
+                    dayElement.classList.add('unlocked');
+                    dayElement.querySelector('.day-status').textContent = '🎁';
+
+                    // Controlla se il giorno è già completato
+                    const completedDays = JSON.parse(localStorage.getItem('completedDays') || '[]');
+                    if (completedDays.includes(day)) {
+                        dayElement.classList.add('completed');
+                        dayElement.querySelector('.day-status').textContent = '✅';
+                    }
+
+                    dayElement.addEventListener('click', () => openProblem(day));
+                } else {
+                    dayElement.classList.add('locked');
+                }
+
+                calendar.appendChild(dayElement);
+            }
+        }
+
+        // Apri il problema del giorno selezionato
+        function openProblem(day) {
+            currentDay = day;
+            const problem = problems[day];
+            const completedDays = JSON.parse(localStorage.getItem('completedDays') || '[]');
+            const isCompleted = completedDays.includes(day);
+            selectedOption = null;
+
+            if (!problem) {
+                alert('Problema non ancora disponibile!');
+                return;
+            }
+
+            const problemContent = document.getElementById('problemContent');
+
+            if (isCompleted) {
+                // Mostra la vista "completato" con la ricompensa
+                showReward(problem.reward, day);
+            } else if (problem.type === 'programmazione') {
+                // Mostra la vista programmazione
+                problemContent.innerHTML = `
+                    <div class="problem-title">Giorno ${day}: ${problem.title} 💻</div>
+                    <div class="problem-description">${problem.description}</div>
+                    
+                    <div class="code-editor">
+                        <textarea id="codeInput" placeholder="Scrivi qui la tua soluzione..."></textarea>
+                        <div class="tab-info">💡 Usa Tab per indentare</div>
+                    </div>
+                    
+                    <div class="buttons">
+                        <button class="run-btn" onclick="runCode()">Esegui Codice</button>
+                        <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                    </div>
+                    
+                    <div id="output"></div>
+                    <div class="reward-message" id="rewardMessage" style="display: none;"></div>
+                `;
+
+                // Aggiungi l'event listener per gestire i tab
+                const textarea = document.getElementById('codeInput');
+                textarea.addEventListener('keydown', handleTabKey);
+            } else {
+                // Mostra la vista quiz
+                const optionsHTML = problem.options.map((option, index) => `
+                    <div class="quiz-option" onclick="selectOption(${index})">
+                        ${option}
+                    </div>
+                `).join('');
+
+                problemContent.innerHTML = `
+                    <div class="problem-title">Giorno ${day}: ${problem.title} 📚</div>
+                    <div class="problem-description">${problem.description}</div>
+                    
+                    <div class="quiz-options" id="quizOptions">
+                        ${optionsHTML}
+                    </div>
+                    
+                    <div class="buttons">
+                        <button class="submit-btn" onclick="submitQuiz()" disabled>Invia Risposta</button>
+                        <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                    </div>
+                    
+                    <div id="output"></div>
+                    <div class="reward-message" id="rewardMessage" style="display: none;"></div>
+                `;
+            }
+
+            document.getElementById('problemModal').style.display = 'flex';
+        }
+
+        // Mostra la ricompensa
+        function showReward(reward, day) {
+            let rewardHTML = '';
+
+            switch (reward.type) {
+                case 'photo':
+                    rewardHTML = `
+                        <div class="completed-view">
+                            <div class="completed-icon">📸</div>
+                            <div class="problem-title">Giorno ${day}: ${reward.title}</div>
+                            <div class="success" style="font-size: 1.2em;">${reward.description}</div>
+                            <img src="${reward.content}" alt="Foto speciale" class="photo-reward" onerror="this.style.display='none'">
+                           
+                            <div style="margin-top: 20px;">
+                                <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'audio':
+                    rewardHTML = `
+                        <div class="completed-view">
+                            <div class="completed-icon">🎵</div>
+                            <div class="problem-title">Giorno ${day}: ${reward.title}</div>
+                            <div class="success" style="font-size: 1.2em;">${reward.description}</div>
+                            <audio controls class="audio-player">
+                                <source src="${reward.content}" type="audio/mpeg">
+                                Il tuo browser non supporta l'elemento audio.
+                            </audio>
+                           
+                            <div style="margin-top: 20px;">
+                                <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'video':
+                    rewardHTML = `
+                        <div class="completed-view">
+                            <div class="completed-icon">🎥</div>
+                            <div class="problem-title">Giorno ${day}: ${reward.title}</div>
+                            <div class="success" style="font-size: 1.2em;">${reward.description}</div>
+                            <video controls class="video-reward">
+                                <source src="${reward.content}" type="video/mp4">
+                                Il tuo browser non supporta l'elemento video.
+                            </video>
+                            <div class="reward-message">
+                                <div style="margin: 15px 0; font-style: italic;">"${reward.description}"</div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'message':
+                    rewardHTML = `
+                        <div class="completed-view">
+                            <div class="completed-icon">💌</div>
+                            <div class="problem-title">Giorno ${day}: ${reward.title}</div>
+                            <div class="message-reward">
+                                <div style="font-size: 1.1em; line-height: 1.6;">${reward.content}</div>
+                            </div>
+                            
+                            <div style="margin-top: 20px;">
+                                <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'coupon':
+                    rewardHTML = `
+                        <div class="completed-view">
+                            <div class="completed-icon">🎫</div>
+                            <div class="problem-title">Giorno ${day}: ${reward.title}</div>
+                            <div class="success" style="font-size: 1.2em;">${reward.content}</div>
+                            
+                            <div style="margin-top: 20px;">
+                                <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                case 'surprise':
+                    rewardHTML = `
+                        <div class="completed-view">
+                            <div class="completed-icon">🎁</div>
+                            <div class="problem-title">Giorno ${day}: ${reward.title}</div>
+                            <div class="success" style="font-size: 1.2em;">${reward.content}</div>
+                            <div class="reward-message">
+                                <div style="margin: 15px 0; font-style: italic;">"${reward.description}"</div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                            </div>
+                        </div>
+                    `;
+                    break;
+
+                default:
+                    rewardHTML = `
+                        <div class="completed-view">
+                            <div class="completed-icon">🎉</div>
+                            <div class="problem-title">Giorno ${day}: Problema Completato!</div>
+                            <div class="reward-message">
+                                <div style="margin-bottom: 15px;">La tua ricompensa:</div>
+                                <div style="font-size: 1.3em; font-weight: bold;">${reward}</div>
+                            </div>
+                            <div style="margin-top: 20px;">
+                                <button class="close-btn" onclick="closeModal()">Chiudi</button>
+                            </div>
+                        </div>
+                    `;
+            }
+
+            document.getElementById('problemContent').innerHTML = rewardHTML;
+        }
+
+        // Seleziona un'opzione nel quiz
+        function selectOption(index) {
+            selectedOption = index;
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach((option, i) => {
+                if (i === index) {
+                    option.classList.add('selected');
+                } else {
+                    option.classList.remove('selected');
+                }
+            });
+            document.querySelector('.submit-btn').disabled = false;
+        }
+
+        // Invia la risposta del quiz
+        function submitQuiz() {
+            const problem = problems[currentDay];
+            const output = document.getElementById('output');
+            const rewardMessage = document.getElementById('rewardMessage');
+
+            output.innerHTML = '';
+            rewardMessage.style.display = 'none';
+
+            if (selectedOption === problem.correctAnswer) {
+                // Risposta corretta
+                output.innerHTML = `<div class="success">✅ Risposta corretta!</div>`;
+
+                // Salva il giorno come completato
+                const completedDays = JSON.parse(localStorage.getItem('completedDays') || '[]');
+                if (!completedDays.includes(currentDay)) {
+                    completedDays.push(currentDay);
+                    localStorage.setItem('completedDays', JSON.stringify(completedDays));
+                }
+
+                // Mostra la ricompensa
+                showReward(problem.reward, currentDay);
+            } else {
+                output.innerHTML = `<div class="error">❌ Risposta errata. Riprova!</div>`;
+            }
+        }
+
+        // Gestisce il tasto Tab per l'indentazione
+        function handleTabKey(e) {
+            if (e.key === 'Tab') {
+                e.preventDefault();
+
+                const textarea = e.target;
+                const start = textarea.selectionStart;
+                const end = textarea.selectionEnd;
+
+                // Inserisce 4 spazi al posto del tab
+                textarea.value = textarea.value.substring(0, start) + '    ' + textarea.value.substring(end);
+
+                // Posiziona il cursore dopo i 4 spazi
+                textarea.selectionStart = textarea.selectionEnd = start + 4;
+            }
+        }
+
+        // Chiudi la modal
+        function closeModal() {
+            document.getElementById('problemModal').style.display = 'none';
+        }
+
+        // Esegui il codice dell'utente
+        function runCode() {
+            const code = document.getElementById('codeInput').value;
+            const problem = problems[currentDay];
+            const output = document.getElementById('output');
+            const rewardMessage = document.getElementById('rewardMessage');
+
+            output.innerHTML = '';
+            rewardMessage.style.display = 'none';
+
+            try {
+                // Esegui il codice in un ambiente controllato
+                const userFunction = new Function('return ' + code)();
+
+                let allTestsPassed = true;
+
+                // Esegui i test cases
+                problem.testCases.forEach((testCase, index) => {
+                    const result = userFunction(...testCase.input);
+                    const testResult = document.createElement('div');
+
+                    if (result === testCase.expected) {
+                        testResult.innerHTML = `<div class="success">✅ Test ${index + 1}: PASSATO</div>`;
+                    } else {
+                        testResult.innerHTML = `<div class="error">❌ Test ${index + 1}: FALLITO - Atteso: ${testCase.expected}, Ottenuto: ${result}</div>`;
+                        allTestsPassed = false;
+                    }
+
+                    output.appendChild(testResult);
+                });
+
+                if (allTestsPassed) {
+                    // Salva il giorno come completato
+                    const completedDays = JSON.parse(localStorage.getItem('completedDays') || '[]');
+                    if (!completedDays.includes(currentDay)) {
+                        completedDays.push(currentDay);
+                        localStorage.setItem('completedDays', JSON.stringify(completedDays));
+                    }
+
+                    // Mostra la ricompensa
+                    showReward(problem.reward, currentDay);
+                }
+
+            } catch (error) {
+                output.innerHTML = `<div class="error">Errore: ${error.message}</div>`;
+            }
+        }
+
+        // Inizializza il calendario quando la pagina carica
+        document.addEventListener('DOMContentLoaded', initCalendar);
+
+        // Chiudi la modal cliccando fuori
+        window.addEventListener('click', (event) => {
+            const modal = document.getElementById('problemModal');
+            if (event.target === modal) {
+                closeModal();
+            }
+        });
+
+        // Funzione per resettare i progressi (da console)
+        function resetProgress() {
+            if (confirm('Sei sicuro di voler resettare TUTTI i progressi?')) {
+                localStorage.removeItem('completedDays');
+                alert('Progressi resettati!');
+                location.reload();
+            }
+        }
+    </script>
+</body>
+
+</html>
