@@ -1,1058 +1,237 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Achille Cannavale – Portfolio</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
-        rel="stylesheet" />
-    <style>
-        /* --- BASE --- */
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: "Poppins", sans-serif;
-            background-color: #fdfdfd;
-            color: #333;
-            line-height: 1.6;
-            font-size: 1.05rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        /* --- DARK MODE VARIABLES --- */
-        body.dark-mode {
-            background-color: #0f172a;
-            color: #e2e8f0;
-        }
-
-        .container {
-            width: 60%;
-            max-width: 1100px;
-            margin: 0 auto;
-        }
-
-        /* --- NAVBAR --- */
-        .navbar {
-            background: rgba(255, 255, 255, 0.9);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 100;
-            backdrop-filter: blur(10px);
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        body.dark-mode .navbar {
-            background: rgba(15, 23, 42, 0.9);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 0;
-        }
-
-        .logo {
-            font-weight: 700;
-            font-size: 1.4rem;
-            color: #0066cc;
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 1.5rem;
-            align-items: center;
-        }
-
-        .nav-links a {
-            color: #333;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-
-        body.dark-mode .nav-links a {
-            color: #e2e8f0;
-        }
-
-        .nav-links a:hover {
-            color: #0066cc;
-        }
-
-        body.dark-mode .nav-links a:hover {
-            color: #60a5fa;
-        }
-
-        /* --- THEME TOGGLE BUTTON --- */
-        .theme-toggle {
-            background: none;
-            border: 2px solid #0066cc;
-            color: #0066cc;
-            border-radius: 8px;
-            padding: 0.5rem 1rem;
-            cursor: pointer;
-            font-size: 1rem;
-            transition: all 0.3s ease;
-            display: flex;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .theme-toggle:hover {
-            background: #0066cc;
-            color: white;
-        }
-
-        body.dark-mode .theme-toggle {
-            border-color: #60a5fa;
-            color: #60a5fa;
-        }
-
-        body.dark-mode .theme-toggle:hover {
-            background: #60a5fa;
-            color: #0f172a;
-        }
-
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            font-size: 1.6rem;
-            cursor: pointer;
-            color: #0066cc;
-        }
-
-        body.dark-mode .menu-toggle {
-            color: #60a5fa;
-        }
-
-        /* --- HERO --- */
-        .hero {
-            background: linear-gradient(180deg, #f7f9fc 0%, #ffffff 100%);
-            padding: 8rem 0 6rem;
-            text-align: center;
-            transition: background 0.3s ease;
-        }
-
-        body.dark-mode .hero {
-            background: linear-gradient(180deg, #1e293b 0%, #0f172a 100%);
-        }
-
-        .hero h1 {
-            font-size: 3.2rem;
-            color: #111;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .hero h1 {
-            color: #f1f5f9;
-        }
-
-        .subtitle {
-            color: #666;
-            font-size: 1.4rem;
-            margin-top: 0.5rem;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .subtitle {
-            color: #94a3b8;
-        }
-
-        .btn-hero {
-            display: inline-block;
-            margin-top: 2rem;
-            background: #0066cc;
-            color: white;
-            padding: 1rem 2rem;
-            border-radius: 8px;
-            text-decoration: none;
-            font-weight: 500;
-            transition: background 0.3s;
-            font-size: 1.1rem;
-        }
-
-        body.dark-mode .btn-hero {
-            background: #60a5fa;
-            color: #0f172a;
-        }
-
-        /* --- SECTIONS --- */
-        .section {
-            padding: 5rem 0;
-        }
-
-        .section h2 {
-            text-align: center;
-            margin-bottom: 2rem;
-            color: #111;
-            font-size: 2.2rem;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .section h2 {
-            color: #f1f5f9;
-        }
-
-        .section p {
-            font-size: 1.1rem;
-            text-align: justify;
-            text-justify: inter-word;
-            line-height: 1.8;
-        }
-
-        /* --- ABOUT & EDUCATION CARDS --- */
-        .about-education-wrapper {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 2.5rem;
-            align-items: stretch;
-            margin: 0 auto 3rem;
-        }
-
-        .about-education-wrapper .card {
-            background: white;
-            border-radius: 12px;
-            padding: 1.6rem;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.06);
-            transition: transform 0.25s ease, box-shadow 0.25s ease, background-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            min-height: 260px;
-            height: 100%;
-        }
-
-        body.dark-mode .about-education-wrapper .card {
-            background: #1e293b;
-            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
-        }
-
-        .about-education-wrapper .card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.09);
-        }
-
-        body.dark-mode .about-education-wrapper .card:hover {
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.5);
-        }
-
-        .about-education-wrapper .card h2 {
-            margin: 0 0 0.75rem;
-            text-align: center;
-            color: #0a2540;
-            font-size: 1.6rem;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .about-education-wrapper .card h2 {
-            color: #f1f5f9;
-        }
-
-        .about-education-wrapper .card .card-content {
-            text-align: center;
-            color: #555;
-            line-height: 1.7;
-            font-size: 1.03rem;
-            margin-top: 0.25rem;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .about-education-wrapper .card .card-content {
-            color: #cbd5e1;
-        }
-
-        .about-education-wrapper .card .card-actions {
-            margin-top: auto;
-            text-align: center;
-        }
-
-        /* --- PROJECTS --- */
-        .project-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 2rem;
-        }
-
-        .project-item {
-            background: white;
-            border-radius: 12px;
-            padding: 1.5rem;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.06);
-            transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s ease;
-            display: flex;
-            flex-direction: column;
-        }
-
-        body.dark-mode .project-item {
-            background: #1e293b;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
-        }
-
-        .project-item:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
-        }
-
-        body.dark-mode .project-item:hover {
-            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.5);
-        }
-
-        .project-item img {
-            width: 100%;
-            height: 180px;
-            object-fit: cover;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .project-content {
-            padding: 0;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .project-content h3 {
-            margin-bottom: 0.5rem;
-            color: #0a2540;
-            font-size: 1.2rem;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .project-content h3 {
-            color: #f1f5f9;
-        }
-
-        .project-content p {
-            color: #666;
-            font-size: 0.95rem;
-            margin-bottom: 0.8rem;
-            line-height: 1.6;
-            flex: 1;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .project-content p {
-            color: #94a3b8;
-        }
-
-        .btn {
-            display: inline-block;
-            margin-top: auto;
-            background: #0066cc;
-            color: white;
-            padding: 0.7rem 1.4rem;
-            border-radius: 6px;
-            text-decoration: none;
-            text-align: center;
-            transition: background 0.3s;
-            align-self: flex-start;
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .btn:hover {
-            background: #004fa1;
-        }
-
-        body.dark-mode .btn {
-            background: #60a5fa;
-            color: #0f172a;
-        }
-
-        body.dark-mode .btn:hover {
-            background: #3b82f6;
-        }
-
-        /* --- CONTACT --- */
-        .contact-box {
-            background: white;
-            border-radius: 14px;
-            padding: 2rem;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.05);
-            max-width: 600px;
-            margin: 0 auto;
-            text-align: center;
-            font-size: 1.1rem;
-            transition: background-color 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        body.dark-mode .contact-box {
-            background: #1e293b;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.3);
-        }
-
-        .contact-icons {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-top: 1.5rem;
-        }
-
-        .contact-icons a {
-            color: #0066cc;
-            font-weight: 500;
-            text-decoration: none;
-            transition: color 0.3s, transform 0.3s, background 0.3s;
-            padding: 0.6rem 1.2rem;
-            border-radius: 6px;
-            font-size: 1.05rem;
-        }
-
-        .contact-icons a:hover {
-            transform: translateY(-3px);
-            color: #004fa1;
-            background: #eef3ff;
-        }
-
-        body.dark-mode .contact-icons a {
-            color: #60a5fa;
-        }
-
-        body.dark-mode .contact-icons a:hover {
-            color: #3b82f6;
-            background: #334155;
-        }
-
-        /* --- SOCIAL LINKS BOTTOM --- */
-        .social-links-section {
-            background: linear-gradient(180deg, #ffffff 0%, #f7f9fc 100%);
-            padding: 4rem 0;
-            transition: background 0.3s ease;
-        }
-
-        body.dark-mode .social-links-section {
-            background: linear-gradient(180deg, #0f172a 0%, #1e293b 100%);
-        }
-
-        .social-links-bottom {
-            text-align: center;
-        }
-
-        .social-links-bottom h3 {
-            color: #111;
-            margin-bottom: 2rem;
-            font-size: 1.5rem;
-            transition: color 0.3s ease;
-        }
-
-        body.dark-mode .social-links-bottom h3 {
-            color: #f1f5f9;
-        }
-
-        .social-icons {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .social-icons a {
-            color: #0066cc;
-            font-weight: 500;
-            text-decoration: none;
-            padding: 0.8rem 1.6rem;
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-            transition: all 0.3s ease;
-            font-size: 1.1rem;
-        }
-
-        body.dark-mode .social-icons a {
-            color: #60a5fa;
-            background: #1e293b;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
-        }
-
-        /* --- SKILLS --- */
-        .skills-list {
-            display: flex;
-            flex-wrap: wrap;
-            justify-content: center;
-            gap: 1rem;
-            list-style: none;
-        }
-
-        .skills-list li {
-            background: #eef3ff;
-            border-radius: 8px;
-            padding: 0.8rem 1.2rem;
-            color: #0066cc;
-            font-weight: 500;
-            font-size: 1.05rem;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        body.dark-mode .skills-list li {
-            background: #1e293b;
-            color: #60a5fa;
-        }
-
-        /* --- FOOTER --- */
-        .site-footer {
-            background: #f7f9fc;
-            text-align: center;
-            padding: 2rem 0;
-            font-size: 0.9rem;
-            color: #555;
-            transition: background-color 0.3s ease, color 0.3s ease;
-        }
-
-        body.dark-mode .site-footer {
-            background: #0f172a;
-            color: #94a3b8;
-        }
-
-        /* --- ANIMATION --- */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.8s ease, transform 0.8s ease;
-        }
-
-        .fade-in.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 1024px) {
-            .container {
-                width: 80%;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .nav-container {
-                flex-direction: row;
-                justify-content: space-between;
-                align-items: center;
-                gap: 0;
-                padding: 0.8rem 0;
-            }
-
-            .nav-links {
-                display: none;
-                flex-direction: column;
-                position: absolute;
-                top: 60px;
-                left: 0;
-                right: 0;
-                background: rgba(255, 255, 255, 0.98);
-                padding: 1rem 0;
-                gap: 0;
-                box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-            }
-
-            body.dark-mode .nav-links {
-                background: rgba(15, 23, 42, 0.98);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .nav-links a {
-                padding: 0.8rem 1.5rem;
-                border-bottom: 1px solid #f0f0f0;
-                font-size: 0.95rem;
-                margin: 0;
-            }
-
-            body.dark-mode .nav-links a {
-                border-bottom: 1px solid #334155;
-            }
-
-            .theme-toggle {
-                margin: 0.5rem 1.5rem;
-                width: calc(100% - 3rem);
-                justify-content: center;
-            }
-
-            .menu-toggle {
-                display: block;
-            }
-
-            .logo {
-                font-size: 1.2rem;
-            }
-
-            .hero {
-                padding: 6rem 0 4rem;
-                margin-top: 0;
-            }
-
-            .hero h1 {
-                font-size: 2.2rem;
-            }
-
-            .subtitle {
-                font-size: 1.1rem;
-            }
-
-            .btn-hero {
-                padding: 0.8rem 1.6rem;
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 3rem 0;
-            }
-
-            .section h2 {
-                font-size: 1.8rem;
-                margin-bottom: 1.5rem;
-            }
-
-            .section p {
-                font-size: 1rem;
-            }
-
-            .about-education-wrapper {
-                grid-template-columns: 1fr;
-                gap: 2rem;
-            }
-
-            .about h2,
-            .education h2 {
-                font-size: 1.8rem;
-            }
-
-            .about p,
-            .education p {
-                font-size: 1rem;
-                margin: 1rem auto;
-            }
-
-            .project-list {
-                grid-template-columns: 1fr;
-                gap: 1.5rem;
-            }
-
-            .project-item {
-                padding: 1.2rem;
-            }
-
-            .project-content h3 {
-                font-size: 1.1rem;
-            }
-
-            .project-content p {
-                font-size: 0.95rem;
-            }
-
-            .btn {
-                padding: 0.6rem 1rem;
-                font-size: 0.9rem;
-            }
-
-            .contact-box {
-                padding: 1.5rem;
-                font-size: 1rem;
-            }
-
-            .contact-icons {
-                gap: 1rem;
-            }
-
-            .contact-icons a {
-                padding: 0.5rem 1rem;
-                font-size: 0.95rem;
-            }
-
-            .social-links-bottom h3 {
-                font-size: 1.3rem;
-            }
-
-            .social-icons {
-                gap: 0.8rem;
-            }
-
-            .social-icons a {
-                padding: 0.7rem 1.2rem;
-                font-size: 1rem;
-            }
-
-            .skills-list {
-                gap: 0.8rem;
-            }
-
-            .skills-list li {
-                padding: 0.6rem 1rem;
-                font-size: 0.95rem;
-            }
-
-            .site-footer {
-                padding: 1.5rem 0;
-                font-size: 0.85rem;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .container {
-                width: 90%;
-            }
-
-            .navbar {
-                position: fixed;
-                top: 0;
-                width: 100%;
-                z-index: 100;
-            }
-
-            .nav-container {
-                padding: 0.6rem 0;
-            }
-
-            .logo {
-                font-size: 1.1rem;
-            }
-
-            .nav-links {
-                top: 50px;
-                padding: 1rem 0;
-            }
-
-            .nav-links a {
-                padding: 0.7rem 1.2rem;
-                font-size: 0.85rem;
-            }
-
-            .hero {
-                padding: 5rem 0 2rem;
-                margin-top: 0;
-            }
-
-            .hero h1 {
-                font-size: 1.8rem;
-            }
-
-            .subtitle {
-                font-size: 1rem;
-            }
-
-            .section {
-                padding: 2rem 0;
-            }
-
-            .section h2 {
-                font-size: 1.5rem;
-            }
-
-            .section p {
-                font-size: 0.95rem;
-                line-height: 1.6;
-            }
-
-            .about p,
-            .education p {
-                font-size: 0.95rem;
-                text-align: left;
-            }
-
-            .project-item img {
-                height: 150px;
-            }
-
-            .project-content h3 {
-                font-size: 1rem;
-            }
-
-            .social-icons {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            .social-icons a {
-                width: 100%;
-                padding: 0.8rem;
-                font-size: 0.95rem;
-            }
-
-            .contact-icons {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-
-            .contact-icons a {
-                width: 100%;
-                padding: 0.8rem;
-            }
-
-            .skills-list {
-                justify-content: flex-start;
-                gap: 0.6rem;
-            }
-
-            .skills-list li {
-                padding: 0.5rem 0.8rem;
-                font-size: 0.85rem;
-            }
-        }
-    </style>
-    <script src="https://kit.fontawesome.com/4a2e13e5a4.js" crossorigin="anonymous"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Achille Cannavale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #f7f5f0; --text: #1a1a18; --muted: #888880; --line: #d8d5ce; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.7; padding: 0 1.5rem; }
+    .container { max-width: 640px; margin: 0 auto; }
+
+    nav { padding: 2.5rem 0 2rem; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); }
+    nav .logo { font-family: 'DM Mono', monospace; font-size: 0.8rem; font-weight: 300; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+    nav .nav-right { display: flex; align-items: baseline; gap: 1.8rem; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; }
+    nav a { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    #lang-toggle { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--text); background: transparent; border: 1px solid var(--line); padding: 0.18rem 0.55rem; border-radius: 2px; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+    #lang-toggle:hover { border-color: var(--muted); color: var(--muted); }
+
+    .hero { padding: 5rem 0 4rem; }
+    .hero h1 { font-size: clamp(2.4rem, 6vw, 3.6rem); font-weight: 400; line-height: 1.15; letter-spacing: -0.01em; margin-bottom: 1.2rem; }
+    .hero h1 em { font-style: italic; color: var(--muted); }
+    .hero p { color: var(--muted); font-size: 1rem; max-width: 420px; }
+
+    section { padding: 3.5rem 0; border-top: 1px solid var(--line); }
+    .section-label { font-family: 'DM Mono', monospace; font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; margin-bottom: 2rem; }
+
+    #about p { font-size: 1.05rem; color: var(--text); max-width: 540px; }
+
+    .edu-item { margin-bottom: 1.8rem; }
+    .edu-item:last-child { margin-bottom: 0; }
+    .edu-item .degree { font-weight: 500; margin-bottom: 0.15rem; }
+    .edu-item .detail { font-size: 0.9rem; color: var(--muted); }
+
+    .projects-grid { display: grid; gap: 0; }
+    .project { padding: 1.4rem 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; align-items: start; gap: 1rem; }
+    .project:first-child { border-top: 1px solid var(--line); }
+    .project-name { font-weight: 500; margin-bottom: 0.2rem; }
+    .project-desc { font-size: 0.9rem; color: var(--muted); margin-bottom: 0.5rem; }
+    .project-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+    .tag { font-family: 'DM Mono', monospace; font-size: 0.65rem; font-weight: 300; letter-spacing: 0.04em; color: var(--muted); border: 1px solid var(--line); padding: 0.15rem 0.5rem; border-radius: 2px; }
+    .project-link { font-family: 'DM Mono', monospace; font-size: 0.7rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; white-space: nowrap; transition: color 0.2s; padding-top: 0.15rem; }
+    .project-link:hover { color: var(--text); }
+
+    .skills-list { display: flex; flex-wrap: wrap; gap: 0.6rem; }
+    .skill { font-family: 'DM Mono', monospace; font-size: 0.75rem; font-weight: 300; letter-spacing: 0.05em; color: var(--text); border: 1px solid var(--line); padding: 0.3rem 0.75rem; border-radius: 2px; }
+
+    /* BLOG PREVIEW */
+    .post-preview { padding: 1.4rem 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 1rem; }
+    .post-preview:first-child { border-top: 1px solid var(--line); }
+    .post-preview a { text-decoration: none; color: inherit; }
+    .post-preview a:hover .post-title { text-decoration: underline; text-underline-offset: 3px; }
+    .post-title { font-weight: 500; }
+    .post-date { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; color: var(--muted); white-space: nowrap; }
+    .blog-more { display: inline-block; margin-top: 1.8rem; font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
+    .blog-more:hover { color: var(--text); border-color: var(--text); }
+
+    .contact-links { display: flex; gap: 2rem; flex-wrap: wrap; }
+    .contact-links a { font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 300; letter-spacing: 0.06em; color: var(--text); text-decoration: none; border-bottom: 1px solid var(--text); padding-bottom: 1px; transition: color 0.2s, border-color 0.2s; }
+    .contact-links a:hover { color: var(--muted); border-color: var(--muted); }
+
+    footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; }
+    footer p { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); }
+
+    .fade { opacity: 0; transform: translateY(14px); animation: fadeUp 0.6s ease forwards; }
+    .fade:nth-child(1) { animation-delay: 0.05s; }
+    .fade:nth-child(2) { animation-delay: 0.15s; }
+    @keyframes fadeUp { to { opacity: 1; transform: translateY(0); } }
+
+    @media (max-width: 500px) { nav .nav-right { gap: 1.1rem; } nav ul { gap: 1.1rem; } .hero { padding: 3.5rem 0 3rem; } }
+  </style>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">AC</a>
-            <button class="menu-toggle" id="menuToggle" aria-label="Apri menu">☰</button>
-            <div class="nav-links" id="navLinks">
-                <a href="#about">Chi Sono</a>
-                <a href="#education">Formazione</a>
-                <a href="#projects">Progetti</a>
-                <a href="#skills">Competenze</a>
-                <a href="#contact">Contatti</a>
-                <a href="notes.html">Appunti</a>
-                <!-- AGGIUNTO PULSANTE TEMA -->
-                <button class="theme-toggle" id="themeToggle">
-                    <span id="themeIcon">🌙</span>
-                    <span id="themeText">Dark</span>
-                </button>
-            </div>
+<div class="container">
+
+  <nav>
+    <a href="index.html" class="logo">AC</a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="#about"    data-it="Chi sono"  data-en="About">Chi sono</a></li>
+        <li><a href="#projects" data-it="Progetti"  data-en="Projects">Progetti</a></li>
+        <li><a href="blog.html" data-it="Blog"      data-en="Blog">Blog</a></li>
+        <li><a href="#contact"  data-it="Contatti"  data-en="Contact">Contatti</a></li>
+      </ul>
+      <button id="lang-toggle">EN</button>
+    </div>
+  </nav>
+
+  <div class="hero">
+    <h1 class="fade">Achille<br><em>Cannavale</em></h1>
+    <p class="fade"
+       data-it="Ingegnere Informatico specializzato in AI &amp; Robotica. Appassionato di deep learning, computer vision e sistemi robotici."
+       data-en="Computer Engineer specialised in AI &amp; Robotics. Passionate about deep learning, computer vision and robotic systems.">
+      Ingegnere Informatico specializzato in AI &amp; Robotica. Appassionato di deep learning, computer vision e sistemi robotici.
+    </p>
+  </div>
+
+  <section id="about">
+    <h2 class="section-label" data-it="Chi sono" data-en="About">Chi sono</h2>
+    <p data-it="Dottore Magistrale in Ingegneria Informatica presso l'Università di Cassino, con focus su Intelligenza Artificiale e Robotica. Ho esperienza nel lavoro di squadra su progetti complessi e una forte attitudine al problem solving."
+       data-en="Master's degree in Computer Engineering from the University of Cassino, specialising in Artificial Intelligence and Robotics. Experienced in collaborative projects and driven by a strong problem-solving mindset.">
+      Dottore Magistrale in Ingegneria Informatica presso l'Università di Cassino, con focus su Intelligenza Artificiale e Robotica. Ho esperienza nel lavoro di squadra su progetti complessi e una forte attitudine al problem solving.
+    </p>
+  </section>
+
+    <section id="education">
+    <h2 class="section-label" data-it="Esperienze Lavorative" data-en="Expereince">Esperienze Lavorative</h2>
+    <div class="edu-item">
+      <p class="degree" data-it="Software Engineer / Ai Engineer" data-en="Master's Degree — Computer Engineering, AI &amp; Robotics">Software Engineer / Ai Engineer</p>
+      <p class="detail">Whitehall Reply, Roma Italia &ensp;·&ensp; 2026-oggi</p>
+    </div>
+  </section>
+
+  <section id="education">
+    <h2 class="section-label" data-it="Formazione" data-en="Education">Formazione</h2>
+    <div class="edu-item">
+      <p class="degree" data-it="Laurea Magistrale — Ingegneria Informatica, AI &amp; Robotica" data-en="Master's Degree — Computer Engineering, AI &amp; Robotics">Laurea Magistrale — Ingegneria Informatica, AI &amp; Robotica</p>
+      <p class="detail">Università di Cassino e del Lazio Meridionale &ensp;·&ensp; 2023–2025</p>
+    </div>
+    <div class="edu-item">
+      <p class="degree" data-it="Laurea Triennale — Ingegneria Informatica e delle Telecomunicazioni" data-en="Bachelor's Degree — Computer and Telecommunications Engineering">Laurea Triennale — Ingegneria Informatica e delle Telecomunicazioni</p>
+      <p class="detail">Università di Cassino e del Lazio Meridionale &ensp;·&ensp; 2020–2023</p>
+    </div>
+  </section>
+
+    <section id="skills">
+    <h2 class="section-label" data-it="Competenze" data-en="Skills">Competenze</h2>
+    <div class="skills-list">
+      <span class="skill">Python</span><span class="skill">C++</span><span class="skill">PyTorch</span><span class="skill">TensorFlow</span><span class="skill">OpenCV</span><span class="skill">ROS1</span><span class="skill">Machine Learning</span><span class="skill">Deep Learning</span><span class="skill">Qt</span><span class="skill">SDL2</span><span class="skill">Box2D</span><span class="skill">Git / GitHub</span>
+    </div>
+  </section>
+
+  <section id="projects">
+    <h2 class="section-label" data-it="Progetti" data-en="Projects">Progetti</h2>
+    <div class="projects-grid">
+      <div class="project">
+        <div>
+          <p class="project-name">Breast Segmentation MRI 3D</p>
+          <p class="project-desc" data-it="Pipeline per la segmentazione automatica di immagini MRI 3D tramite deep learning." data-en="Automated pipeline for 3D MRI segmentation using deep learning.">Pipeline per la segmentazione automatica di immagini MRI 3D tramite deep learning.</p>
+          <div class="project-tags"><span class="tag">PyTorch</span><span class="tag">Deep Learning</span><span class="tag">NumPy</span></div>
         </div>
-    </nav>
-
-    <header class="hero fade-in">
-        <div class="container hero-container">
-            <h1>Achille Cannavale</h1>
-            <p class="subtitle">Dottore Magistrale in Ingegneria Informatica</p>
-            <a href="#projects" class="btn-hero">Guarda i miei progetti ↓</a>
+        <a class="project-link" href="https://github.com/Achille1912/Master-Thesis" target="_blank">GitHub ↗</a>
+      </div>
+      <div class="project">
+        <div>
+          <p class="project-name">Blood Cells Detection &amp; Classification</p>
+          <p class="project-desc" data-it="Classificazione automatica di cellule del sangue tramite reti neurali convoluzionali." data-en="Automatic classification of blood cells using convolutional neural networks.">Classificazione automatica di cellule del sangue tramite reti neurali convoluzionali.</p>
+          <div class="project-tags"><span class="tag">TensorFlow</span><span class="tag">Machine Learning</span></div>
         </div>
-    </header>
-
-    <main>
-        <div class="container">
-            <div class="about-education-wrapper">
-                <section id="about" class="about">
-                    <div class="card">
-                        <h2>Chi Sono</h2>
-                        <div class="card-content">
-                            <p>
-                                Sono un <strong>dottore magistrale</strong> di <strong>Ingegneria Informatica</strong>
-                                presso
-                                l'Università di Cassino,
-                                appassionato
-                                di tecnologia e informatica. Durante il mio percorso accademico, ho acquisito conoscenze
-                                in vari
-                                ambiti, tra cui programmazione, gestione di progetti e analisi dei dati. Ho avuto
-                                l'opportunità di
-                                lavorare su diversi progetti di gruppo, dimostrando esperienza nel lavoro di squadra e
-                                una forte
-                                capacità di problem solving.
-                            </p>
-                        </div>
-                    </div>
-                </section>
-
-                <section id="education" class="education">
-                    <div class="card">
-                        <h2>Formazione</h2>
-                        <div class="card-content">
-                            <p><strong>🎓 Laurea Magistrale</strong> in Ingegneria Informatica, Intelligenza Artificiale
-                                e
-                                Robotica<br>
-                                Università di Cassino e del Lazio Meridionale, 2023 - 2025</p>
-                            <p><strong>🎓 Laurea Triennale</strong> in Ingegneria Informatica e delle
-                                Telecomunicazioni<br>
-                                Università di Cassino e del Lazio Meridionale, 2020 - 2023</p>
-                        </div>
-                    </div>
-                </section>
-            </div>
+        <a class="project-link" href="https://github.com/achille1912/blood_cells_recognition_and_classification" target="_blank">GitHub ↗</a>
+      </div>
+      <div class="project">
+        <div>
+          <p class="project-name">Turtlebot Control</p>
+          <p class="project-desc" data-it="Controllo robotico con ROS1 in C++ per la navigazione autonoma." data-en="Robotic control with ROS1 in C++ for autonomous navigation.">Controllo robotico con ROS1 in C++ per la navigazione autonoma.</p>
+          <div class="project-tags"><span class="tag">ROS1</span><span class="tag">C++</span><span class="tag">Git</span></div>
         </div>
-
-        <section id="projects" class="section projects">
-            <div class="container">
-                <h2>Progetti</h2>
-                <div class="project-list">
-                    <div class="project-item fade-in">
-                        <img src="images/image copy.png" alt="Breast Segmentation" />
-                        <div class="project-content">
-                            <h3>Breast Segmentation MRI 3D</h3>
-                            <p>Pipeline per la segmentazione automatica di immagini MRI 3D.</p>
-                            <p><strong>Tecnologie:</strong> Deep Learning, PyTorch, Numpy</p>
-                            <a class="btn" href="https://github.com/Achille1912/Master-Thesis"
-                                target="_blank">GitHub</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item fade-in">
-                        <img src="https://github.com/Achille1912/blood_cells_recognition_and_classification/raw/main/paper/image.png"
-                            alt="Blood Cells Detection" />
-                        <div class="project-content">
-                            <h3>Blood Cells Detection and Classification</h3>
-                            <p>Classificazione automatica di cellule del sangue tramite CNN.</p>
-                            <p><strong>Tecnologie:</strong> TensorFlow, Machine Learning</p>
-                            <a class="btn"
-                                href="https://github.com/achille1912/blood_cells_recognition_and_classification"
-                                target="_blank">GitHub</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item fade-in">
-                        <img src="https://github.com/Achille1912/Applied-Robotics-Project/raw/main/material/out.gif"
-                            alt="Turtlebot Control" />
-                        <div class="project-content">
-                            <h3>Turtlebot Control</h3>
-                            <p>Controllo robotico con ROS1 in C++.</p>
-                            <p><strong>Tecnologie:</strong> ROS1, C++, Git</p>
-                            <a class="btn" href="https://github.com/achille1912/Applied-Robotics-Project"
-                                target="_blank">GitHub</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item fade-in">
-                        <img src="images/image.png" alt="Traffic Sign Detection" />
-                        <div class="project-content">
-                            <h3>Traffic Sign Detection</h3>
-                            <p>Programma in C++ con OpenCV per rilevare segnali stradali.</p>
-                            <p><strong>Tecnologie:</strong> OpenCV, C++, Git</p>
-                            <a class="btn" href="https://github.com/achille1912/TrafficSignDetection"
-                                target="_blank">GitHub</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item fade-in">
-                        <img src="https://github.com/Achille1912/Thesis/raw/main/gfx/Tesi.gif" alt="2Dynamics" />
-                        <div class="project-content">
-                            <h3>2Dynamics</h3>
-                            <p>Motore fisico leggero per giochi 2D, con interfaccia facile da usare.</p>
-                            <p><strong>Tecnologie:</strong> C++, SDL2</p>
-                            <a class="btn" href="https://github.com/achille1912/Thesis" target="_blank">GitHub</a>
-                        </div>
-                    </div>
-
-                    <div class="project-item fade-in">
-                        <img src="https://images.unsplash.com/photo-1515125520141-3e3b67bc0a88?q=80&w=2071&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
-                            alt="Appunti Universitari" />
-                        <div class="project-content">
-                            <h3>Appunti Universitari</h3>
-                            <p>Raccolta organizzata di appunti, esercizi risolti e slide dei principali corsi
-                                universitari.</p>
-                            <a class="btn" href="notes.html" target="_blank" rel="noopener noreferrer">Visualizza</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="skills" class="section skills">
-            <div class="container">
-                <h2>Competenze</h2>
-                <ul class="skills-list">
-                    <li>Python</li>
-                    <li>C++</li>
-                    <li>OpenCV</li>
-                    <li>ROS1</li>
-                    <li>Machine Learning</li>
-                    <li>Deep Learning</li>
-                    <li>Qt</li>
-                    <li>SDL2</li>
-                    <li>Box2D</li>
-                    <li>Git/GitHub</li>
-                </ul>
-            </div>
-        </section>
-
-        <section class="section social-links-section" id="contact">
-            <div class="container">
-                <div class="social-links-bottom fade-in">
-                    <h3>Contatti</h3>
-                    <div class="social-icons">
-                        <a href="https://github.com/achille1912" target="_blank" rel="noopener noreferrer">GitHub</a>
-                        <a href="https://linkedin.com/in/achille-cannavale" target="_blank"
-                            rel="noopener noreferrer">LinkedIn</a>
-                        <a href="mailto:achille.cannavale@libero.it" target="_blank" rel="noopener noreferrer">Email</a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer class="site-footer">
-        <div class="container">
-            <p>© 2025 Achille Cannavale – Portfolio</p>
+        <a class="project-link" href="https://github.com/achille1912/Applied-Robotics-Project" target="_blank">GitHub ↗</a>
+      </div>
+      <div class="project">
+        <div>
+          <p class="project-name">Traffic Sign Detection</p>
+          <p class="project-desc" data-it="Rilevamento di segnali stradali in C++ con OpenCV." data-en="Traffic sign detection in C++ with OpenCV.">Rilevamento di segnali stradali in C++ con OpenCV.</p>
+          <div class="project-tags"><span class="tag">OpenCV</span><span class="tag">C++</span></div>
         </div>
-    </footer>
+        <a class="project-link" href="https://github.com/achille1912/TrafficSignDetection" target="_blank">GitHub ↗</a>
+      </div>
+      <div class="project">
+        <div>
+          <p class="project-name">2Dynamics</p>
+          <p class="project-desc" data-it="Motore fisico leggero per giochi 2D, con interfaccia semplice da integrare." data-en="Lightweight 2D physics engine with an easy-to-use interface.">Motore fisico leggero per giochi 2D, con interfaccia semplice da integrare.</p>
+          <div class="project-tags"><span class="tag">C++</span><span class="tag">SDL2</span></div>
+        </div>
+        <a class="project-link" href="https://github.com/achille1912/Thesis" target="_blank">GitHub ↗</a>
+      </div>
+    </div>
+  </section>
 
-    <script>
-        // Toggle del menu mobile
-        const menuToggle = document.getElementById('menuToggle');
-        const navLinks = document.getElementById('navLinks');
 
-        if (menuToggle && navLinks) {
-            menuToggle.addEventListener('click', () => {
-                navLinks.classList.toggle('active');
-            });
 
-            navLinks.querySelectorAll('a').forEach(link => {
-                link.addEventListener('click', () => {
-                    navLinks.classList.remove('active');
-                });
-            });
-        }
+  <!-- BLOG PREVIEW: ultimi 2 post -->
+  <section id="blog">
+    <h2 class="section-label" data-it="Ultimi post" data-en="Latest posts">Ultimi post</h2>
+    <div id="blog-preview"></div>
+    <a href="blog.html" class="blog-more" data-it="Tutti i post →" data-en="All posts →">Tutti i post →</a>
+  </section>
 
-        // Smooth scroll per i link interni
-        document.querySelectorAll('.nav-links a').forEach(link => {
-            link.addEventListener('click', e => {
-                if (link.getAttribute('href').startsWith('#')) {
-                    e.preventDefault();
-                    const target = document.querySelector(link.getAttribute('href'));
-                    if (target) window.scrollTo({ top: target.offsetTop - 60, behavior: 'smooth' });
-                }
-            });
-        });
+  <section id="contact">
+    <h2 class="section-label" data-it="Contatti" data-en="Contact">Contatti</h2>
+    <div class="contact-links">
+      <a href="https://github.com/achille1912" target="_blank">GitHub</a>
+      <a href="https://linkedin.com/in/achille-cannavale" target="_blank">LinkedIn</a>
+      <a href="mailto:achille.cannavale@libero.it">Email</a>
+    </div>
+  </section>
 
-        // Animazione fade-in
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('visible');
-            });
-        }, { threshold: 0.2 });
-        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+  <footer><p>© 2025 Achille Cannavale</p></footer>
 
-        // Toggle del tema chiaro/scuro
-        const themeToggle = document.getElementById('themeToggle');
-        const themeIcon = document.getElementById('themeIcon');
-        const themeText = document.getElementById('themeText');
-        const body = document.body;
+</div>
+<script src="posts.js"></script>
+<script>
+  /* LANG */
+  let lang = 'it';
+  const toggleBtn = document.getElementById('lang-toggle');
+  function applyLang() {
+    document.querySelectorAll('[data-it]').forEach(el => { el.innerHTML = el.getAttribute('data-' + lang); });
+    toggleBtn.textContent = lang === 'it' ? 'EN' : 'IT';
+    document.documentElement.lang = lang;
+    renderPreview();
+  }
+  toggleBtn.addEventListener('click', () => { lang = lang === 'it' ? 'en' : 'it'; applyLang(); });
 
-        // Controlla se c'è una preferenza salvata, altrimenti usa dark come default
-        const savedTheme = localStorage.getItem('theme') || 'dark'; // MODIFICA QUI
-        if (savedTheme === 'dark') {
-            body.classList.add('dark-mode');
-            themeIcon.textContent = '☀️';
-            themeText.textContent = 'Light';
-        }
+  function formatDate(iso) {
+    const [y,m,d] = iso.split('-');
+    return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1] + ' ' + +d + ', ' + y;
+  }
 
-        themeToggle.addEventListener('click', () => {
-            body.classList.toggle('dark-mode');
+  function renderPreview() {
+    const preview = POSTS.slice(0, 2);
+    document.getElementById('blog-preview').innerHTML = preview.map(p => `
+      <div class="post-preview">
+        <a href="post.html?id=${p.id}">
+          <span class="post-title">${lang === 'it' ? p.title : p.title_en}</span>
+        </a>
+        <span class="post-date">${formatDate(p.date)}</span>
+      </div>`).join('');
+  }
 
-            if (body.classList.contains('dark-mode')) {
-                themeIcon.textContent = '☀️';
-                themeText.textContent = 'Light';
-                localStorage.setItem('theme', 'dark');
-            } else {
-                themeIcon.textContent = '🌙';
-                themeText.textContent = 'Dark';
-                localStorage.setItem('theme', 'light');
-            }
-        });
-    </script>
+  renderPreview();
+</script>
 </body>
-
 </html>

@@ -1,353 +1,170 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Post – Achille Cannavale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --border-radius: 8px;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Post — Achille Cannavale</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #f7f5f0; --text: #1a1a18; --muted: #888880; --line: #d8d5ce; }
+    body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.7; padding: 0 1.5rem; }
+    .container { max-width: 640px; margin: 0 auto; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    nav { padding: 2.5rem 0 2rem; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); }
+    nav .logo { font-family: 'DM Mono', monospace; font-size: 0.8rem; font-weight: 300; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+    nav .nav-right { display: flex; align-items: baseline; gap: 1.8rem; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; }
+    nav a { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    #lang-toggle { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--text); background: transparent; border: 1px solid var(--line); padding: 0.18rem 0.55rem; border-radius: 2px; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+    #lang-toggle:hover { border-color: var(--muted); color: var(--muted); }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #f9f9f9;
-        }
+    .post-header { padding: 4rem 0 2.5rem; border-bottom: 1px solid var(--line); }
+    .post-header h1 { font-size: clamp(1.8rem, 5vw, 2.6rem); font-weight: 400; line-height: 1.2; margin-bottom: 0.6rem; }
+    .post-meta { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; color: var(--muted); }
 
-        .container {
-            width: 90%;
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .post-body { padding: 3rem 0; }
+    .post-body h1 { display: none; }
+    .post-body h2 { font-size: 1.25rem; font-weight: 500; margin: 2.5rem 0 0.7rem; }
+    .post-body h3 { font-size: 1.05rem; font-weight: 500; margin: 2rem 0 0.5rem; }
+    .post-body p { margin-bottom: 1.1rem; }
+    .post-body ul, .post-body ol { margin: 0.5rem 0 1.2rem 1.4rem; }
+    .post-body li { margin-bottom: 0.35rem; }
+    .post-body strong { font-weight: 500; }
+    .post-body em { font-style: italic; }
+    .post-body a { color: var(--text); }
+    .post-body pre { background: #edeae3; border: 1px solid var(--line); border-radius: 3px; padding: 1rem 1.2rem; overflow-x: auto; margin: 1.2rem 0; }
+    .post-body code { font-family: 'DM Mono', monospace; font-size: 0.78rem; font-weight: 300; }
+    .post-body p code { background: #edeae3; padding: 0.1rem 0.35rem; border-radius: 2px; }
 
-        .navbar {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-        }
+    .post-nav { border-top: 1px solid var(--line); padding: 2rem 0; display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; }
+    .post-nav a { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    .post-nav a:hover { color: var(--text); }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+    footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; }
+    footer p { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 500;
-            text-decoration: none;
-            color: white;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .section {
-            padding: 2rem 0;
-        }
-
-        main {
-            margin-top: 5rem;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--secondary-color);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .back-link::before {
-            content: "←";
-            margin-right: 0.5rem;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        .blog-post {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 3rem;
-            box-shadow: var(--shadow);
-        }
-
-        .blog-post h1 {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            color: var(--primary-color);
-            line-height: 1.2;
-        }
-
-        .date {
-            color: #7f8c8d;
-            font-size: 1rem;
-            margin-bottom: 2rem;
-            font-style: italic;
-        }
-
-        .blog-post h2 {
-            font-size: 1.8rem;
-            margin: 2rem 0 1rem 0;
-            color: var(--primary-color);
-        }
-
-        .blog-post h3 {
-            font-size: 1.4rem;
-            margin: 1.5rem 0 0.8rem 0;
-            color: var(--primary-color);
-        }
-
-        .blog-post p {
-            margin-bottom: 1.5rem;
-            font-size: 1.1rem;
-            line-height: 1.7;
-        }
-
-        .blog-post ul,
-        .blog-post ol {
-            margin-bottom: 1.5rem;
-            padding-left: 2rem;
-        }
-
-        .blog-post li {
-            margin-bottom: 0.5rem;
-        }
-
-        .blog-post code {
-            background-color: #f4f4f4;
-            padding: 0.2rem 0.4rem;
-            border-radius: 4px;
-            font-family: 'Courier New', monospace;
-            font-size: 0.9em;
-        }
-
-        .blog-post pre {
-            background-color: #2d2d2d;
-            color: #f8f8f2;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            overflow-x: auto;
-            margin: 1.5rem 0;
-            font-size: 0.9em;
-            line-height: 1.4;
-        }
-
-        .blog-post blockquote {
-            border-left: 4px solid var(--secondary-color);
-            padding-left: 1.5rem;
-            margin: 1.5rem 0;
-            color: #555;
-            font-style: italic;
-        }
-
-        .blog-post a {
-            color: var(--secondary-color);
-            text-decoration: none;
-        }
-
-        .blog-post a:hover {
-            text-decoration: underline;
-        }
-
-        .blog-post img {
-            max-width: 100%;
-            height: auto;
-            border-radius: var(--border-radius);
-            margin: 1.5rem 0;
-        }
-
-        .loading {
-            text-align: center;
-            padding: 3rem;
-            font-style: italic;
-            color: #7f8c8d;
-        }
-
-        .error {
-            background-color: #e74c3c;
-            color: white;
-            padding: 1.5rem;
-            border-radius: var(--border-radius);
-            margin: 2rem 0;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links a {
-                margin-left: 1rem;
-            }
-
-            .blog-post {
-                padding: 2rem;
-            }
-
-            .blog-post h1 {
-                font-size: 2rem;
-            }
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-        </script>
+    @media (max-width: 500px) { nav .nav-right { gap: 1.1rem; } nav ul { gap: 1.1rem; } }
+  </style>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">AC</a>
-            <div class="nav-links">
-                <a href="index.html#about">Portfolio</a>
-                <a href="blog.html">Blog</a>
-            </div>
-        </div>
-    </nav>
+<div class="container">
 
-    <main class="section container">
-        <a href="blog.html" class="back-link">Torna al Blog</a>
-        <div id="post-content">
-            <div class="loading">Caricamento post...</div>
-        </div>
-    </main>
+  <nav>
+    <a href="index.html" class="logo">AC</a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="blog.html" data-it="← Blog" data-en="← Blog">← Blog</a></li>
+        <li><a href="index.html" data-it="Home" data-en="Home">Home</a></li>
+      </ul>
+      <button id="lang-toggle">EN</button>
+    </div>
+  </nav>
 
-    <script>
-        marked.setOptions({
-            breaks: true,
-            gfm: true,
-            sanitize: false
-        });
+  <div class="post-header">
+    <h1 id="post-title">—</h1>
+    <p class="post-meta" id="post-meta">—</p>
+  </div>
 
-        async function loadPost() {
-            const postContent = document.getElementById('post-content');
-            const urlParams = new URLSearchParams(window.location.search);
-            const slug = urlParams.get('slug');
+  <div class="post-body" id="post-body"></div>
 
-            if (!slug) {
-                postContent.innerHTML = '<div class="error">Post non specificato.</div>';
-                return;
-            }
+  <div class="post-nav">
+    <a href="blog.html" data-it="← Tutti i post" data-en="← All posts">← Tutti i post</a>
+    <span id="post-nav-next"></span>
+  </div>
 
-            try {
-                const response = await fetch(`posts/${slug}.md`);
-                if (!response.ok) {
-                    throw new Error('Post non trovato');
-                }
+  <footer><p>© 2025 Achille Cannavale</p></footer>
 
-                const mdContent = await response.text();
-                const title = extractTitle(mdContent) || slug.replace(/-/g, ' ');
-                const date = extractDate(mdContent) || getFileCreationDate(slug + '.md');
+</div>
+<script src="posts.js"></script>
+<script>
+  let lang = 'it';
+  const toggleBtn = document.getElementById('lang-toggle');
 
-                // Imposta il titolo della pagina
-                document.title = `${title} – Achille Cannavale`;
+  function parseMarkdown(md) {
+    md = md.replace(/^---[\s\S]*?---\n?/, '');
+    const lines = md.split('\n');
+    let html = '', inCode = false, codeBuf = '', inUl = false;
+    for (const l of lines) {
+      if (l.startsWith('```')) {
+        if (!inCode) { inCode = true; codeBuf = ''; }
+        else { inCode = false; html += `<pre><code>${esc(codeBuf.replace(/\n$/,''))}</code></pre>`; }
+        continue;
+      }
+      if (inCode) { codeBuf += l + '\n'; continue; }
+      if (inUl && !l.startsWith('- ')) { html += '</ul>'; inUl = false; }
+      if (!l.trim()) continue;
+      if      (l.startsWith('### ')) html += `<h3>${inline(l.slice(4))}</h3>`;
+      else if (l.startsWith('## '))  html += `<h2>${inline(l.slice(3))}</h2>`;
+      else if (l.startsWith('# '))   html += `<h1>${inline(l.slice(2))}</h1>`;
+      else if (l.startsWith('- '))   { if (!inUl) { html += '<ul>'; inUl = true; } html += `<li>${inline(l.slice(2))}</li>`; }
+      else                           html += `<p>${inline(l)}</p>`;
+    }
+    if (inUl) html += '</ul>';
+    return html;
+  }
+  function inline(s) {
+    return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+      .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+      .replace(/\*(.+?)\*/g,'<em>$1</em>')
+      .replace(/`(.+?)`/g,'<code>$1</code>')
+      .replace(/\[(.+?)\]\((.+?)\)/g,'<a href="$2">$1</a>');
+  }
+  function esc(s) { return s.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
 
-                // Rimuovi titolo e metadati dal contenuto prima di convertire in HTML
-                const contentWithoutMetadata = removeMetadata(mdContent);
-                const htmlContent = marked.parse(contentWithoutMetadata);
+  function formatDate(iso) {
+    const [y,m,d] = iso.split('-');
+    return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1] + ' ' + +d + ', ' + y;
+  }
 
-                postContent.innerHTML = `
-                <article class="blog-post">
-                    <h1>${title}</h1>
-                    <p class="date">${formatDate(date)}</p>
-                    ${htmlContent}
-                </article>
-            `;
+  function applyLangStatic() {
+    document.querySelectorAll('[data-it]').forEach(el => { el.innerHTML = el.getAttribute('data-' + lang); });
+    toggleBtn.textContent = lang === 'it' ? 'EN' : 'IT';
+    document.documentElement.lang = lang;
+  }
 
-            } catch (error) {
-                console.error('Errore nel caricamento del post:', error);
-                postContent.innerHTML = `
-                <div class="error">
-                    Post non trovato. <a href="blog.html">Torna al blog</a>
-                </div>
-            `;
-            }
-        }
+  const params = new URLSearchParams(location.search);
+  const id = params.get('id');
+  const idx = POSTS.findIndex(p => p.id === id);
+  const post = POSTS[idx];
 
-        function extractTitle(mdContent) {
-            const titleMatch = mdContent.match(/^#\s+(.+)$/m);
-            return titleMatch ? titleMatch[1].trim() : null;
-        }
+  async function render() {
+    applyLangStatic();
 
-        function extractDate(mdContent) {
-            const dateMatch = mdContent.match(/(?:date|data|published):\s*(\d{4}-\d{2}-\d{2})/i);
-            return dateMatch ? dateMatch[1] : null;
-        }
+    if (!post) {
+      document.getElementById('post-title').textContent = '404';
+      document.getElementById('post-body').innerHTML = '<p>Post non trovato.</p>';
+      return;
+    }
 
-        function removeMetadata(mdContent) {
-            let content = mdContent;
+    const title = lang === 'it' ? post.title : post.title_en;
+    document.title = title + ' — Achille Cannavale';
+    document.getElementById('post-title').textContent = title;
+    document.getElementById('post-meta').textContent = formatDate(post.date);
 
-            // Rimuovi il titolo principale (prima riga con #)
-            content = content.replace(/^#\s+.+$/m, '');
+    // Fetch the .md file
+    try {
+      const res = await fetch(post.file);
+      if (!res.ok) throw new Error();
+      const md = await res.text();
+      document.getElementById('post-body').innerHTML = parseMarkdown(md);
+    } catch {
+      document.getElementById('post-body').innerHTML = '<p style="color:var(--muted)">Impossibile caricare il post. Assicurati di aprire il sito tramite un server (es. <code>python3 -m http.server</code>).</p>';
+    }
 
-            // Rimuovi righe di metadati (date:, data:, published:)
-            content = content.replace(/^\s*(date|data|published)\s*:\s*.+$/gim, '');
+    // Next post link
+    const next = POSTS[idx + 1];
+    const nextEl = document.getElementById('post-nav-next');
+    if (next) {
+      nextEl.innerHTML = `<a href="post.html?id=${next.id}">${lang === 'it' ? next.title : next.title_en} →</a>`;
+    }
+  }
 
-            // Rimuovi commenti HTML che potrebbero contenere metadati
-            // build the pattern as a string to avoid embedding "<!--" directly in the HTML source
-            content = content.replace(new RegExp("<" + "!--\\s*(?:date|data|published):\\s*.+?-->", "gi"), '');
+  toggleBtn.addEventListener('click', () => { lang = lang === 'it' ? 'en' : 'it'; render(); });
 
-            return content.trim();
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('it-IT', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        }
-
-        function getFileCreationDate(filename) {
-            const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})-/);
-            return dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
-        }
-
-        document.addEventListener('DOMContentLoaded', loadPost);
-    </script>
+  render();
+</script>
 </body>
-
 </html>

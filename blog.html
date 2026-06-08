@@ -1,450 +1,100 @@
 <!DOCTYPE html>
 <html lang="it">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Blog – Achille Cannavale</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --primary-color: #2c3e50;
-            --secondary-color: #3498db;
-            --light-color: #ecf0f1;
-            --dark-color: #2c3e50;
-            --text-color: #333;
-            --border-radius: 8px;
-            --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mental Diff</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=DM+Mono:wght@300;400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root { --bg: #f7f5f0; --text: #1a1a18; --muted: #888880; --line: #d8d5ce; }
+    body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', Georgia, serif; font-size: 18px; line-height: 1.7; padding: 0 1.5rem; }
+    .container { max-width: 640px; margin: 0 auto; }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    nav { padding: 2.5rem 0 2rem; display: flex; justify-content: space-between; align-items: baseline; border-bottom: 1px solid var(--line); }
+    nav .logo { font-family: 'DM Mono', monospace; font-size: 0.8rem; font-weight: 300; letter-spacing: 0.08em; color: var(--muted); text-decoration: none; }
+    nav .nav-right { display: flex; align-items: baseline; gap: 1.8rem; }
+    nav ul { list-style: none; display: flex; gap: 1.8rem; }
+    nav a { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); text-decoration: none; transition: color 0.2s; }
+    nav a:hover { color: var(--text); }
+    #lang-toggle { font-family: 'DM Mono', monospace; font-size: 0.72rem; font-weight: 300; letter-spacing: 0.06em; color: var(--text); background: transparent; border: 1px solid var(--line); padding: 0.18rem 0.55rem; border-radius: 2px; cursor: pointer; transition: border-color 0.2s, color 0.2s; }
+    #lang-toggle:hover { border-color: var(--muted); color: var(--muted); }
 
-        body {
-            font-family: 'Poppins', sans-serif;
-            line-height: 1.6;
-            color: var(--text-color);
-            background-color: #f9f9f9;
-        }
+    .page-header { padding: 4rem 0 3rem; border-bottom: 1px solid var(--line); }
+    .page-header h1 { font-size: clamp(2rem, 5vw, 2.8rem); font-weight: 400; line-height: 1.2; }
+    .page-header h1 em { font-style: italic; color: var(--muted); }
 
-        .container {
-            width: 90%;
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 0 20px;
-        }
+    .post-item { padding: 1.6rem 0; border-bottom: 1px solid var(--line); display: grid; grid-template-columns: 1fr auto; align-items: baseline; gap: 1rem; }
+    .post-item a { text-decoration: none; color: inherit; }
+    .post-item:hover .post-title { text-decoration: underline; text-underline-offset: 3px; }
+    .post-title { font-weight: 500; font-size: 1.05rem; display: block; margin-bottom: 0.25rem; }
+    .post-excerpt { font-size: 0.92rem; color: var(--muted); }
+    .post-date { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; color: var(--muted); white-space: nowrap; align-self: start; padding-top: 0.2rem; }
 
-        .navbar {
-            background-color: var(--primary-color);
-            color: white;
-            padding: 1rem 0;
-            position: fixed;
-            width: 100%;
-            top: 0;
-            z-index: 1000;
-            box-shadow: var(--shadow);
-        }
+    footer { border-top: 1px solid var(--line); padding: 2rem 0 3rem; margin-top: 3rem; }
+    footer p { font-family: 'DM Mono', monospace; font-size: 0.68rem; font-weight: 300; letter-spacing: 0.06em; color: var(--muted); }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 500;
-            text-decoration: none;
-            color: white;
-        }
-
-        .nav-links a {
-            color: white;
-            text-decoration: none;
-            margin-left: 1.5rem;
-            transition: color 0.3s;
-        }
-
-        .nav-links a:hover {
-            color: var(--secondary-color);
-        }
-
-        .section {
-            padding: 2rem 0;
-        }
-
-        main {
-            margin-top: 5rem;
-        }
-
-        h2 {
-            font-size: 2.5rem;
-            margin-bottom: 2rem;
-            color: var(--primary-color);
-            text-align: center;
-        }
-
-        .blog-preview {
-            background: white;
-            border-radius: var(--border-radius);
-            padding: 2rem;
-            margin-bottom: 2rem;
-            box-shadow: var(--shadow);
-            transition: all 0.3s ease;
-            cursor: pointer;
-            border: 2px solid transparent;
-        }
-
-        .blog-preview:hover {
-            transform: translateY(-5px);
-            border-color: var(--secondary-color);
-            box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
-        }
-
-        .blog-preview h3 {
-            font-size: 1.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--primary-color);
-        }
-
-        .blog-preview h3 a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        .blog-preview h3 a:hover {
-            color: var(--secondary-color);
-        }
-
-        .date {
-            color: #7f8c8d;
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .excerpt {
-            color: #555;
-            line-height: 1.6;
-            margin-bottom: 1rem;
-        }
-
-        .read-more {
-            color: var(--secondary-color);
-            text-decoration: none;
-            font-weight: 500;
-            display: inline-flex;
-            align-items: center;
-            transition: transform 0.2s;
-        }
-
-        .read-more:hover {
-            transform: translateX(5px);
-        }
-
-        .read-more::after {
-            content: "→";
-            margin-left: 0.5rem;
-            transition: transform 0.2s;
-        }
-
-        .read-more:hover::after {
-            transform: translateX(3px);
-        }
-
-        .loading {
-            text-align: center;
-            padding: 2rem;
-            font-style: italic;
-            color: #7f8c8d;
-        }
-
-        .error {
-            background-color: #e74c3c;
-            color: white;
-            padding: 1rem;
-            border-radius: var(--border-radius);
-            margin-bottom: 1rem;
-        }
-
-        .back-link {
-            display: inline-flex;
-            align-items: center;
-            color: var(--secondary-color);
-            text-decoration: none;
-            margin-bottom: 2rem;
-            font-weight: 500;
-        }
-
-        .back-link::before {
-            content: "←";
-            margin-right: 0.5rem;
-        }
-
-        .back-link:hover {
-            text-decoration: underline;
-        }
-
-        @media (max-width: 768px) {
-            .nav-links a {
-                margin-left: 1rem;
-            }
-
-            h2 {
-                font-size: 2rem;
-            }
-
-            .blog-preview {
-                padding: 1.5rem;
-            }
-        }
-    </style>
-    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-    <script>
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$'], ['\\(', '\\)']],
-                displayMath: [['$$', '$$'], ['\\[', '\\]']]
-            },
-            svg: {
-                fontCache: 'global'
-            }
-        };
-    </script>
-    <script type="text/javascript" id="MathJax-script" async
-        src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js">
-        </script>
+    @media (max-width: 500px) { nav .nav-right { gap: 1.1rem; } nav ul { gap: 1.1rem; } }
+  </style>
 </head>
-
 <body>
-    <nav class="navbar">
-        <div class="container nav-container">
-            <a href="index.html" class="logo">AC</a>
-            <div class="nav-links">
-                <a href="index.html#about">Portfolio</a>
-                <a href="blog.html">Blog</a>
-            </div>
-        </div>
-    </nav>
+<div class="container">
 
-    <main class="section container">
-        <br />
-        <br />
-        <br />
-        <div id="blog-list">
-            <div class="loading">Caricamento post in corso...</div>
-        </div>
-    </main>
+  <nav>
+    <a href="index.html" class="logo">AC</a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="index.html" data-it="Home" data-en="Home">Home</a></li>
+        <li><a href="index.html#contact" data-it="Contatti" data-en="Contact">Contatti</a></li>
+      </ul>
+      <button id="lang-toggle">EN</button>
+    </div>
+  </nav>
 
-    <script>
-        // Configurazione di Marked
-        marked.setOptions({
-            breaks: true,
-            gfm: true,
-            sanitize: false
-        });
+  <div class="page-header">
+    <h1 data-it="Mental Diff" data-en="Mental Diff">Mental Diff</h1>
+  </div>
 
-        // Gestione del routing
-        function getPostSlugFromURL() {
-            const urlParams = new URLSearchParams(window.location.search);
-            return urlParams.get('post');
-        }
+  <div id="posts-list"></div>
 
-        function navigateToPost(slug) {
-            window.location.href = `post.html?slug=${slug}`;
-        }
+  <footer><p>© 2026 Mental Diff</p></footer>
 
-        async function loadPosts() {
-            const blogList = document.getElementById('blog-list');
+</div>
+<script src="posts.js"></script>
+<script>
+  let lang = 'it';
+  const toggleBtn = document.getElementById('lang-toggle');
+  function applyLang() {
+    document.querySelectorAll('[data-it]').forEach(el => { el.innerHTML = el.getAttribute('data-' + lang); });
+    toggleBtn.textContent = lang === 'it' ? 'EN' : 'IT';
+    document.documentElement.lang = lang;
+    renderList();
+  }
+  toggleBtn.addEventListener('click', () => { lang = lang === 'it' ? 'en' : 'it'; applyLang(); });
 
-            try {
-                // Carica la lista dei post
-                const posts = await getPostsList();
+  function formatDate(iso) {
+    const [y,m,d] = iso.split('-');
+    return ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec'][+m-1] + ' ' + +d + ', ' + y;
+  }
 
-                blogList.innerHTML = '';
+  function excerpt(md = '') {
+    const text = md.replace(/^---[\s\S]*?---\n?/, '').replace(/#+\s.*/g, '').replace(/[`*_]/g, '').replace(/\n+/g, ' ').trim();
+    return text ? text.slice(0, 120) + '…' : '';
+  }
 
-                if (posts.length === 0) {
-                    blogList.innerHTML = '<p>Nessun post trovato nella cartella "posts".</p>';
-                    return;
-                }
+  function renderList() {
+    document.getElementById('posts-list').innerHTML = POSTS.map(p => `
+      <div class="post-item">
+        <a href="post.html?id=${p.id}">
+          <span class="post-title">${lang === 'it' ? p.title : p.title_en}</span>
+          <span class="post-excerpt">${excerpt(p.content)}</span>
+        </a>
+        <span class="post-date">${formatDate(p.date)}</span>
+      </div>`).join('');
+  }
 
-                // Ordina i post per data (dal più recente)
-                posts.sort((a, b) => new Date(b.date) - new Date(a.date));
-
-                // Visualizza le anteprime
-                posts.forEach(post => {
-                    const preview = createPostPreview(post);
-                    blogList.appendChild(preview);
-                });
-
-            } catch (error) {
-                console.error('Errore nel caricamento dei post:', error);
-                blogList.innerHTML = `
-                    <div class="error">
-                        Errore nel caricamento dei post. Controlla che la cartella "posts" esista e contenga file .md.
-                    </div>
-                `;
-            }
-        }
-
-        async function getPostsList() {
-            // Prova a ottenere l'elenco dei file dalla directory
-            try {
-                const response = await fetch('posts/');
-                const html = await response.text();
-                const parser = new DOMParser();
-                const doc = parser.parseFromString(html, 'text/html');
-                const links = doc.querySelectorAll('a');
-
-                const markdownFiles = Array.from(links)
-                    .map(link => link.href)
-                    .filter(href => href.endsWith('.md'))
-                    .map(href => href.split('/').pop());
-
-                const posts = [];
-
-                for (const filename of markdownFiles) {
-                    const mdResponse = await fetch(`posts/${filename}`);
-                    const mdContent = await mdResponse.text();
-
-                    const title = extractTitle(mdContent) || filename.replace('.md', '').replace(/-/g, ' ');
-                    const date = extractDate(mdContent) || getFileCreationDate(filename);
-                    const excerpt = extractExcerpt(mdContent);
-                    const slug = filename.replace('.md', '');
-
-                    posts.push({
-                        filename,
-                        title,
-                        date,
-                        excerpt,
-                        slug,
-                        content: mdContent
-                    });
-                }
-
-                return posts;
-            } catch (error) {
-                // Fallback: carica i file manualmente
-                return await loadPostsFallback();
-            }
-        }
-
-        async function loadPostsFallback() {
-            const commonFilenames = [
-                'primo-post.md', 'benvenuto.md', 'introduzione.md'
-            ];
-
-            const posts = [];
-
-            for (const filename of commonFilenames) {
-                try {
-                    const response = await fetch(`posts/${filename}`);
-                    if (response.ok) {
-                        const mdContent = await response.text();
-                        const title = extractTitle(mdContent) || filename.replace('.md', '').replace(/-/g, ' ');
-                        const date = extractDate(mdContent) || new Date().toISOString().split('T')[0];
-                        const excerpt = extractExcerpt(mdContent);
-                        const slug = filename.replace('.md', '');
-
-                        posts.push({
-                            filename,
-                            title,
-                            date,
-                            excerpt,
-                            slug,
-                            content: mdContent
-                        });
-                    }
-                } catch (error) {
-                    // Ignora errori
-                }
-            }
-
-            return posts;
-        }
-
-        function createPostPreview(post) {
-            const preview = document.createElement('article');
-            preview.classList.add('blog-preview');
-
-            preview.innerHTML = `
-                <h3><a href="post.html?slug=${post.slug}">${post.title}</a></h3>
-                <p class="date">${formatDate(post.date)}</p>
-                <div class="excerpt">${post.excerpt}</div>
-                <a href="post.html?slug=${post.slug}" class="read-more">Leggi tutto</a>
-            `;
-
-            // Aggiungi click sull'intera preview
-            preview.addEventListener('click', (e) => {
-                if (e.target.tagName !== 'A') {
-                    navigateToPost(post.slug);
-                }
-            });
-
-            return preview;
-        }
-
-        function extractTitle(mdContent) {
-            const titleMatch = mdContent.match(/^#\s+(.+)$/m);
-            return titleMatch ? titleMatch[1].trim() : null;
-        }
-
-        function extractDate(mdContent) {
-            const dateMatch = mdContent.match(/(?:date|data|published):\s*(\d{4}-\d{2}-\d{2})/i);
-            return dateMatch ? dateMatch[1] : null;
-        }
-
-        function extractExcerpt(mdContent, maxLength = 200) {
-            // Rimuovi solo il titolo principale
-            let content = mdContent.replace(/^#\s+.+$/m, '');
-
-            // Prendi solo il primo paragrafo di testo significativo
-            const paragraphs = content.split('\n\n');
-            let firstParagraph = '';
-
-            for (const paragraph of paragraphs) {
-                const cleanPara = paragraph.trim();
-                if (cleanPara && !cleanPara.startsWith('#') && !cleanPara.startsWith('<!--')) {
-                    firstParagraph = cleanPara;
-                    break;
-                }
-            }
-
-            // Pulisci markdown base
-            firstParagraph = firstParagraph
-                .replace(/[#*`\[\]]/g, '')
-                .replace(/!\[.*?\]\(.*?\)/g, '')
-                .replace(/\[(.*?)\]\(.*?\)/g, '$1')
-                .replace(/\s+/g, ' ')
-                .trim();
-
-            // Tronca
-            if (firstParagraph.length > maxLength) {
-                firstParagraph = firstParagraph.substring(0, maxLength) + '...';
-            }
-
-            return firstParagraph || 'Leggi il post completo per scoprire di più...';
-        }
-
-        function formatDate(dateString) {
-            const date = new Date(dateString);
-            return date.toLocaleDateString('it-IT', {
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric'
-            });
-        }
-
-        function getFileCreationDate(filename) {
-            const dateMatch = filename.match(/^(\d{4}-\d{2}-\d{2})-/);
-            return dateMatch ? dateMatch[1] : new Date().toISOString().split('T')[0];
-        }
-
-        // Carica i post quando la pagina è pronta
-        document.addEventListener('DOMContentLoaded', loadPosts);
-    </script>
+  renderList();
+</script>
 </body>
-
 </html>
