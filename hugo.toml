@@ -1,0 +1,35 @@
+baseURL = "https://achille1912.github.io/"
+languageCode = "it"
+title = "Mental Diff"
+enableRobotsTXT = true
+
+# La homepage è static/index.html scritta a mano: nessun layout per la home,
+# così Hugo non la sovrascrive.
+disableKinds = ["home", "taxonomy", "term"]
+
+[outputs]
+  section = ["HTML", "RSS", "JSON"]
+
+[markup.goldmark.renderer]
+  unsafe = true
+
+# Evidenziazione a classi: i colori li decide style.css, non stili inline di Chroma.
+[markup.highlight]
+  noClasses = false
+  lineNos = false
+  guessSyntax = true
+
+# PDF già presenti nel repo: montati come static senza spostarli.
+[module]
+  [[module.mounts]]
+    source = "static"
+    target = "static"
+  [[module.mounts]]
+    source = "content"
+    target = "content"
+  [[module.mounts]]
+    source = "documents"
+    target = "static/documents"
+  [[module.mounts]]
+    source = "riassunti"
+    target = "static/riassunti"

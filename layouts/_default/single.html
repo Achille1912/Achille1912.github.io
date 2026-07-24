@@ -1,0 +1,27 @@
+{{ define "title" }}{{ .Title }} — Achille Cannavale{{ end }}
+
+{{ define "nav" }}
+  <li><a href="{{ "blog/" | relURL }}" data-it="← Blog" data-en="← Blog">← Blog</a></li>
+  <li><a href="{{ "/" | relURL }}" data-it="Home" data-en="Home">Home</a></li>
+{{ end }}
+
+{{ define "main" }}
+  <div class="post-header">
+    <h1 data-it="{{ .Title }}"
+        data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</h1>
+    <p class="post-meta">{{ .Date.Format "Jan 2, 2006" }}</p>
+  </div>
+
+  <div class="post-body">
+    {{ .Content }}
+  </div>
+
+  <div class="post-nav">
+    <a href="{{ "blog/" | relURL }}" data-it="← Tutti i post" data-en="← All posts">← Tutti i post</a>
+    {{ with .NextInSection }}
+      <a href="{{ .RelPermalink }}"
+         data-it="{{ .Title }} →"
+         data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }} →">{{ .Title }} →</a>
+    {{ end }}
+  </div>
+{{ end }}

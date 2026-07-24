@@ -1,9 +1,8 @@
 ---
-title: Deep Learning per la segmentazione MRI 3D
+title: "Deep Learning per la segmentazione MRI 3D"
+title_en: "Deep Learning for 3D MRI segmentation"
 date: 2025-01-15
 ---
-
-# Deep Learning per la segmentazione MRI 3D
 
 La segmentazione automatica di immagini mediche è uno dei campi più affascinanti del deep learning applicato. In questo post racconto l'approccio usato nella mia tesi magistrale.
 

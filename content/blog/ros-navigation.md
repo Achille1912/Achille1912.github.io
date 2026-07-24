@@ -1,9 +1,8 @@
 ---
-title: Navigazione autonoma con ROS1 e Turtlebot
+title: "Navigazione autonoma con ROS1 e Turtlebot"
+title_en: "Autonomous navigation with ROS1 and Turtlebot"
 date: 2025-03-08
 ---
-
-# Navigazione autonoma con ROS1 e Turtlebot
 
 ROS (Robot Operating System) è il framework standard per la robotica moderna. In questo post descrivo come ho implementato un sistema di controllo autonomo per Turtlebot.
 

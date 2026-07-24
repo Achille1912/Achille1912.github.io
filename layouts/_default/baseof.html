@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{{ block "title" . }}{{ .Title }}{{ end }}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ "style.css" | relURL }}">
+  {{ with .OutputFormats.Get "rss" }}<link rel="alternate" type="application/rss+xml" href="{{ .Permalink }}">{{ end }}
+  <script src="{{ "lang.js" | relURL }}"></script>
+</head>
+<body>
+<div class="container">
+
+  <nav>
+    <a href="{{ "/" | relURL }}" class="logo">AC<span class="cursor">_</span></a>
+    <div class="nav-right">
+      <ul>{{ block "nav" . }}{{ end }}</ul>
+      <button id="lang-toggle">EN</button>
+    </div>
+  </nav>
+
+  {{ block "main" . }}{{ end }}
+
+  <footer>
+    <p>© {{ now.Year }} Achille Cannavale</p>
+    <a href="{{ "blog/index.xml" | relURL }}">RSS</a>
+  </footer>
+
+</div>
+</body>
+</html>
