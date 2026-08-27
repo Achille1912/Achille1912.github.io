@@ -1,6 +1,6 @@
 ---
 title: "Learn in Public: 01"
-date: 2026-08-25
+date: 2026-08-27
 ---
 
 ## Presentation
