@@ -13,6 +13,15 @@ disableKinds = ["home", "taxonomy", "term"]
 [markup.goldmark.renderer]
   unsafe = true
 
+# Lascia passare la matematica LaTeX così com'è (niente parsing markdown
+# dentro $...$ o $$...$$): il rendering vero lo fa KaTeX lato client,
+# vedi layouts/_default/single.html.
+[markup.goldmark.extensions.passthrough]
+  enable = true
+  [markup.goldmark.extensions.passthrough.delimiters]
+    block = [["\\[", "\\]"], ["$$", "$$"]]
+    inline = [["\\(", "\\)"], ["$", "$"]]
+
 # Evidenziazione a classi: i colori li decide style.css, non stili inline di Chroma.
 [markup.highlight]
   noClasses = false

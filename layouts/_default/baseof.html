@@ -16,8 +16,9 @@
 <body>
 <div class="container">
 
-  <header>
+  <header{{ if eq .Kind "page" }} class="compact"{{ end }}>
     <h1><a href="{{ "blog/" | relURL }}">{{ site.Title }}</a></h1>
+    <p class="tagline">Hug the complexity</p>
     <nav class="menu">
       <a href="{{ "/" | relURL }}" data-it="home" data-en="home">home</a>
       <a href="{{ "/#progetti" | relURL }}" data-it="progetti" data-en="projects">progetti</a>
