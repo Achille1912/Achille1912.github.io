@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="279 297 591 469" role="img" aria-labelledby="title desc">
+  <title id="title">Mental Diff icon</title>
+  <desc id="desc">Minimalist black and white icon combining a brain with a Git diff inspired code symbol.</desc>
+
+  <g fill="none" stroke="#000" stroke-width="12" stroke-linecap="round" stroke-linejoin="round">
+    <!-- Brain -->
+    <path d="M455 330
+             C410 318 370 348 372 392
+             C338 399 320 431 334 462
+             C300 484 299 530 328 554
+             C309 587 323 629 360 640
+             C360 681 394 708 431 700
+             C447 735 490 746 520 725
+             C536 713 542 696 542 678
+             L542 350
+             C521 325 487 317 455 330 Z"/>
+    <!-- Brain folds -->
+    <path d="M455 330 C452 353 462 369 480 375"/>
+    <path d="M372 392 C392 388 406 397 414 414"/>
+    <path d="M334 462 C352 461 365 470 371 486"/>
+    <path d="M328 554 C348 555 365 544 371 526"/>
+    <path d="M360 640 C384 639 402 625 406 604"/>
+    <path d="M431 700 C425 678 436 660 453 652"/>
+    <path d="M480 375 C495 386 501 402 494 418"/>
+    <path d="M414 414 C424 438 416 456 398 466"/>
+    <path d="M406 604 C426 597 438 581 436 562"/>
+    <path d="M453 652 C474 650 487 634 487 614"/>
+
+    <!-- Diff divider -->
+    <path d="M570 350 V700"/>
+
+    <!-- Diff/code lines -->
+    <path d="M610 380 H745"/>
+    <path d="M610 425 H730"/>
+    <path d="M610 470 H685"/>
+    <path d="M710 470 H720"/>
+    <path d="M742 470 H752"/>
+    <path d="M774 470 H784"/>
+    <path d="M806 470 H816"/>
+
+    <path d="M610 515 H725"/>
+    <path d="M610 560 H685"/>
+    <path d="M710 560 H720"/>
+    <path d="M742 560 H752"/>
+    <path d="M774 560 H784"/>
+    <path d="M806 560 H816"/>
+
+    <path d="M610 605 H725"/>
+    <path d="M610 650 H745"/>
+
+    <!-- Minus / plus -->
+    <path d="M825 380 H850"/>
+    <path d="M825 650 H850"/>
+    <path d="M837 638 V662"/>
+  </g>
+</svg>
