@@ -31,6 +31,13 @@ And here starts my journey on the web, searching for the best sources to increas
 
 Why have I faced this course? First of all, I've always thought that the bases are mandatory to know in every field. But that isn't the only reason. In this course, [Antirez](https://antirez.com/) shows the process behind his creations. How does he choose the name of a variable? How does he write the comments in order to make all his code a proper form of *Literature* ([there is a post](https://antirez.com/news/124) where he talks about all the kinds of comments in his code)? I think that all this information is very precious to anyone who works in this job. It's not merely a course about the C language. Instead it is a course about **Critical Thinking and Work Experience**. Some priceless stuff nowadays.
 
+<figure>
+
+![Terminal with C source code next to an SDL2 window rendering a wavy 3D wireframe surface](c-course-result.png)
+
+<figcaption>A result from Antirez's C course.</figcaption>
+</figure>
+
 And now, I have the urge to continue my walk on the AI path. So I've taken a book advised by [Antirez](https://antirez.com/): *Deep Learning with Python* by Chollet, the creator of Keras. So my intention is to write down some kind of notes about all the things that I don't know yet. I would put them in my Personal Knowledge Management System (I'll talk about that in the future, maybe) and then extract a brief summary to put into the *Learn in Public* series of this blog.
 
 I don't know if anybody will read me. But all this is mainly for me, rather than for others. But if someone reads me, I hope that he/she can find the thoughts that I'll write down useful in some ways.
