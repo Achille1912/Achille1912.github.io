@@ -1,7 +1,7 @@
 ---
 title: "Learn in Public: 01"
 date: 2026-08-27
-tags: ["eng", "ai", "LIP"]
+tags: ["eng","LIP", "ai"]
 ---
 
 ## Presentation
@@ -14,17 +14,21 @@ But, first of all, let me introduce myself. I'm a 25yo Software Engineer based i
 
 Why do I want to start blogging? I think there are almost three reasons:
 
-1. I want to improve my English for sure. Almost all my reads (technical stuffs, fiction books, manga, etc) are in English, but I'm not that good at speaking and at writing down my thoughts.
-2. the second reason is that, nowadays, the world is changing, in a way or in the other. In particular the work of a Software Engineer is changing so fast, and I'm worried. I'm worried about the unknown, the randomness of my field. I've studied for so many years, keeping in mind a fixed map of what this job was, and now everything is falling apart. I (and like me, many other young programmers) don't have an anchor, a fixed star to follow (well, there are some, but I'll talk about that later). And the scariest thing is that I've the worry of being (yes, mainly jobless, but in particular...) useless, pointless. It isn't like a FOMO fear, it is more like the fear of doing the *wrong* thing (maybe I will be more precise in the future).
-3. from the second reason, we can branch another stream: study. In university (and in all the undergraduate schools), to study is mandatory of course, but for me it has always been a pleasure. The feeling when new information enters my *brain graph* as a new atomic cell that links to some others, and could build new *bridges*, new *paths* between concepts, is priceless. But now, with the work life and the other adulthood stuff, it's very difficult to find the time and the strength to sit in front of the personal pc in my free time and study (in particular when I have to study some hard tech stuff). So, maybe if I rule myself to write down what I'm learning on a blog, it could help me gain the right motivation.
+I want to improve my English for sure. Almost all my reads (technical stuffs, fiction books, manga, etc) are in English, but I'm not that good at speaking and at writing down my thoughts.
+
+The second reason is that, nowadays, the world is changing, in a way or in the other. In particular the work of a Software Engineer is changing so fast, and I'm worried. I'm worried about the unknown, the randomness of my field. I've studied for so many years, keeping in mind a fixed map of what this job was, and now everything is falling apart. I (and like me, many other young programmers) don't have an anchor, a fixed star to follow (well, there are some, but I'll talk about that later). And the scariest thing is that I've the worry of being (yes, mainly jobless, but in particular...) useless, pointless. It isn't like a FOMO fear, it is more like the fear of doing the *wrong* thing (maybe I will be more precise in the future).
+
+From the second reason, we can branch another stream: study. In university (and in all the undergraduate schools), to study is mandatory of course, but for me it has always been a pleasure. The feeling when new information enters my *brain graph* as a new atomic cell that links to some others, and could build new *bridges*, new *paths* between concepts, is priceless. But now, with the work life and the other adulthood stuff, it's very difficult to find the time and the strength to sit in front of the personal pc in my free time and study (in particular when I have to study some hard tech stuff). So, maybe if I rule myself to write down what I'm learning on a blog, it could help me gain the right motivation.
 
 ## Yes, but what am I studying?
 
 Let me first talk about AI in university. I think that I was really lucky to study in a university where the courses about AI and in particular Deep Learning were so well made (thanks to an enlightened professor too). In the field of AI, I've faced:
 
-* A first general course about how some problems cannot be solved by a closed form algorithm, and how the need to use all the family of Genetic Algorithms and a primitive attempt at an MLP was born.
-* Then a course about Machine Learning. It was so interesting. I've learned how to manipulate data, how to extract information from them, and how it's frustrating to work with an impure dataset. Then I've learned many *tools* in order to perform evaluations and testing, such as Bayesian Learning, SVM, Random Forest, PCA, LDA, Confusion Matrix, Precision-Recall...I miss those things :'(.
-* Finally I've faced a course about Deep Learning, going very deep as I remember. I went through MLP, all kinds of losses, all kinds of activation functions, backpropagation, CNN, Recurrent NN, an interminable list of Backbones and famous structures of Neural Networks. It was so beautiful. Because mainly, for every concept, the professor was starting some mathematical deep dives of stunning complexity.
+A first general course about how some problems cannot be solved by a closed form algorithm, and how the need to use all the family of Genetic Algorithms and a primitive attempt at an MLP was born.
+
+Then a course about Machine Learning. It was so interesting. I've learned how to manipulate data, how to extract information from them, and how it's frustrating to work with an impure dataset. Then I've learned many *tools* in order to perform evaluations and testing, such as Bayesian Learning, SVM, Random Forest, PCA, LDA, Confusion Matrix, Precision-Recall...I miss those things :'(.
+
+Finally I've faced a course about Deep Learning, going very deep as I remember. I went through MLP, all kinds of losses, all kinds of activation functions, backpropagation, CNN, Recurrent NN, an interminable list of Backbones and famous structures of Neural Networks. It was so beautiful. Because mainly, for every concept, the professor was starting some mathematical deep dives of stunning complexity.
 
 But now? Now the complexity of the field has increased in just a few months. The course now has many of the modern concepts, such as Transformers, Attention, Distillation and other interesting things, but...I'm not at school anymore...so I have to study those things on my own...:)
 
