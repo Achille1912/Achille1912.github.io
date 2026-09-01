@@ -6,7 +6,7 @@
       <ul class="post-list">
         {{ range .Data.Terms.Alphabetical }}
           <li>
-            <a href="{{ .Page.RelPermalink }}">{{ .Name }}</a>
+            <a href="{{ .Page.RelPermalink }}">{{ .Page.Data.Term }}</a>
             <span class="post-date">{{ .Count }}</span>
           </li>
         {{ end }}

@@ -111,8 +111,9 @@ main > section > h2 { font-size: 1.8em; margin: 0 0 1.2rem; }
 
 /* ELENCO POST */
 .post-list { list-style: none; }
-.post-list li { display: flex; justify-content: space-between; align-items: baseline; gap: 1rem; margin-bottom: 0.7rem; }
-.post-list .post-date { font-size: small; color: var(--content-secondary); white-space: nowrap; }
+.post-list li { display: flex; justify-content: space-between; align-items: flex-start; gap: 1rem; margin-bottom: 0.9rem; }
+.post-list .post-date { font-size: small; color: var(--content-secondary); white-space: nowrap; padding-top: 0.1rem; }
+.post-list .post-tags { font-size: small; color: var(--content-secondary); margin-top: 0.15rem; }
 
 /* POST */
 .post-meta { color: var(--content-secondary); font-size: small; margin-bottom: 2rem; }

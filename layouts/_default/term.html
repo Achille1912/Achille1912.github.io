@@ -10,9 +10,16 @@
       <ul class="post-list">
         {{ range .Pages.ByDate.Reverse }}
           <li>
-            <a href="{{ .RelPermalink }}"
-               data-it="{{ .Title }}"
-               data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</a>
+            <div>
+              <a href="{{ .RelPermalink }}"
+                 data-it="{{ .Title }}"
+                 data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</a>
+              {{ with .Params.tags }}
+                <div class="post-tags">
+                  {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ "tags/" | relURL }}{{ $t | urlize }}/">{{ $t }}</a>{{ end }}
+                </div>
+              {{ end }}
+            </div>
             <span class="post-date">{{ .Date.Format "2 Jan 2006" }}</span>
           </li>
         {{ end }}

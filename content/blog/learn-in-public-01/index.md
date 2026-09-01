@@ -1,7 +1,7 @@
 ---
 title: "Learn in Public: 01"
 date: 2026-08-27
-tags: ["ai", "c", "learning"]
+tags: ["eng", "ai", "LIP"]
 ---
 
 ## Presentation
