@@ -5,7 +5,13 @@
     <h2 style="margin-top:0"
         data-it="{{ .Title }}"
         data-en="{{ with .Params.title_en }}{{ . }}{{ else }}{{ .Title }}{{ end }}">{{ .Title }}</h2>
-    <p class="post-meta">{{ .Date.Format "2 January 2006" }} &middot; {{ .ReadingTime }} min</p>
+    <p class="post-meta">
+      {{ .Date.Format "2 January 2006" }} &middot; {{ .ReadingTime }} min
+      {{ with .Params.tags }}
+        &middot;
+        {{ range $i, $t := . }}{{ if $i }}, {{ end }}<a href="{{ "tags/" | relURL }}{{ $t | urlize }}/">{{ $t }}</a>{{ end }}
+      {{ end }}
+    </p>
 
     <article class="post-body">
       {{ .Content }}

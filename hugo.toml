@@ -5,7 +5,10 @@ enableRobotsTXT = true
 
 # La homepage è static/index.html scritta a mano: nessun layout per la home,
 # così Hugo non la sovrascrive.
-disableKinds = ["home", "taxonomy", "term"]
+disableKinds = ["home"]
+
+[taxonomies]
+  tag = "tags"
 
 [outputs]
   section = ["HTML", "RSS", "JSON"]
