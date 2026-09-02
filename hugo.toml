@@ -1,49 +1,17 @@
 baseURL = "https://achille1912.github.io/"
 languageCode = "it"
-title = "Mental Diff"
+title = "Achille Cannavale"
 enableRobotsTXT = true
 
-# Serve per .Lastmod (usato in <atom:updated> nel feed RSS): prende la data
-# dell'ultimo commit git che ha toccato il file, non il mtime del filesystem
-# (che il checkout di GitHub Actions azzera per tutti i file ad ogni build).
-enableGitInfo = true
-
-# La homepage è static/index.html scritta a mano: nessun layout per la home,
-# così Hugo non la sovrascrive.
-disableKinds = ["home"]
-
-[taxonomies]
-  tag = "tags"
-
-[outputs]
-  section = ["HTML", "RSS", "JSON"]
-
-[markup.goldmark.renderer]
-  unsafe = true
-
-# Lascia passare la matematica LaTeX così com'è (niente parsing markdown
-# dentro $...$ o $$...$$): il rendering vero lo fa KaTeX lato client,
-# vedi layouts/_default/single.html.
-[markup.goldmark.extensions.passthrough]
-  enable = true
-  [markup.goldmark.extensions.passthrough.delimiters]
-    block = [["\\[", "\\]"], ["$$", "$$"]]
-    inline = [["\\(", "\\)"], ["$", "$"]]
-
-# Evidenziazione a classi: i colori li decide style.css, non stili inline di Chroma.
-[markup.highlight]
-  noClasses = false
-  lineNos = false
-  guessSyntax = true
+# La homepage è static/index.html scritta a mano: nessun contenuto Hugo,
+# il sito è solo un passthrough di static/ (e dei PDF in documents/riassunti).
+disableKinds = ["home", "taxonomy", "term"]
 
 # PDF già presenti nel repo: montati come static senza spostarli.
 [module]
   [[module.mounts]]
     source = "static"
     target = "static"
-  [[module.mounts]]
-    source = "content"
-    target = "content"
   [[module.mounts]]
     source = "documents"
     target = "static/documents"

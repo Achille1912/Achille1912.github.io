@@ -2,11 +2,9 @@
 // Le pagine possono registrare callback con onLangChange() per ridisegnare i contenuti dinamici.
 (function () {
   const callbacks = [];
-  // Nessuna scelta esplicita salvata: il blog parte in inglese, il resto del
-  // sito in italiano. Una volta toggled manualmente, la scelta vale ovunque.
+  // Nessuna scelta esplicita salvata: default italiano.
   const stored = localStorage.getItem('lang');
-  const defaultLang = location.pathname.startsWith('/blog') ? 'en' : 'it';
-  let lang = stored === 'it' || stored === 'en' ? stored : defaultLang;
+  let lang = stored === 'it' || stored === 'en' ? stored : 'it';
 
   window.currentLang = () => lang;
   window.onLangChange = (fn) => { callbacks.push(fn); fn(lang); };
