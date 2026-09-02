@@ -3,6 +3,11 @@ languageCode = "it"
 title = "Mental Diff"
 enableRobotsTXT = true
 
+# Serve per .Lastmod (usato in <atom:updated> nel feed RSS): prende la data
+# dell'ultimo commit git che ha toccato il file, non il mtime del filesystem
+# (che il checkout di GitHub Actions azzera per tutti i file ad ogni build).
+enableGitInfo = true
+
 # La homepage è static/index.html scritta a mano: nessun layout per la home,
 # così Hugo non la sovrascrive.
 disableKinds = ["home"]
