@@ -12,7 +12,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Literata:ital,opsz,wght@0,7..72,300;0,7..72,600;1,7..72,300&family=JetBrains+Mono:wght@400&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="/style.css">
-  <link rel="alternate" type="application/rss+xml" title="Mental Diff" href="https://achille1912.github.io/mental-diff/index.xml">
+  <link rel="alternate" type="application/rss+xml" title="Mental Diff" href="https://mentaldiff.achillecannavale.dev/index.xml">
   <script src="/theme.js"></script>
   <script src="/lang.js"></script>
 </head>
@@ -24,7 +24,7 @@
     <nav class="menu">
       <a href="/" class="active" data-it="home" data-en="home">home</a>
       <a href="#progetti" data-it="progetti" data-en="projects">progetti</a>
-      <a href="https://achille1912.github.io/mental-diff/" data-it="blog" data-en="blog">blog</a>
+      <a href="https://mentaldiff.achillecannavale.dev/" data-it="blog" data-en="blog">blog</a>
       <a href="#contatti" data-it="contatti" data-en="contact">contatti</a>
       <a href="https://github.com/achille1912" target="_blank" rel="noopener">github</a>
       <button id="theme-toggle">dark</button>
@@ -111,7 +111,7 @@
     <section id="scritti">
       <h2 data-it="Ultimi post" data-en="Latest posts">Ultimi post</h2>
       <ul class="post-list" id="blog-preview"></ul>
-      <p style="margin-top:1rem"><a href="https://achille1912.github.io/mental-diff/" data-it="Tutti i post" data-en="All posts">Tutti i post</a></p>
+      <p style="margin-top:1rem"><a href="https://mentaldiff.achillecannavale.dev/" data-it="Tutti i post" data-en="All posts">Tutti i post</a></p>
     </section>
 
     <section id="contatti">
@@ -127,7 +127,7 @@
 
   <footer>
     <span>© 2026 Achille Cannavale</span>
-    <a href="https://achille1912.github.io/mental-diff/index.xml">rss</a>
+    <a href="https://mentaldiff.achillecannavale.dev/index.xml">rss</a>
   </footer>
 
 </div>
@@ -150,7 +150,7 @@
 
   onLangChange(renderPreview);
 
-  fetch('https://achille1912.github.io/mental-diff/index.json')
+  fetch('https://mentaldiff.achillecannavale.dev/index.json')
     .then(r => r.ok ? r.json() : [])
     .then(data => { posts = data.slice(0, 3); renderPreview(); })
     .catch(() => {});
