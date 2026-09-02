@@ -138,6 +138,9 @@ pre code { background: none; border: none; padding: 0; }
 /* NAVIGAZIONE POST */
 .post-nav { display: flex; justify-content: space-between; gap: 1rem; margin-top: 3rem; font-size: small; }
 
+/* COMMENTI (giscus) */
+#comments { margin-top: 3rem; }
+
 footer { margin-top: 3rem; font-size: small; color: var(--content-secondary); display: flex; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
 
 @media (max-width: 1024px) { :root { --main-width: 750px; } }
