@@ -5,6 +5,7 @@
   <script>(function(){try{var t=localStorage.getItem('theme');document.documentElement.setAttribute('data-theme', t==='dark'?'dark':'light');}catch(e){}})();</script>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ block "title" . }}{{ .Title }}{{ end }}</title>
+  <link rel="icon" href="{{ "favicon.ico" | relURL }}">
   <link rel="icon" type="image/jpeg" href="{{ "avatar.jpg" | relURL }}">
   <meta property="og:type" content="{{ if .IsPage }}article{{ else }}website{{ end }}">
   <meta property="og:title" content="{{ .Title }}">
